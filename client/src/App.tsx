@@ -6,7 +6,7 @@ import MainPage from './components/pages/MainPage';
 import { useAppDispatch } from './redux/hooks';
 import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
 
-import RegistrationModal from './components/ui/RegistrationModal';
+// import RegistrationModal from './components/ui/RegistrationModal';
 import NavBar from './components/ui/NavBar';
 
 function App(): JSX.Element {
@@ -22,7 +22,7 @@ function App(): JSX.Element {
       <Routes>
         {/* <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} /> */}
-        <Route path="/" element={<RegistrationModal />} />
+        {/* <Route path="/" element={<RegistrationModal />} /> */}
         <Route path="/" element={<MainPage />} />
         {/* <Route path="/region" element={<Тут регион будет />} />
 

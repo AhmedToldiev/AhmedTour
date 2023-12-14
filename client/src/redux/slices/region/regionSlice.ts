@@ -12,7 +12,7 @@ export const regionSlice = createSlice({
   reducers:{},
   extraReducers: (builder) => {
     builder.addCase(thunkRegionLoad.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
       state.regions = action.payload;
     });
     builder.addCase(thunkRegionLoad.rejected, (state, action) => {
