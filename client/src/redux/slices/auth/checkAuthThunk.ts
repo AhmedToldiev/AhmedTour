@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import type { AuthState, LoginFormData, SignupFormData } from '../../../components/types/auth';
-import AuthService from '../../../components/services/authService';
+import type { AuthState, LoginFormData, SignupFormData } from '../../../types/auth';
+import AuthService from '../../../services/authService';
+
 
 export const thunkCheckAuth = createAsyncThunk<AuthState>('authSlice/thunkChecAuth', async () => {
   const backendAuth = await AuthService.check();
@@ -15,12 +16,12 @@ export const thunkLogin = createAsyncThunk(
   },
 );
 export const thunkSignup = createAsyncThunk(
-    'authSlice/thunkSignup',
-    async (formData: SignupFormData) => {
-      const backendAuth = await AuthService.signup(formData);
-      return { ...backendAuth, user: { ...backendAuth.user, status: 'authenticated' } };
-    },
-  );
+  'authSlice/thunkSignup',
+  async (formData: SignupFormData) => {
+    const backendAuth = await AuthService.signup(formData);
+    return { ...backendAuth, user: { ...backendAuth.user, status: 'authenticated' } };
+  },
+);
 
 export const thunkLogout = createAsyncThunk('authSlice/thunkLogout', () => AuthService.logout());
 export const thunkRefreshToken = createAsyncThunk<AuthState['accessToken']>(
