@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import type { AxiosError } from 'axios';
 import { apiInstance } from '../services/apiService';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { thunkRefreshToken } from '../redux/slices/auth/createAsyncThunks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { thunkRefreshToken } from '../../redux/slices/auth/createAsyncThunks';
 
 export default function useAxiosInterceptors(): void {
   const accessToken = useAppSelector((store) => store.authSlice.accessToken);
