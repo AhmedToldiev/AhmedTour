@@ -11,8 +11,6 @@ function App(): JSX.Element {
           <Route path="/" element={<MainPage />} />
           {/* <Route path="/region" element={<Тут регион будет />} />
           <Route path="/tours" element={<Тут админ панель />} /> */}
-
-          
     </Routes>
   );
 }

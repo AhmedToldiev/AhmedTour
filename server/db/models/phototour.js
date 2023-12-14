@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   PhotoTour.init({
-    image: DataTypes.TEXT
+    img1: DataTypes.TEXT,
+    img2: DataTypes.TEXT,
+    img3: DataTypes.TEXT,
+    img4: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'PhotoTour',
