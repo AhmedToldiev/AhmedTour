@@ -1,5 +1,18 @@
-import { Input, ModalCloseButton, ModalContent, ModalOverlay, useDisclosure, Button, FormControl, FormLabel, Modal, ModalBody, ModalFooter, ModalHeader } from "@chakra-ui/react";
-import React from "react";
+import React from 'react';
+import {
+  Input,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+  useDisclosure,
+  Button,
+  FormControl,
+  FormLabel,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+} from '@chakra-ui/react';
 
 export default function InitialFocus(): React.JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -10,9 +23,6 @@ export default function InitialFocus(): React.JSX.Element {
   return (
     <>
       <Button onClick={onOpen}>Open Modal</Button>
-      <Button ml={4} ref={finalRef}>
-        I'll receive focus on close
-      </Button>
 
       <Modal
         initialFocusRef={initialRef}
