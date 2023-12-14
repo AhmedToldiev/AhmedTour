@@ -13,7 +13,8 @@ const initialState: AuthState = {
   user: {
     status: 'pending',
   },
-  addCommentModalIsOpen: false,
+  addRegistrationModalIsOpen: false,
+  addLoginModalIsOpen: false,
 };
 
 export const authSlice = createSlice({
@@ -21,7 +22,10 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     registrModal: (state) => {
-      state.addCommentModalIsOpen = !state.addCommentModalIsOpen;
+      state.addRegistrationModalIsOpen = !state.addRegistrationModalIsOpen;
+    },
+    loginModal: (state) => {
+      state.addLoginModalIsOpen = !state.addLoginModalIsOpen;
     },
   },
   extraReducers(builder) {
@@ -44,10 +48,9 @@ export const authSlice = createSlice({
     builder.addCase(thunkLogout.fulfilled, (state, action) => {
       state.user.status = 'guest';
     });
-
   },
 });
 
-export const { registrModal } = authSlice.actions;
+export const { registrModal, loginModal } = authSlice.actions;
 
 export default authSlice.reducer;
