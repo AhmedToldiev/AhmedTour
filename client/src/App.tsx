@@ -6,6 +6,7 @@ import MainPage from './components/pages/MainPage';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
 
+
 import RegistrationModal from './components/ui/RegistrationModal';
 import LoginModal from './components/ui/LoginModal';
 import NavBar from './components/ui/NavBar';
