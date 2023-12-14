@@ -13,7 +13,9 @@ export default function MainPage(): JSX.Element {
   };
   return (
     <Container style={{ margin: '-100px' }}>
-      <Carousel activeIndex={index} onSelect={handleSelect}>{regions?.map((region) => <CarouselCard region={region} />)}</Carousel>
+      <Carousel activeIndex={index} onSelect={handleSelect}>
+        {regions?.map((region) => <CarouselCard region={region} />)}
+      </Carousel>
     </Container>
   );
 }

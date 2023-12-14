@@ -13,12 +13,21 @@ const initialState: AuthState = {
   user: {
     status: 'pending',
   },
+  addRegistrationModalIsOpen: false,
+  addLoginModalIsOpen: false,
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    registrModal: (state) => {
+      state.addRegistrationModalIsOpen = !state.addRegistrationModalIsOpen;
+    },
+    loginModal: (state) => {
+      state.addLoginModalIsOpen = !state.addLoginModalIsOpen;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(thunkCheckAuth.fulfilled, (state, action) => action.payload);
     builder.addCase(thunkCheckAuth.rejected, (state, action) => {
@@ -31,6 +40,7 @@ export const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.user = { ...action.payload.user, status: 'authenticated' };
     });
+
     builder.addCase(thunkSignup.fulfilled, (state, action) => {
       state.accessToken = action.payload.accessToken;
       state.user = { ...action.payload.user, status: 'authenticated' };
@@ -40,5 +50,7 @@ export const authSlice = createSlice({
     });
   },
 });
+
+export const { registrModal, loginModal } = authSlice.actions;
 
 export default authSlice.reducer;
