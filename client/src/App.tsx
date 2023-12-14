@@ -29,7 +29,7 @@ function App(): JSX.Element {
           <Route path="/registration" element={<RegistrationPage />} /> */}
         {/* <Route path="/" element={<RegistrationModal />} /> */}
         <Route path="/" element={<MainPage />} />
-        <Route path="/region" element={<RegionCard />} />
+        {/* <Route path="/region" element={<RegionCard />} /> */}
 
          {/* <Route path="/tours" element={<Тут админ панель />} />  */}
       </Routes>
