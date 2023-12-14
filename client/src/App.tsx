@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import MainPage from './components/MainPage';
+import MainPage from './components/pages/MainPage';
 import RegistrationModal from './components/ui/RegistrationModal';
 import NavBar from './components/ui/NavBar';
 
