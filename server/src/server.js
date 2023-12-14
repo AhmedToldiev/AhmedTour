@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(express.static('public'));
 app.use(express.json());
 
-app.use('/region', apiRegionRouter )
+app.use('/api/regions', apiRegionRouter )
 app.use('/tokens', tokensRouter);
 app.use('/auth', authRouter);
 

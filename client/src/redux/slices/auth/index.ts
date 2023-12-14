@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { AuthState } from '../../../components/types/auth';
-import { thunkCheckAuth, thunkLogin, thunkRefreshToken } from './checkAuthThunk';
+import type { AuthState } from '../../../types/auth';
+import {
+  thunkCheckAuth,
+  thunkLogin,
+  thunkLogout,
+  thunkRefreshToken,
+  thunkSignup,
+} from './checkAuthThunk';
 
 const initialState: AuthState = {
   accessToken: '',
@@ -30,6 +36,15 @@ export const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.user = { ...action.payload.user, status: 'authenticated' };
     });
+
+    builder.addCase(thunkSignup.fulfilled, (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      state.user = { ...action.payload.user, status: 'authenticated' };
+    });
+    builder.addCase(thunkLogout.fulfilled, (state, action) => {
+      state.user.status = 'guest';
+    });
+
   },
 });
 

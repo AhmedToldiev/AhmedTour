@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   Tour.init(
     {
       name: DataTypes.STRING,
+      body: DataTypes.TEXT,
       description: DataTypes.TEXT,
       price: DataTypes.STRING,
       regionId: DataTypes.INTEGER,

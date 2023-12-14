@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import type { AxiosError } from 'axios';
-import { apiInstance } from '../services/apiService';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { thunkRefreshToken } from '../../redux/slices/auth/createAsyncThunks';
+import { thunkRefreshToken } from '../../redux/slices/auth/checkAuthThunk';
+import { apiRegionInstance } from '../../services/regions';
 
 export default function useAxiosInterceptors(): void {
   const accessToken = useAppSelector((store) => store.authSlice.accessToken);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const requestInterceptor = apiInstance.interceptors.request.use(
+    const requestInterceptor = apiRegionInstance.interceptors.request.use(
       (config) => {
         if (!config.headers.Authorization) {
           config.headers.Authorization = `Bearer ${accessToken}`;
@@ -19,7 +19,7 @@ export default function useAxiosInterceptors(): void {
       (err) => Promise.reject(err),
     );
 
-    const responseInterceptor = apiInstance.interceptors.response.use(
+    const responseInterceptor = apiRegionInstance.interceptors.response.use(
       (res) => res,
       async (err: AxiosError & { config: { sent?: boolean } }) => {
         const prevRequest = err.config;
@@ -27,15 +27,15 @@ export default function useAxiosInterceptors(): void {
           prevRequest.sent = true;
           const newAccessToken = await dispatch(thunkRefreshToken()).unwrap();
           prevRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-          return apiInstance(prevRequest);
+          return apiRegionInstance(prevRequest);
         }
         return Promise.reject(err);
       },
     );
 
     return () => {
-      apiInstance.interceptors.request.eject(requestInterceptor);
-      apiInstance.interceptors.response.eject(responseInterceptor);
+      apiRegionInstance.interceptors.request.eject(requestInterceptor);
+      apiRegionInstance.interceptors.response.eject(responseInterceptor);
     };
   }, [accessToken]);
 }
