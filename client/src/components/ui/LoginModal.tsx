@@ -16,7 +16,7 @@ import {
 import type { LoginFormData } from '../../types/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { thunkLogin } from '../../redux/slices/auth/checkAuthThunk';
-import { loginModal } from '../../redux/slices/auth';
+import { loginModal } from '../../redux/slices/auth/index';
 
 export default function RegistrationModal(): React.JSX.Element {
   const { onOpen, onClose } = useDisclosure();
@@ -41,7 +41,6 @@ export default function RegistrationModal(): React.JSX.Element {
           <ModalHeader>Вход</ModalHeader>
           <ModalCloseButton onClick={() => dispatch(loginModal())} />
           <ModalBody pb={6}>
-
             <FormControl mt={4}>
               <FormLabel>Почта</FormLabel>
               <Input placeholder="Введите почту" type="email" name="email" />
