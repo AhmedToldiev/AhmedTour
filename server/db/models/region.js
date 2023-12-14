@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   Region.init(
     {
       name: DataTypes.STRING,
-      body: DataTypes.TEXT,
+      description: DataTypes.TEXT,
       img: DataTypes.TEXT,
     },
     {
