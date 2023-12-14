@@ -1,9 +1,10 @@
-'use strict';
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate({ Comment }) {
-      this.hasMany(Comment, { foreignKey: 'userId' });
+    static associate(models) {
+      this.belongsTo(models.Role, { foreignKey: 'roleId' });
+      this.belongsToMany(models.Basket,{foreignKey: 'userId'})
     }
   }
   User.init(
@@ -11,11 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       hashpass: DataTypes.STRING,
+      roleId: DataTypes.INTEGER,
     },
     {
       sequelize,
       modelName: 'User',
-    },
+    }
   );
   return User;
 };
