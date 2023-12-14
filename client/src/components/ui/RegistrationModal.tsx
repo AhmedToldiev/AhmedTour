@@ -13,57 +13,63 @@ import {
   ModalFooter,
   ModalHeader,
 } from '@chakra-ui/react';
+import type { SignupFormData } from '../../types/auth';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { thunkSignup } from '../../redux/slices/auth/checkAuthThunk';
+import { registrModal } from '../../redux/slices/auth';
 
-export default function InitialFocus(): React.JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export default function RegistrationModal(): React.JSX.Element {
+  const { onOpen, onClose } = useDisclosure();
+  const dispatch = useAppDispatch();
+  const isOpen = useAppSelector((state) => state.authSlice.addCommentModalIsOpen);
 
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
   return (
-    <>
-      <Button onClick={onOpen}>Open Modal</Button>
-
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
+    <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const formData = Object.fromEntries(new FormData(e.currentTarget)) as SignupFormData;
+          void dispatch(thunkSignup(formData));
+          dispatch(registrModal());
+        }}
       >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Регистрация</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton onClick={() => dispatch(registrModal())} />
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Имя</FormLabel>
-              <Input ref={initialRef} placeholder="Введите имя" />
+              <Input ref={initialRef} name="name" type="text" placeholder="Введите имя" />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Почта</FormLabel>
-              <Input placeholder="Введите почту" />
+              <Input placeholder="Введите почту" type="email" name="email" />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Пароль</FormLabel>
-              <Input placeholder="Введите пароль" />
+              <Input placeholder="Введите пароль" type="text" name="password" />
             </FormControl>
 
-            <FormControl mt={4}>
+            {/* <FormControl mt={4}>
               <FormLabel>Повторение пароля</FormLabel>
               <Input placeholder="Повторите пароль" />
-            </FormControl>
+            </FormControl> */}
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
+            <Button type="submit" colorScheme="blue" mr={3}>
               Зарегистрироваться
             </Button>
-            <Button onClick={onClose}>Закрыть</Button>
+            <Button onClick={() => dispatch(registrModal())}>Закрыть</Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
-    </>
+      </form>
+    </Modal>
   );
 }

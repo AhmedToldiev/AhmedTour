@@ -14,6 +14,7 @@ export type UserState =
 export type AuthState = {
   user: UserState;
   accessToken: string;
+  addCommentModalIsOpen: boolean;
 };
 
 export type LoginFormData = {
