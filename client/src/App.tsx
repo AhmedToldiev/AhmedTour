@@ -18,7 +18,7 @@ function App(): JSX.Element {
   }, []);
   return (
 
-  
+  <>
       <NavBar />
       <Routes>
         {/* <Route path="/login" element={<LoginPage />} />
@@ -30,6 +30,7 @@ function App(): JSX.Element {
           <Route path="/tours" element={<Тут админ панель />} /> */}
 
       </Routes>
+  </>
 
   );
 }
