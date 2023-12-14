@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 export default function BasicExample(): React.JSX.Element {
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.authSlice.user)
+  const user = useAppSelector((state) => state.authSlice.user);
   return (
     <Navbar expand="lg" style={{ backgroundColor: '#363030' }}>
       <Container>
@@ -16,9 +16,11 @@ export default function BasicExample(): React.JSX.Element {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-          <Navbar.Brand className="nav-item slam-left text-white" href="/">
-           {user.status === 'authenticated' ? `Добро пожаловать,  ${user.name}` : 'Добро пожаловать, гость'}
-        </Navbar.Brand>
+            <Navbar.Brand className="nav-item slam-left text-white" href="/">
+              {user.status === 'authenticated'
+                ? `Добро пожаловать,  ${user.name}`
+                : 'Добро пожаловать, гость'}
+            </Navbar.Brand>
             <Nav.Link href="#home" className="text-white">
               О нас
             </Nav.Link>
@@ -29,12 +31,22 @@ export default function BasicExample(): React.JSX.Element {
               <NavDropdown.Item href="#action/3.4">Кбр</NavDropdown.Item>
               <NavDropdown.Divider />
             </NavDropdown>
-            <Nav.Link href="#link" className="text-white">
-              Войти
-            </Nav.Link>
-            <Nav.Link href="" className="text-white" onClick={() => dispatch(registrModal())}>
-              Зарегистрироваться
-            </Nav.Link>
+            {user.status !== 'authenticated' ? (
+              <>
+                <Nav.Link href="#link" className="text-white">
+                  Войти
+                </Nav.Link>
+                <Nav.Link
+                  href=""
+                  className="text-white"
+                  onClick={() => void dispatch(registrModal())}
+                >
+                  Зарегистрироваться
+                </Nav.Link>
+              </>
+            ) : (
+              <></>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
