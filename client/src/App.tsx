@@ -7,11 +7,13 @@ import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
 
 import RegistrationModal from './components/ui/RegistrationModal';
+import LoginModal from './components/ui/LoginModal';
 import NavBar from './components/ui/NavBar';
 import RegionCard from './components/ui/RegionCard';
 
 function App(): JSX.Element {
-  const open = useAppSelector((state) => state.authSlice.addCommentModalIsOpen);
+  const registrModal = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
+  const logModal = useAppSelector((state) => state.authSlice.addLoginModalIsOpen);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -31,7 +33,8 @@ function App(): JSX.Element {
          {/* <Route path="/tours" element={<Тут админ панель />} />  */}
       </Routes>
 
-      {open && <RegistrationModal />}
+      {registrModal && <RegistrationModal />}
+      {logModal && <LoginModal />}
     </>
   );
 }

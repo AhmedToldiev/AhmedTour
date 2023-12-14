@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AuthState, LoginFormData, SignupFormData } from '../../../types/auth';
 import AuthService from '../../../services/authService';
 
-
 export const thunkCheckAuth = createAsyncThunk<AuthState>('authSlice/thunkChecAuth', async () => {
   const backendAuth = await AuthService.check();
   return { ...backendAuth, user: { ...backendAuth.user, status: 'authenticated' } };
