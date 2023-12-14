@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { BackendAuth, LoginFormData, SignupFormData } from '../types/auth';
 
 export const authInstance = axios.create({
-  baseURL: import.meta.env.VITE_SERVER_BASEURL,
+  baseURL: 'http://localhost:3000/',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -21,6 +21,7 @@ class AuthService {
   }
 
   static async signup(formData: SignupFormData): Promise<BackendAuth> {
+    console.log(formData);
     const response = await authInstance.post<BackendAuth>('/auth/signup', formData);
     return response.data;
   }
