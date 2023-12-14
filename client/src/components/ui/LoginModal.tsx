@@ -13,15 +13,15 @@ import {
   ModalFooter,
   ModalHeader,
 } from '@chakra-ui/react';
-import type { SignupFormData } from '../../types/auth';
+import type { LoginFormData } from '../../types/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { thunkSignup } from '../../redux/slices/auth/checkAuthThunk';
-import { registrModal } from '../../redux/slices/auth';
+import { thunkLogin } from '../../redux/slices/auth/checkAuthThunk';
+import { loginModal } from '../../redux/slices/auth';
 
 export default function RegistrationModal(): React.JSX.Element {
   const { onOpen, onClose } = useDisclosure();
   const dispatch = useAppDispatch();
-  const isOpen = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
+  const isOpen = useAppSelector((state) => state.authSlice.addLoginModalIsOpen);
 
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
@@ -31,20 +31,16 @@ export default function RegistrationModal(): React.JSX.Element {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          const formData = Object.fromEntries(new FormData(e.currentTarget)) as SignupFormData;
-          void dispatch(thunkSignup(formData));
-          dispatch(registrModal());
+          const formData = Object.fromEntries(new FormData(e.currentTarget)) as LoginFormData;
+          void dispatch(thunkLogin(formData));
+          dispatch(loginModal());
         }}
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Регистрация</ModalHeader>
-          <ModalCloseButton onClick={() => dispatch(registrModal())} />
+          <ModalHeader>Вход</ModalHeader>
+          <ModalCloseButton onClick={() => dispatch(loginModal())} />
           <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>Имя</FormLabel>
-              <Input ref={initialRef} name="name" type="text" placeholder="Введите имя" />
-            </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Почта</FormLabel>
@@ -64,9 +60,9 @@ export default function RegistrationModal(): React.JSX.Element {
 
           <ModalFooter>
             <Button type="submit" colorScheme="blue" mr={3}>
-              Зарегистрироваться
+              Войти
             </Button>
-            <Button onClick={() => dispatch(registrModal())}>Закрыть</Button>
+            <Button onClick={() => dispatch(loginModal())}>Закрыть</Button>
           </ModalFooter>
         </ModalContent>
       </form>

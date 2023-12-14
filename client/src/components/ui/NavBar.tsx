@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { registrModal } from '../../redux/slices/auth';
+import { loginModal, registrModal } from '../../redux/slices/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 export default function BasicExample(): React.JSX.Element {
@@ -31,6 +31,7 @@ export default function BasicExample(): React.JSX.Element {
               <NavDropdown.Item href="#action/3.4">Кбр</NavDropdown.Item>
               <NavDropdown.Divider />
             </NavDropdown>
+
             {user.status !== 'authenticated' ? (
               <>
                 <Nav.Link href="#link" className="text-white">
@@ -47,6 +48,7 @@ export default function BasicExample(): React.JSX.Element {
             ) : (
               <></>
             )}
+
           </Nav>
         </Navbar.Collapse>
       </Container>
