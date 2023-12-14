@@ -34,7 +34,7 @@ export default function BasicExample(): React.JSX.Element {
 
             {user.status !== 'authenticated' ? (
               <>
-                <Nav.Link href="#link" className="text-white">
+                <Nav.Link href="#link" className="text-white" onClick={() => void dispatch(loginModal())}>
                   Войти
                 </Nav.Link>
                 <Nav.Link
