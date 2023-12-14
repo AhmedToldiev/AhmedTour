@@ -8,7 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      image: {
+      img1: {
+        type: Sequelize.TEXT,
+      },
+      img2: {
+        type: Sequelize.TEXT,
+      },
+      img3: {
+        type: Sequelize.TEXT,
+      },
+      img4: {
         type: Sequelize.TEXT,
       },
       createdAt: {
