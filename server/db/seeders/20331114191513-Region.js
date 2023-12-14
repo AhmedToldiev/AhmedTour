@@ -7,8 +7,24 @@ module.exports = {
       'Regions',
       [
         {
-          name: '123',
+          name: 'Дагестан',
           description: '456',
+          img: ''
+        },
+        {
+          name: 'Дагестан',
+          description: '456',
+          img: ' '
+        },
+        {
+          name: '',
+          description: '456',
+          img: ''
+        },
+        {
+          name: 'Дагестан',
+          description: '456',
+          img:''
         },
       ],
       {}
