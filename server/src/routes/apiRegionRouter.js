@@ -9,10 +9,11 @@ apiRegionRouter
 .get(async (req,res) => {
     try{
         const AllRegions = await Region.findAll()
-        console.log(AllRegions);
+        console.log(AllRegions, '--------------');
         return res.json(AllRegions)
     } catch (error) {
         console.log(error);
         res.status(500).json(error);
       }
 })
+module.exports = apiRegionRouter

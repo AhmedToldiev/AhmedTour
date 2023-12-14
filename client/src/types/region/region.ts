@@ -6,6 +6,11 @@ export type RegionType = {
   createdAt: Date;
   updatedAt: Date;
 };
+
 export type RegionState = {
   region: RegionType[];
 };
+
+export type RegionSlicesState ={
+  regions: RegionType[]
+}
