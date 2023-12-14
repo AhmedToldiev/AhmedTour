@@ -40,6 +40,7 @@ export default function BasicExample(): React.JSX.Element {
                   className="text-white"
                   onClick={() => void dispatch(loginModal())}
                 >
+                <Nav.Link href="#link" className="text-white" onClick={() => void dispatch(loginModal())}>
                   Войти
                 </Nav.Link>
                 <Nav.Link
