@@ -3,16 +3,14 @@ import { Route, Routes } from 'react-router-dom';
 
 import MainPage from './components/pages/MainPage';
 
-import { useAppDispatch } from './redux/hooks';
+import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
 
 import RegistrationModal from './components/ui/RegistrationModal';
 import NavBar from './components/ui/NavBar';
-import { useAppSelector } from './redux/hooks';
 
 function App(): JSX.Element {
-
-  const open = useAppSelector((state) => state.user.addCommentModalIsOpen);
+  const open = useAppSelector((state) => state.authSlice.addCommentModalIsOpen);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -20,9 +18,7 @@ function App(): JSX.Element {
   }, []);
 
   return (
-
-  <>
-
+    <>
       <NavBar />
       <Routes>
         {/* <Route path="/login" element={<LoginPage />} />
@@ -36,7 +32,6 @@ function App(): JSX.Element {
 
       {open && <RegistrationModal />}
     </>
-
   );
 }
 

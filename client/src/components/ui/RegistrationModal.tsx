@@ -13,7 +13,7 @@ import {
   ModalFooter,
   ModalHeader,
 } from '@chakra-ui/react';
-import type { SignupFormData } from '../types/auth';
+import type { SignupFormData } from '../../types/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { thunkSignup } from '../../redux/slices/auth/checkAuthThunk';
 import { registrModal } from '../../redux/slices/auth';
@@ -21,7 +21,7 @@ import { registrModal } from '../../redux/slices/auth';
 export default function RegistrationModal(): React.JSX.Element {
   const { onOpen, onClose } = useDisclosure();
   const dispatch = useAppDispatch();
-  const isOpen = useAppSelector((state) => state.user.addCommentModalIsOpen);
+  const isOpen = useAppSelector((state) => state.authSlice.addCommentModalIsOpen);
 
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);

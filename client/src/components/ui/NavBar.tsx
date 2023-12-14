@@ -4,10 +4,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { registrModal } from '../../redux/slices/auth';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 export default function BasicExample(): React.JSX.Element {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.authSlice.user)
   return (
     <Navbar expand="lg" style={{ backgroundColor: '#363030' }}>
       <Container>
@@ -15,6 +16,9 @@ export default function BasicExample(): React.JSX.Element {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
+          <Navbar.Brand className="nav-item slam-left text-white" href="/">
+           {user.status === 'authenticated' ? `Добро пожаловать,  ${user.name}` : 'Добро пожаловать, гость'}
+        </Navbar.Brand>
             <Nav.Link href="#home" className="text-white">
               О нас
             </Nav.Link>
@@ -28,7 +32,7 @@ export default function BasicExample(): React.JSX.Element {
             <Nav.Link href="#link" className="text-white">
               Войти
             </Nav.Link>
-            <Nav.Link href="#registr" className="text-white" onClick={() => dispatch(registrModal())}>
+            <Nav.Link href="" className="text-white" onClick={() => dispatch(registrModal())}>
               Зарегистрироваться
             </Nav.Link>
           </Nav>
