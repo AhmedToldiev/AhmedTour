@@ -1,17 +1,16 @@
 import axios from 'axios';
 import type { RegionType } from '../types/region/region';
 
-export const apiRegionRouter = axios.create({
-  baseURL: 'http://localhost:3000/',
+export const apiRegionInstance = axios.create({
+  baseURL: 'http://localhost:3000/api/regions',
 });
 
 class RegionService {
   static async getRegion(): Promise<RegionType[]> {
-    const response = await apiRegionRouter.get<RegionType[]>('/');
+    const response = await apiRegionInstance.get<RegionType[]>('/');
     if (response.status === 200) return response.data;
-    return []
+    return [];
   }
-  
 }
 
 export default RegionService;
