@@ -30,7 +30,7 @@ export const authSlice = createSlice({
       state.user = { ...action.payload.user, status: 'authenticated' };
     });
     builder.addCase(thunkLogout.fulfilled, (state, action) => {
-      state.user.status = 'guest';
+      state.user.status = 'guest'
     });
   },
 });
