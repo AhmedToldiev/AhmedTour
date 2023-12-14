@@ -15,7 +15,9 @@ function App(): JSX.Element {
     void dispatch(thunkRegionLoad());
   }, []);
   return (
-    <>
+
+  <>
+
       <NavBar />
       <Routes>
         {/* <Route path="/login" element={<LoginPage />} />
@@ -26,7 +28,9 @@ function App(): JSX.Element {
 
 <Route path="/tours" element={<Тут админ панель />} /> */}
       </Routes>
-    </>
+
+  </>
+
   );
 }
 
