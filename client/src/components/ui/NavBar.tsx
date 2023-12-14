@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { loginModal, registrModal } from '../../redux/slices/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { thunkLogout } from '../../redux/slices/auth/checkAuthThunk';
 
 export default function BasicExample(): React.JSX.Element {
   const dispatch = useAppDispatch();
@@ -24,13 +25,14 @@ export default function BasicExample(): React.JSX.Element {
             <Nav.Link href="#home" className="text-white">
               О нас
             </Nav.Link>
-            <NavDropdown title="Регионы">
+            <NavDropdown title={<span className="text-white">Регионы</span>}>
               <NavDropdown.Item href="#action/3.1">Дагестан</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Чечня</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Ингушетия</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.4">Кбр</NavDropdown.Item>
               <NavDropdown.Divider />
             </NavDropdown>
+
 
             {user.status !== 'authenticated' ? (
               <>
