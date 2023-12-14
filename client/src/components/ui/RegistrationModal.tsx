@@ -32,25 +32,35 @@ export default function InitialFocus(): React.JSX.Element {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
+          <ModalHeader>Регистрация</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>First name</FormLabel>
-              <Input ref={initialRef} placeholder="First name" />
+              <FormLabel>Имя</FormLabel>
+              <Input ref={initialRef} placeholder="Введите имя" />
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Last name</FormLabel>
-              <Input placeholder="Last name" />
+              <FormLabel>Почта</FormLabel>
+              <Input placeholder="Введите почту" />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Пароль</FormLabel>
+              <Input placeholder="Введите пароль" />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Повторение пароля</FormLabel>
+              <Input placeholder="Повторите пароль" />
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3}>
-              Save
+              Зарегистрироваться
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClose}>Закрыть</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

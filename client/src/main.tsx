@@ -5,13 +5,10 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import App from './App';
 
-
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <ChakraProvider>
-    // <BrowserRouter>
+    <BrowserRouter>
       <App />
-    // </BrowserRouter>
-  </ChakraProvider>
-
+    </BrowserRouter>
+  </ChakraProvider>,
 );
