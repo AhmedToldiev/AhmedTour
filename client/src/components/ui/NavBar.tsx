@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { loginModal, registrModal } from '../../redux/slices/auth';
+import { registrModal, loginModal } from '../../redux/slices/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { thunkLogout } from '../../redux/slices/auth/checkAuthThunk';
 
@@ -33,9 +33,13 @@ export default function BasicExample(): React.JSX.Element {
               <NavDropdown.Divider />
             </NavDropdown>
 
-
             {user.status !== 'authenticated' ? (
               <>
+                <Nav.Link
+                  href="#link"
+                  className="text-white"
+                  onClick={() => void dispatch(loginModal())}
+                >
                 <Nav.Link href="#link" className="text-white" onClick={() => void dispatch(loginModal())}>
                   Войти
                 </Nav.Link>
@@ -48,9 +52,14 @@ export default function BasicExample(): React.JSX.Element {
                 </Nav.Link>
               </>
             ) : (
-              <></>
+              <Nav.Link
+              href=""
+              className="text-white"
+              onClick={() => void dispatch(thunkLogout())}
+            >
+              Выйти
+            </Nav.Link>
             )}
-
           </Nav>
         </Navbar.Collapse>
       </Container>
