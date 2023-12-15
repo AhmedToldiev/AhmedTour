@@ -7,15 +7,20 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { registrModal, loginModal } from '../../redux/slices/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { thunkLogout } from '../../redux/slices/auth/checkAuthThunk';
+import Logo from '../../icons/Logo';
 
 export default function BasicExample(): React.JSX.Element {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.authSlice.user);
 
   return (
-    <Navbar expand="lg" style={{ backgroundColor: '#363030' }}>
+    <Navbar expand="lg" style={{ backgroundColor: '#363030', borderRadius: '0 0 15px 15px' }}>
       <Container>
-        <Navbar.Brand as={Link} to="/">Logo</Navbar.Brand>
+
+      <div >
+        <Logo />
+      </div>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
