@@ -54,9 +54,9 @@ export default function MainPage(): JSX.Element {
     height: '726px',
   };
   return (
-    <Carousel infinite autoPlay autoPlaySpeed={1500} responsive={responsive}>
+    <Carousel infinite autoPlay autoPlaySpeed={2500} responsive={responsive}>
       {regions.map((region) => (
-        <div key={region.id}>
+        <div key={region.id} style={{marginTop: '30px'}}>
           <Link to={`/region/${region.id}`} style={{ textDecoration: 'none' }}>
             <img key={region.id} src={region.img} alt="Img" style={imgStyle} />
             <h1 style={regionStyles}>{`${region.name}`}</h1>
