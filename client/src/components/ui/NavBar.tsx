@@ -14,7 +14,14 @@ export default function BasicExample(): React.JSX.Element {
   const user = useAppSelector((state) => state.authSlice.user);
 
   return (
-    <Navbar expand="lg" style={{ backgroundColor: '#363030', borderRadius: '0 0 15px 15px' }}>
+    <Navbar
+      expand="lg"
+      style={{
+        backgroundColor: '#363030',
+        borderRadius: '0 0 15px 15px',
+        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.7)',
+      }}
+    >
       <Container>
         <div>
           <Logo />
@@ -32,6 +39,7 @@ export default function BasicExample(): React.JSX.Element {
               О нас
             </Nav.Link>
             <NavDropdown title={<span className="text-white">Регионы</span>}>
+
               <NavDropdown.Item as={Link} to="/region/1">
                 Дагестан
               </NavDropdown.Item>
@@ -44,6 +52,7 @@ export default function BasicExample(): React.JSX.Element {
               <NavDropdown.Item as={Link} to="/region/4">
                 Чечня
               </NavDropdown.Item>
+
               <NavDropdown.Divider />
             </NavDropdown>
 
