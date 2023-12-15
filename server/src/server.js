@@ -4,7 +4,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const tokensRouter = require('./routes/tokensRouter');
 const authRouter = require('./routes/authRouter');
-const apiRegionRouter = require('./routes/apiRegionRouter')
+const apiRegionRouter = require('./routes/apiRegionRouter');
+const apiTourRouter = require('./routes/apiTourRouter');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
