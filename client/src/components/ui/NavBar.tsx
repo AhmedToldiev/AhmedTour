@@ -38,6 +38,9 @@ export default function BasicExample(): React.JSX.Element {
             <Nav.Link as={Link} to="/about" className="text-white">
               О нас
             </Nav.Link>
+            <Nav.Link as={Link} to="/basket" className="text-white">
+              Корзина
+            </Nav.Link>
             <NavDropdown title={<span className="text-white">Регионы</span>}>
               <NavDropdown.Item as={Link} to="#">
                 Дагестан
