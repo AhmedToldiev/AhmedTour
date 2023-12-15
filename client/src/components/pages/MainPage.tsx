@@ -8,7 +8,7 @@ import { useAppSelector } from '../../redux/hooks';
 
 export default function MainPage(): JSX.Element {
   const regions = useAppSelector((store) => store.regionSlice.regions);
-  console.log(regions);
+  // console.log(regions);
 
   // console.log(regions);
   // const [index, setIndex] = useState(0);

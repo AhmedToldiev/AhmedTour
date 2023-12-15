@@ -39,19 +39,20 @@ export default function BasicExample(): React.JSX.Element {
               О нас
             </Nav.Link>
             <NavDropdown title={<span className="text-white">Регионы</span>}>
-              <NavDropdown.Item as={Link} to="#">
+
+              <NavDropdown.Item as={Link} to="/region/1">
                 Дагестан
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="#">
-                Чечня
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="#">
+              <NavDropdown.Item as={Link} to="/region/2">
                 Ингушетия
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="#">
+              <NavDropdown.Item as={Link} to="/region/3">
                 КБР
               </NavDropdown.Item>
-              {/* <NavDropdown.Divider /> */}
+              <NavDropdown.Item as={Link} to="/region/4">
+                Чечня
+              </NavDropdown.Item>
+
             </NavDropdown>
 
             {user.status !== 'authenticated' ? (
