@@ -10,8 +10,10 @@ import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
 import RegistrationModal from './components/ui/RegistrationModal';
 import LoginModal from './components/ui/LoginModal';
 import NavBar from './components/ui/NavBar';
+
 // import RegionCard from './components/ui/RegionCard';
 import { thunkCheckAuth } from './redux/slices/auth/checkAuthThunk';
+
 
 function App(): JSX.Element {
   const registrModal = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
