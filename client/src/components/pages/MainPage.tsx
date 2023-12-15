@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 // import { Carousel } from 'react-bootstrap';
-import { useAppSelector } from '../../redux/hooks';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../redux/hooks';
 // import CarouselCard from '../ui/CarouselCard';
 
 export default function MainPage(): JSX.Element {
@@ -19,12 +19,12 @@ export default function MainPage(): JSX.Element {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 100 },
+      breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 2,
+      items: 1,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -36,8 +36,8 @@ export default function MainPage(): JSX.Element {
     },
   };
   const imgStyle = {
-    maxWidth: '100%',
-    height: 'auto',
+    width: '1200px', // Задайте фиксированную ширину
+    height: '800px',
     borderRadius: '19px',
     // boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', // Тень для изображения
     border: '3px solid #fff', // Белая рамка шириной 2 пикселя
@@ -53,10 +53,14 @@ export default function MainPage(): JSX.Element {
     width: '968px',
     height: '726px',
   };
+  const carouselStyle = {
+  
+  }
+
   return (
-    <Carousel infinite autoPlay autoPlaySpeed={2500} responsive={responsive}>
+    <Carousel  infinite autoPlay autoPlaySpeed={3000} responsive={responsive}>
       {regions.map((region) => (
-        <div key={region.id} style={{marginTop: '30px'}}>
+        <div key={region.id} style={{marginTop: '50px'}}>
           <Link to={`/region/${region.id}`} style={{ textDecoration: 'none' }}>
             <img key={region.id} src={region.img} alt="Img" style={imgStyle} />
             <h1 style={regionStyles}>{`${region.name}`}</h1>

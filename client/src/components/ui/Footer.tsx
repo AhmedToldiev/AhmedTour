@@ -5,13 +5,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { registrModal, loginModal } from '../../redux/slices/auth';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+// import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { thunkLogout } from '../../redux/slices/auth/checkAuthThunk';
 import Logo from '../../icons/Logo';
 
-export default function BasicExample(): React.JSX.Element {
-  const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.authSlice.user);
+export default function Futer(): React.JSX.Element {
+
 
   return (
     <Navbar
@@ -35,9 +34,6 @@ export default function BasicExample(): React.JSX.Element {
                 ? `Добро пожаловать, ${user.name}`
                 : 'Добро пожаловать, гость'}
             </Navbar.Brand>
-            <Nav.Link as={Link} to="/about" className="text-white">
-              О нас
-            </Nav.Link>
             <NavDropdown title={<span className="text-white">Регионы</span>}>
               <NavDropdown.Item as={Link} to="#">
                 Дагестан
@@ -51,7 +47,7 @@ export default function BasicExample(): React.JSX.Element {
               <NavDropdown.Item as={Link} to="#">
                 КБР
               </NavDropdown.Item>
-              {/* <NavDropdown.Divider /> */}
+              <NavDropdown.Divider />
             </NavDropdown>
 
             {user.status !== 'authenticated' ? (
