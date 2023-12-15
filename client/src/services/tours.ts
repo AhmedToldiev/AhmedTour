@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { TourType } from '../types/tour/tour';
 
 export const apiTourInstance = axios.create({
-  baseURL: 'http://localhost:3000/api/regions/tours',
+  baseURL: 'http://localhost:3000/api/region/tours',
 });
 
 class TourService {
