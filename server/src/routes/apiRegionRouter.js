@@ -1,5 +1,6 @@
 const express = require('express');
-const {Region} = require('../../db/models') 
+const {Region} = require('../../db/models'); 
+
 
 
 const apiRegionRouter = express.Router();
@@ -16,4 +17,5 @@ apiRegionRouter
         res.status(500).json(error);
       }
 })
+
 module.exports = apiRegionRouter

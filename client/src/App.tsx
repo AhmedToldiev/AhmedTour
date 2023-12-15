@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import MainPage from './components/pages/MainPage';
-import RegionPage from './components/ui/RegionPage'
+
 
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
@@ -13,6 +13,8 @@ import NavBar from './components/ui/NavBar';
 
 // import RegionCard from './components/ui/RegionCard';
 import { thunkCheckAuth } from './redux/slices/auth/checkAuthThunk';
+import ToursPage from './components/pages/TourPage';
+import { thunkTourLoad } from './redux/slices/tour/createAsyncThunk';
 
 
 function App(): JSX.Element {
@@ -23,6 +25,7 @@ function App(): JSX.Element {
   useEffect(() => {
     void dispatch(thunkRegionLoad());
     void dispatch(thunkCheckAuth())
+    void dispatch(thunkTourLoad())
   }, []);
 
   return (
@@ -33,7 +36,7 @@ function App(): JSX.Element {
           <Route path="/registration" element={<RegistrationPage />} /> */}
         {/* <Route path="/" element={<RegistrationModal />} /> */}
         <Route path="/" element={<MainPage />} />
-        <Route path="/" element={<RegionPage region={3} />} />
+        <Route path="/region/:id" element={<ToursPage />} />
         {/* <Route path="/region" element={<RegionCard />} /> */}
 
         {/* <Route path="/tours" element={<Тут админ панель />} />  */}

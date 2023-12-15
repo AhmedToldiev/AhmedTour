@@ -1,5 +1,6 @@
 export type TourType = {
   id: number;
+  name:string,
   body: string;
   description: string;
   price: string;

@@ -1,7 +1,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Tours', {
+    await queryInterface.createTable("Tours", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,42 +11,42 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
-      body:{
-        type:Sequelize.TEXT,
+      body: {
+        type: Sequelize.TEXT,
       },
       description: {
         type: Sequelize.TEXT,
       },
       price: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       regionId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Regions',
-          key: 'id',
+          model: "Regions",
+          key: "id",
         },
       },
       photoTourId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'PhotoTours',
-          key: 'id',
+          model: "PhotoTours",
+          key: "id",
         },
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn("now"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn("now"),
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Tours');
+    await queryInterface.dropTable("Tours");
   },
 };
