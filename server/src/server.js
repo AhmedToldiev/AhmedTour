@@ -22,6 +22,6 @@ app.use(express.json());
 app.use('/api/regions', apiRegionRouter )
 app.use('/tokens', tokensRouter);
 app.use('/auth', authRouter);
-app.use('/api/regions/tours', apiTourRouter)
+app.use('/api/region/tours', apiTourRouter)
 
 app.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
