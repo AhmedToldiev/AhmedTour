@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import MainPage from './components/pages/MainPage';
+import RegionPage from './components/ui/RegionPage'
 
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
@@ -9,7 +10,8 @@ import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
 import RegistrationModal from './components/ui/RegistrationModal';
 import LoginModal from './components/ui/LoginModal';
 import NavBar from './components/ui/NavBar';
-import RegionCard from './components/ui/RegionCard';
+// import RegionCard from './components/ui/RegionCard';
+import { thunkCheckAuth } from './redux/slices/auth/checkAuthThunk';
 
 function App(): JSX.Element {
   const registrModal = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
@@ -18,6 +20,7 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
     void dispatch(thunkRegionLoad());
+    void dispatch(thunkCheckAuth())
   }, []);
 
   return (
@@ -28,6 +31,7 @@ function App(): JSX.Element {
           <Route path="/registration" element={<RegistrationPage />} /> */}
         {/* <Route path="/" element={<RegistrationModal />} /> */}
         <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<RegionPage region={3} />} />
         {/* <Route path="/region" element={<RegionCard />} /> */}
 
         {/* <Route path="/tours" element={<Тут админ панель />} />  */}

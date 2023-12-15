@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { RegionSlicesState } from '../../../types/region/region';
 import { thunkRegionLoad } from './createAsyncThunk';
+import type { RegionSlicesState } from '../../../types/region/region';
+
 
 const initialState: RegionSlicesState = {
   regions: [],
@@ -9,10 +10,10 @@ const initialState: RegionSlicesState = {
 export const regionSlice = createSlice({
   name: 'regions',
   initialState,
-  reducers:{},
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(thunkRegionLoad.fulfilled, (state, action) => {
-        // console.log(action.payload);
+      // console.log(action.payload);
       state.regions = action.payload;
     });
     builder.addCase(thunkRegionLoad.rejected, (state, action) => {
@@ -20,5 +21,5 @@ export const regionSlice = createSlice({
     });
   },
 });
- 
-export default regionSlice.reducer
+
+export default regionSlice.reducer;

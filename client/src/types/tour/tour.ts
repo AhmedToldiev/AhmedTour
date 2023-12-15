@@ -8,8 +8,10 @@ export type TourType = {
   createdAt: Date;
   updatedAt: Date;
 };
-// export type AddTourTypeFormData =  {
-// description: string,
-// price: string,
+export type TourState = {
+  region: TourType[];
+};
 
-// }
+export type TourSlicesState ={
+  tours: TourType[]
+}
