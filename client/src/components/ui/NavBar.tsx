@@ -17,9 +17,11 @@ export default function BasicExample(): React.JSX.Element {
     <Navbar expand="lg" style={{ backgroundColor: '#363030', borderRadius: '0 0 15px 15px' }}>
       <Container>
 
+
       <div >
         <Logo />
       </div>
+
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
