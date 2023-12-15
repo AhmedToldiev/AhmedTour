@@ -9,6 +9,7 @@ import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
 import RegistrationModal from './components/ui/RegistrationModal';
 import LoginModal from './components/ui/LoginModal';
 import NavBar from './components/ui/NavBar';
+import { thunkCheckAuth } from './redux/slices/auth/checkAuthThunk';
 // import RegionCard from './components/ui/RegionCard';
 
 function App(): JSX.Element {
@@ -18,6 +19,7 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
     void dispatch(thunkRegionLoad());
+    void dispatch(thunkCheckAuth())
   }, []);
 
   return (

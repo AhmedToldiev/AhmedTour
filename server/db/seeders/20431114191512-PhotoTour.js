@@ -28,6 +28,30 @@ module.exports = {
           img3: "https://i.pinimg.com/736x/58/b9/91/58b99117511482df3ade2988433bc4f6.jpg",
           img4: "https://priroda.club/uploads/posts/2022-09/thumbs/1662274306_4-priroda-club-p-gornaya-ingushetiya-krasivo-foto-4.jpg",
         },
+        {
+          img1: "https://darsik.com/wp-content/uploads/2019/04/untitled-1-2-4.jpg",
+          img2: "https://cdn.tripster.ru/thumbs2/e09cd4d0-4af2-11ee-8cef-2aa9275f276d.1220x600.jpeg",
+          img3: "https://www.atorus.ru/sites/default/files/upload/image/News/52542/%D1%84%D0%BE%D1%82%D0%BE%201.JPG",
+          img4: "https://putidorogi-nn.ru/images/stories/evropa/rossiya/kabardino_balkarskaya_respublika_4.jpg",
+        },
+        {
+          img1: "https://waterfal.ru/wp-content/uploads/2020/03/-%D0%B2%D0%BE%D0%B4%D0%BE%D0%BF%D0%B0%D0%B4%D1%8B-%D0%93%D0%B5%D0%B4%D0%BC%D0%B8%D1%88%D1%85-e1585219817217.jpg",
+          img2: "https://mygeografi.ru/wp-content/uploads/2022/01/kabardino-balkariya.jpg",
+          img3: "https://www.atorus.ru/sites/default/files/upload/image/News/52542/%D1%84%D0%BE%D1%82%D0%BE%201.JPG",
+          img4: "https://sun9-51.userapi.com/impg/8j6MX7ENp0CwcKMm9ZHobFD_kni1OWLkXlakJw/KA4FUnC6Vpw.jpg?size=1200x799&quality=96&sign=fdf3ee6e63b550b9c8f8969c922977de&type=album",
+        },
+        {
+          img1: "https://rgo.ru/upload/content_block/images/e0c8c5b29cfd61dcf3c4b5f1b2d6a92d/aadedbc00cfbf5bef01c6aa8796a202f.jpg",
+          img2: "https://drivenew.ru/upload/iblock/12f/12f49444157fea9a8f6a1af02131cff3.jpg",
+          img3: "https://otdihvrossii.ru/wp-content/uploads/2018/07/gory-chechni.jpg",
+          img4: "https://icdn.bolshayastrana.com/1200x00/02/73/027392337d139a5927d0178954ee7b2b.jpeg",
+        },
+        {
+          img1: "https://s8.stc.all.kpcdn.net/russia/wp-content/uploads/2022/10/dostoprimechatelnosti-ingushetii-1220.jpg",
+          img2: "https://youtravel.me/upload/medialibrary/e9a/e9afa3379d76da7e9660edab156acb84.jpg",
+          img3: "https://uniticket.ru/wp-content/uploads/2022/03/V-CHechne-ochen-zhivopisnye-peyzazhi1-1024x683.jpg",
+          img4: "https://must-see.top/wp-content/uploads/2018/10/groznyj-siti.jpg",
+        },
       ],
       {}
     );
