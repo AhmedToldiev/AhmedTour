@@ -15,4 +15,5 @@ export type TourState = {
 
 export type TourSlicesState ={
   tours: TourType[]
+  currentTour: TourType | null;
 }

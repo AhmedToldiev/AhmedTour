@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import type { TourType } from '../../types/tour/tour';
 import { setTours } from '../../redux/slices/tour/tourSlice';
+import { thunkTourDelete } from '../../redux/slices/tour/createAsyncThunk';
 
 export default function ToursPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -48,6 +49,7 @@ export default function ToursPage(): JSX.Element {
               <Button variant="solid" colorScheme="blue">
                 Buy Latte
               </Button>
+              <Button colorScheme='red' onClick={() => void dispatch(thunkTourDelete(tour.id))}>Удалить</Button>
             </CardFooter>
           </Stack>
         </Card>
