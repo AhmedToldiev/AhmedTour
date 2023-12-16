@@ -1,9 +1,9 @@
-const express = require('express');
-const { Tour, PhotoTour } = require('../../db/models');
+const express = require("express");
+const { Tour, PhotoTour } = require("../../db/models");
 
 const apiTourRouter = express.Router();
 
-apiTourRouter.route('/').get(async (req, res) => {
+apiTourRouter.route("/").get(async (req, res) => {
   //   const { regionId } = req.query;
   //   console.log(regionId, 'in /');
   try {
@@ -18,8 +18,12 @@ apiTourRouter.route('/').get(async (req, res) => {
     res.status(500).json(error);
   }
 });
+apiTourRouter.delete("/:id", async (req, res) => {
+  await Tour.destroy({ where: { id: req.params.id } });
+  res.sendStatus(200);
+});
 
-apiTourRouter.route('/:id').get(async (req, res) => {
+apiTourRouter.route("/:id").get(async (req, res) => {
   const { id } = req.params;
   console.log(id);
   try {
