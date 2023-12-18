@@ -4,19 +4,18 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
-import { setTours } from '../../redux/slices/tour/tourSlice';
+import { editTourModal, setSelectedTour, setTours } from '../../redux/slices/tour/tourSlice';
 
 import type { TourType } from '../../types/tour/tour';
 
 import { thunkTourDelete } from '../../redux/slices/tour/createAsyncThunk';
-
 
 export default function ToursPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const { id } = useParams();
   useEffect(() => {
-    console.log(id);
+    // console.log(id);
     axios
       .get<TourType[]>(`http://localhost:3000/api/region/tours/${id}`)
       .then(({ data }) => {
@@ -30,22 +29,24 @@ export default function ToursPage(): JSX.Element {
 
   return (
     <div>
-      {selector.map((tour) => (
+      {selector?.map((tour) => (<>
+        {console.log(tour, '============')}
+        
         <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
           <Image
             objectFit="cover"
             maxW={{ base: '100%', sm: '200px' }}
-            src={tour.PhotoTour.img1}
+            src={tour?.PhotoTour?.img1}
             alt="Caffe Latte"
-          />
+            />
+          
 
           <Stack>
             <CardBody>
               <Heading size="md">{tour.name}</Heading>
 
               <Text py="2">{tour.body}</Text>
-           
-             
+
               <Text py="2">{tour.description}</Text>
             </CardBody>
 
@@ -53,13 +54,22 @@ export default function ToursPage(): JSX.Element {
               <Button variant="solid" colorScheme="green">
                 Подробнее
               </Button>
-              <Button variant="solid" colorScheme="blue">
+              <Button
+                variant="solid"
+                colorScheme="blue"
+                onClick={() =>{ void dispatch(setSelectedTour(tour))
+                  dispatch(editTourModal())
+                }}
+                >
                 Изменить
               </Button>
-              <Button colorScheme='red' onClick={() => void dispatch(thunkTourDelete(tour.id))}>Удалить</Button>
+              <Button colorScheme="red" onClick={() => void dispatch(thunkTourDelete(tour.id))}>
+                Удалить
+              </Button>
             </CardFooter>
           </Stack>
         </Card>
+      </>
       ))}
     </div>
   );

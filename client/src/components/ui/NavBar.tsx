@@ -8,6 +8,7 @@ import { registrModal, loginModal } from '../../redux/slices/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { thunkLogout } from '../../redux/slices/auth/checkAuthThunk';
 import Logo from '../../icons/Logo';
+import { addTourModal } from '../../redux/slices/tour/tourSlice';
 
 export default function BasicExample(): React.JSX.Element {
   const dispatch = useAppDispatch();
@@ -73,9 +74,21 @@ export default function BasicExample(): React.JSX.Element {
                 </Nav.Link>
               </>
             ) : (
-              <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())}>
+              <>
+              <Nav.Link
+                href=""
+                className="text-white"
+                onClick={() => void dispatch(thunkLogout())}
+              >
                 Выйти
               </Nav.Link>
+              <Nav.Link
+                className="text-white"
+                onClick={() => void dispatch(addTourModal())}
+              >
+                Добавить тур
+              </Nav.Link>
+            </>
             )}
           </Nav>
         </Navbar.Collapse>

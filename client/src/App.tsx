@@ -14,11 +14,15 @@ import NavBar from './components/ui/NavBar';
 import { thunkCheckAuth } from './redux/slices/auth/checkAuthThunk';
 import ToursPage from './components/pages/TourPage';
 import { thunkTourLoad } from './redux/slices/tour/createAsyncThunk';
+import AddTourModal from './components/ui/AddTourModal';
+import EditTourModal from './components/ui/EditTourModal';
 
 
 function App(): JSX.Element {
   const registrModal = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
   const logModal = useAppSelector((state) => state.authSlice.addLoginModalIsOpen);
+  const addTourModal = useAppSelector((state) => state.tourSlice.addTourModalIsOpen);
+  const editTourModal = useAppSelector((state) => state.tourSlice.editTourModalIsOpen);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -43,7 +47,8 @@ function App(): JSX.Element {
 
       {registrModal && <RegistrationModal />}
       {logModal && <LoginModal />}
-   
+      {addTourModal && <AddTourModal />}
+      {editTourModal && <EditTourModal />}
     </>
   );
 }
