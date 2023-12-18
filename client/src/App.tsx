@@ -24,7 +24,6 @@ function App(): JSX.Element {
   useEffect(() => {
     void dispatch(thunkRegionLoad());
     void dispatch(thunkCheckAuth());
-    void dispatch(thunkTourLoad());
   }, []);
 
   return (

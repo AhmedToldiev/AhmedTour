@@ -12,11 +12,7 @@ class TourService {
     return [];
   }
 
-
-  static async editTour(
-    formData: AddTourFormData,
-    id: TourType['id'],
-  ): Promise<TourType> {
+  static async editTour(formData: AddTourFormData, id: TourType['id']): Promise<TourType> {
     const response = await apiTourInstance.patch<TourType>(`/api/region/tours/${id}`, formData);
     if (response.status === 200) return response.data;
     return Promise.reject(new Error('Error editing on server'));
@@ -26,7 +22,6 @@ class TourService {
     const response = await apiTourInstance.delete<TouchType>(`/${id}`);
     if (response.status === 200) return id;
     return Promise.reject(new Error('Server error delete book'));
-
   }
 }
 
