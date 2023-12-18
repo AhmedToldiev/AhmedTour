@@ -30,7 +30,6 @@ class TourService {
     const response = await apiTourInstance.delete<TouchType>(`/${id}`);
     if (response.status === 200) return id;
     return Promise.reject(new Error('Server error delete book'));
-
   }
 }
 

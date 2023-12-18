@@ -14,8 +14,6 @@ import NavBar from './components/ui/NavBar';
 import { thunkCheckAuth } from './redux/slices/auth/checkAuthThunk';
 import ToursPage from './components/pages/TourPage';
 import { thunkTourLoad } from './redux/slices/tour/createAsyncThunk';
-import AddTourModal from './components/ui/AddTourModal';
-import EditTourModal from './components/ui/EditTourModal';
 
 
 function App(): JSX.Element {
@@ -40,6 +38,7 @@ function App(): JSX.Element {
         {/* <Route path="/" element={<RegistrationModal />} /> */}
         <Route path="/" element={<MainPage />} />
         <Route path="/region/:id" element={<ToursPage />} />
+        <Route path="/more/:id" element={<MorePage />} />
         {/* <Route path="/region" element={<RegionCard />} /> */}
 
         {/* <Route path="/tours" element={<Тут админ панель />} />  */}

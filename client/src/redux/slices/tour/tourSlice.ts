@@ -50,6 +50,7 @@ export const tourSlice = createSlice({
       }
       state.selectedTour = null;
     });
+
     builder.addCase(thunkTourDelete.fulfilled, (state, action) => {
       console.log(action.payload, '+++++++++++++++++++');
 
@@ -61,7 +62,6 @@ export const tourSlice = createSlice({
     });
   },
 });
-export const { setTours, clearSelectedTour, setSelectedTour, addTourModal, editTourModal } =
-  tourSlice.actions;
+export const { setTours,clearSelectedTour,setSelectedTour } = tourSlice.actions;
 
 export default tourSlice.reducer;

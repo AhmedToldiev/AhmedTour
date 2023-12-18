@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Card, CardBody, CardFooter, Stack, Image, Heading, Text, Button } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Carousel from 'react-bootstrap/Carousel';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { editTourModal, setSelectedTour, setTours } from '../../redux/slices/tour/tourSlice';
@@ -25,7 +26,12 @@ export default function ToursPage(): JSX.Element {
         console.log(error);
       });
   }, [id]);
+
   const selector = useAppSelector((tour) => tour.tourSlice.tours);
+
+  const handleMoreClick = (id) => {
+    window.location.href = `/more/${id}`;
+  };
 
   return (
     <div>
@@ -33,13 +39,20 @@ export default function ToursPage(): JSX.Element {
         {console.log(tour, '============')}
         
         <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
-          <Image
-            objectFit="cover"
-            maxW={{ base: '100%', sm: '200px' }}
-            src={tour?.PhotoTour?.img1}
-            alt="Caffe Latte"
-            />
-          
+          <Carousel style={{ width: '600px', height: '300px' }}>
+            <Carousel.Item style={{ width: '600px', height: '380px' }}>
+              <img src={tour.PhotoTour.img1} />
+            </Carousel.Item>
+            <Carousel.Item style={{ width: '600px', height: '380px' }}>
+              <img src={tour.PhotoTour.img2} />
+            </Carousel.Item>
+            <Carousel.Item style={{ width: '600px', height: '380px' }}>
+              <img src={tour.PhotoTour.img3} />
+            </Carousel.Item>
+            <Carousel.Item style={{ width: '600px', height: '380px' }}>
+              <img src={tour.PhotoTour.img4} />
+            </Carousel.Item>
+          </Carousel>
 
           <Stack>
             <CardBody>
@@ -47,11 +60,11 @@ export default function ToursPage(): JSX.Element {
 
               <Text py="2">{tour.body}</Text>
 
-              <Text py="2">{tour.description}</Text>
+              {/* <Text py="2">{tour.description}</Text> */}
             </CardBody>
 
             <CardFooter>
-              <Button variant="solid" colorScheme="green">
+              <Button variant="solid" colorScheme="green" onClick={() => handleMoreClick(tour.id)}>
                 Подробнее
               </Button>
               <Button

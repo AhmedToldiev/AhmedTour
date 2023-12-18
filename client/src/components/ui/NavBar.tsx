@@ -24,7 +24,7 @@ export default function BasicExample(): React.JSX.Element {
       }}
     >
       <Container>
-        <div>
+        <div style={{marginRight: '30px'}}>
           <Logo />
         </div>
 
@@ -38,6 +38,9 @@ export default function BasicExample(): React.JSX.Element {
             </Navbar.Brand>
             <Nav.Link as={Link} to="/about" className="text-white">
               О нас
+            </Nav.Link>
+            <Nav.Link as={Link} to="/basket" className="text-white">
+              Корзина
             </Nav.Link>
             <NavDropdown title={<span className="text-white">Регионы</span>}>
 
