@@ -29,6 +29,10 @@ export default function ToursPage(): JSX.Element {
 
   const selector = useAppSelector((tour) => tour.tourSlice.tours);
 
+  const handleMoreClick = (id) => {
+    window.location.href = `/more/${id}`;
+  };
+
   return (
     <div>
       {selector.map((tour) => (
@@ -58,7 +62,7 @@ export default function ToursPage(): JSX.Element {
             </CardBody>
 
             <CardFooter>
-              <Button variant="solid" colorScheme="green">
+              <Button variant="solid" colorScheme="green" onClick={() => handleMoreClick(tour.id)}>
                 Подробнее
               </Button>
               <Button variant="solid" colorScheme="blue">

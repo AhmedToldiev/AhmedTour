@@ -55,7 +55,6 @@ export default function MainPage(): JSX.Element {
     width: '968px',
     height: '726px',
   };
-  const carouselStyle = {};
 
   return (
     <>
