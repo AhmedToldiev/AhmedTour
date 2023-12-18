@@ -13,6 +13,7 @@ export type TourState = {
   region: TourType[];
 };
 
+
 export type TourSlicesState = {
   tours: TourType[];
   selectedTour: TourType | null;
@@ -24,3 +25,5 @@ export type AddTourFormData = {
   description: string;
   price: string;
 };
+
+
