@@ -2,18 +2,12 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import type { TourSlicesState, TourType } from '../../../types/tour/tour';
 
-import { thunkEditTour, thunkTourLoad } from './createAsyncThunk';
+import { thunkEditTour, thunkTourDelete, thunkTourLoad } from './createAsyncThunk';
 
 const initialState: TourSlicesState = {
   tours: [],
   selectedtour: null,
-
-import { thunkTourDelete, thunkTourLoad } from './createAsyncThunk';
-
-const initialState: TourSlicesState = {
-  tours: [],
-  currentTour: null,
-};
+};  
 
 export const tourSlice = createSlice({
   name: 'regions',
@@ -44,17 +38,16 @@ export const tourSlice = createSlice({
         state.tours[index] = action.payload;
       }
       state.selectedTour = null;
-
+    });
     builder.addCase(thunkTourDelete.fulfilled, (state, action) => {
       const indexTour = state.tours.findIndex((tour) => tour.id === action.payload);
       if (indexTour !== -1) {
         state.tours.splice(indexTour, 1);
       }
-      state.currentTour = null
-
+      state.selectedtour = null;
     });
   },
 });
-export const { setTours,clearSelectedTour,setSelectedTour } = tourSlice.actions;
+export const { setTours, clearSelectedTour, setSelectedTour } = tourSlice.actions;
 
 export default tourSlice.reducer;
