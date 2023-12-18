@@ -5,14 +5,23 @@ import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
-import { editTourModal, setSelectedTour, setTours } from '../../redux/slices/tour/tourSlice';
+import {
+  editTourModal,
+  setSelectedTour,
+  setTours,
+} from '../../redux/slices/tour/tourSlice';
 
 import type { TourType } from '../../types/tour/tour';
-
-import { thunkTourDelete } from '../../redux/slices/tour/createAsyncThunk';
+import { thunkAddBasket, thunkTourDelete } from '../../redux/slices/tour/createAsyncThunk';
 
 export default function ToursPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const addToBasket = async (e, id) => {
+    e.preventDefault();
+    console.log('111111', id);
+    console.log('basket', id);
+    void dispatch(thunkAddBasket({ tourId: id }));
+  };
 
   const { id } = useParams();
   useEffect(() => {
@@ -28,11 +37,16 @@ export default function ToursPage(): JSX.Element {
   }, [id]);
 
   const selector = useAppSelector((tour) => tour.tourSlice.tours);
+  // const tourId = useAppSelector((region)=> region.regionSlice.regions)
+  console.log(selector);
+
+  console.log('CARD WITH BUTTON');
+  // PhotoTour.img1
 
   const handleMoreClick = (id) => {
     window.location.href = `/more/${id}`;
   };
-console.log(selector,'sdhkjgfdhjkfbxghjhfdbhjgfbjgf');
+  console.log(selector, 'sdhkjgfdhjkfbxghjhfdbhjgfbjgf');
 
   return (
     <div>
@@ -66,6 +80,15 @@ console.log(selector,'sdhkjgfdhjkfbxghjhfdbhjgfbjgf');
               </CardBody>
 
               <CardFooter>
+                <Button
+                  onClick={(event) => {
+                    addToBasket(event, tour.id);
+                  }}
+                  variant="solid"
+                  colorScheme="blue"
+                >
+                  Добавить в корзину
+                </Button>
                 <Button
                   variant="solid"
                   colorScheme="green"

@@ -1,3 +1,5 @@
+import type { BasketType, TourWithUser } from '../basket/basket';
+
 export type TourType = {
   id: number;
   name: string;
@@ -13,13 +15,16 @@ export type TourState = {
   region: TourType[];
 };
 
-
+// какой тип должен стоять тут
 export type TourSlicesState = {
+  favoriteTours: TourWithUser[];
   tours: TourType[];
+  basket: BasketType[]
   selectedTour: TourType | null;
   addTourModalIsOpen: boolean;
   editTourModalIsOpen: boolean
 };
+
 
 export type AddTourFormData = {
   name: string;

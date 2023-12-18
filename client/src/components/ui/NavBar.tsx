@@ -78,11 +78,10 @@ export default function BasicExample(): React.JSX.Element {
               </>
             ) : (
               <>
-              <Nav.Link
-                href=""
-                className="text-white"
-                onClick={() => void dispatch(thunkLogout())}
-              >
+            <Nav.Link as={Link} to="/basket" className="text-white">
+              Корзина Туров
+            </Nav.Link>
+              <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())}>
                 Выйти
               </Nav.Link>
               <Nav.Link
@@ -91,7 +90,7 @@ export default function BasicExample(): React.JSX.Element {
               >
                 Добавить тур
               </Nav.Link>
-            </>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>

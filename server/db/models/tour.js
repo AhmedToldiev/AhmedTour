@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         through: 'Basket',
         foreignKey: 'tourId',
       });
+      this.hasMany(models.Basket, { foreignKey: 'tourId', as: 'basket' });
     }
   }
   Tour.init(
