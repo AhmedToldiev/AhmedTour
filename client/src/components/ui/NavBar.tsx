@@ -65,9 +65,14 @@ export default function BasicExample(): React.JSX.Element {
                 </Nav.Link>
               </>
             ) : (
+              <>
+            <Nav.Link as={Link} to="/basket" className="text-white">
+              Корзина Туров
+            </Nav.Link>
               <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())}>
                 Выйти
               </Nav.Link>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>

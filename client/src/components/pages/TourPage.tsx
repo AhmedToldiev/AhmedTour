@@ -5,9 +5,16 @@ import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import type { TourType } from '../../types/tour/tour';
 import { setTours } from '../../redux/slices/tour/tourSlice';
+import { thunkAddBasket } from '../../redux/slices/tour/createAsyncThunk';
 
 export default function ToursPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const addToBasket = async (e, id) => {
+    e.preventDefault();
+    console.log('111111', id);
+    console.log('basket', id);
+    void dispatch(thunkAddBasket({ tourId: id }));
+  };
 
   const { id } = useParams();
   // useEffect -> axios -> туры с вышеуказанным region id
@@ -25,6 +32,8 @@ export default function ToursPage(): JSX.Element {
   const selector = useAppSelector((tour) => tour.tourSlice.tours);
   // const tourId = useAppSelector((region)=> region.regionSlice.regions)
   console.log(selector);
+
+  console.log('CARD WITH BUTTON');
   // PhotoTour.img1
   return (
     <div>
@@ -45,8 +54,14 @@ export default function ToursPage(): JSX.Element {
             </CardBody>
 
             <CardFooter>
-              <Button variant="solid" colorScheme="blue">
-                Buy Latte
+              <Button
+                onClick={(event) => {
+                  addToBasket(event, tour.id);
+                }}
+                variant="solid"
+                colorScheme="blue"
+              >
+                Добавить в корзину
               </Button>
             </CardFooter>
           </Stack>

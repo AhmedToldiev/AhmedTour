@@ -29,7 +29,7 @@ export default function TourCard(): JSX.Element {
 
     <CardFooter>
       <Button variant='solid' colorScheme='blue'>
-        Buy Latte
+        Добавить в корзину
       </Button>
     </CardFooter>
   </Stack>

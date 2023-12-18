@@ -1,6 +1,8 @@
+import type { BasketType, TourWithUser } from '../basket/basket';
+
 export type TourType = {
   id: number;
-  name:string,
+  name: string;
   body: string;
   description: string;
   price: string;
@@ -13,6 +15,9 @@ export type TourState = {
   region: TourType[];
 };
 
-export type TourSlicesState ={
-  tours: TourType[]
-}
+// какой тип должен стоять тут
+export type TourSlicesState = {
+  favoriteTours: TourWithUser[];
+  tours: TourType[];
+  basket: BasketType[]
+};
