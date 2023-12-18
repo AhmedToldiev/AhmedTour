@@ -17,9 +17,18 @@ export type TourState = {
 export type TourSlicesState = {
   tours: TourType[];
   selectedTour: TourType | null;
+  addTourModalIsOpen: boolean;
+  editTourModalIsOpen: boolean
 };
 
 export type AddTourFormData = {
+  name: string;
+  body: string;
+  description: string;
+  price: string;
+};
+
+export type EditTourFormData = {
   name: string;
   body: string;
   description: string;

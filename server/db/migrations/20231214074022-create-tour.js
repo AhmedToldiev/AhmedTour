@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       body: {
         type: Sequelize.TEXT,
@@ -26,7 +26,7 @@ module.exports = {
           model: "Regions",
           key: "id",
         },
-        onDelete: "CASCADE",
+        onDelete: "CASCADE"
       },
       photoTourId: {
         type: Sequelize.INTEGER,
@@ -34,7 +34,7 @@ module.exports = {
           model: "PhotoTours",
           key: "id",
         },
-        onDelete: "CASCADE",
+        onDelete: "CASCADE"
       },
       createdAt: {
         allowNull: false,
