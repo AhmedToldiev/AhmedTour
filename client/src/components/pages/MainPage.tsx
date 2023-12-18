@@ -3,8 +3,10 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 // import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../redux/hooks';
 // import CarouselCard from '../ui/CarouselCard';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import { useAppSelector } from '../../redux/hooks';
 
 export default function MainPage(): JSX.Element {
   const regions = useAppSelector((store) => store.regionSlice.regions);
@@ -36,8 +38,8 @@ export default function MainPage(): JSX.Element {
     },
   };
   const imgStyle = {
-    maxWidth: '100%',
-    height: 'auto',
+    width: '1200px', // Задайте фиксированную ширину
+    height: '800px',
     borderRadius: '19px',
     // boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', // Тень для изображения
     border: '3px solid #fff', // Белая рамка шириной 2 пикселя
@@ -53,17 +55,38 @@ export default function MainPage(): JSX.Element {
     width: '968px',
     height: '726px',
   };
+
   return (
-    <Carousel infinite autoPlay autoPlaySpeed={1500} responsive={responsive}>
-      {regions.map((region) => (
-        <div key={region.id}>
-          <Link to={`/region/${region.id}`} style={{ textDecoration: 'none' }}>
-            <img key={region.id} src={region.img} alt="Img" style={imgStyle} />
-            <h1 style={regionStyles}>{`${region.name}`}</h1>
-            {/* <h5 style={regionStyles}>{`${region.description}`}</h5> */}
-          </Link>
-        </div>
-      ))}
-    </Carousel>
+    <>
+      <Carousel infinite autoPlay autoPlaySpeed={3000} responsive={responsive}>
+        {regions.map((region) => (
+          <div key={region.id} style={{ marginTop: '50px' }}>
+            <Link to={`/region/${region.id}`} style={{ textDecoration: 'none' }}>
+              <img key={region.id} src={region.img} alt="Img" style={imgStyle} />
+              <h1 style={regionStyles}>{`${region.name}`}</h1>
+              {/* <h5 style={regionStyles}>{`${region.description}`}</h5> */}
+            </Link>
+          </div>
+        ))}
+      </Carousel>
+
+      <Card
+        style={{
+          marginTop: '30px',
+          backgroundColor: '#363030',
+          borderRadius: '15px 15px 0 0',
+          boxShadow: '0 2px 10px rgba(0, 0, 0, 0.7)',
+        }}
+      >
+        {/* <Card.Header as="h5">Информация о нас</Card.Header> */}
+        <Card.Body>
+          <Card.Title>Special title treatment</Card.Title>
+          <Card.Text>
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
+
+        </Card.Body>
+      </Card>
+    </>
   );
 }

@@ -20,4 +20,24 @@ export type TourSlicesState = {
   favoriteTours: TourWithUser[];
   tours: TourType[];
   basket: BasketType[]
+  selectedTour: TourType | null;
+  addTourModalIsOpen: boolean;
+  editTourModalIsOpen: boolean
 };
+
+
+export type AddTourFormData = {
+  name: string;
+  body: string;
+  description: string;
+  price: string;
+};
+
+export type EditTourFormData = {
+  name: string;
+  body: string;
+  description: string;
+  price: string;
+};
+
+

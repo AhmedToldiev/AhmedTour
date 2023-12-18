@@ -1,21 +1,42 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import type { TourSlicesState, TourType } from '../../../types/tour/tour';
-import { thunkAddBasket, thunkBasketLoad, thunkTourLoad } from './createAsyncThunk';
-
+import {
+  thunkAddBasket,
+  thunkBasketLoad,
+  thunkTourLoad,
+  thunkEditTour,
+  thunkTourAdd,
+  thunkTourDelete,
+} from './createAsyncThunk';
 
 const initialState: TourSlicesState = {
   tours: [],
   favoriteTours: [],
   basket: [],
+  selectedTour: null,
+  addTourModalIsOpen: false,
+  editTourModalIsOpen: false,
 };
 
 export const tourSlice = createSlice({
   name: 'regions',
   initialState,
   reducers: {
+    addTourModal: (state) => {
+      state.addTourModalIsOpen = !state.addTourModalIsOpen;
+    },
+    editTourModal: (state) => {
+      state.editTourModalIsOpen = !state.editTourModalIsOpen;
+    },
     setTours: (state, action: PayloadAction<TourType[]>) => {
       state.tours = action.payload;
+    },
+    setSelectedTour: (state, action: PayloadAction<TourSlicesState['selectedTour']>) => {
+      state.selectedTour = action.payload;
+    },
+    clearSelectedTour: (state) => {
+      state.selectedTour = null;
     },
   },
   extraReducers: (builder) => {
@@ -33,8 +54,30 @@ export const tourSlice = createSlice({
     builder.addCase(thunkBasketLoad.fulfilled, (state, action) => {
       state.basket = action.payload;
     });
+    builder.addCase(thunkTourAdd.fulfilled, (state, action) => {
+      state.tours.unshift(action.payload);
+    });
+
+    builder.addCase(thunkEditTour.fulfilled, (state, action) => {
+      const index = state.tours.findIndex((tour) => tour.id === action.payload.id);
+      if (index !== -1) {
+        state.tours[index] = action.payload;
+      }
+      state.selectedTour = null;
+    });
+
+    builder.addCase(thunkTourDelete.fulfilled, (state, action) => {
+      console.log(action.payload, '+++++++++++++++++++');
+
+      const indexTour = state.tours.findIndex((tour) => tour.id === action.payload);
+      if (indexTour !== -1) {
+        state.tours.splice(indexTour, 1);
+      }
+      state.selectedTour = null;
+    });
   },
 });
-export const { setTours } = tourSlice.actions;
+export const { setTours, clearSelectedTour, setSelectedTour, addTourModal, editTourModal } =
+  tourSlice.actions;
 
 export default tourSlice.reducer;

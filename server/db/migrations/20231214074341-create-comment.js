@@ -1,54 +1,45 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Tours", {
+    await queryInterface.createTable('Comments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      text: {
         type: Sequelize.TEXT,
       },
-      body: {
-        type: Sequelize.TEXT,
-      },
-      description: {
-        type: Sequelize.TEXT,
-      },
-      price: {
-        type: Sequelize.INTEGER,
-      },
-      regionId: {
+      tourId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Regions",
-          key: "id",
+          model: 'Tours',
+          key: 'id',
         },
         onDelete: "CASCADE"
       },
-      photoTourId: {
+      userId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "PhotoTours",
-          key: "id",
+          model: 'Users',
+          key: 'id',
         },
         onDelete: "CASCADE"
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"),
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"),
+        defaultValue: Sequelize.fn('now'),
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Tours");
+    await queryInterface.dropTable('Baskets');
   },
 };

@@ -8,15 +8,23 @@ import { registrModal, loginModal } from '../../redux/slices/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { thunkLogout } from '../../redux/slices/auth/checkAuthThunk';
 import Logo from '../../icons/Logo';
+import { addTourModal } from '../../redux/slices/tour/tourSlice';
 
 export default function BasicExample(): React.JSX.Element {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.authSlice.user);
 
   return (
-    <Navbar expand="lg" style={{ backgroundColor: '#363030', borderRadius: '0 0 15px 15px' }}>
+    <Navbar
+      expand="lg"
+      style={{
+        backgroundColor: '#363030',
+        borderRadius: '0 0 15px 15px',
+        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.7)',
+      }}
+    >
       <Container>
-        <div>
+        <div style={{marginRight: '30px'}}>
           <Logo />
         </div>
 
@@ -31,7 +39,11 @@ export default function BasicExample(): React.JSX.Element {
             <Nav.Link as={Link} to="/about" className="text-white">
               О нас
             </Nav.Link>
+            <Nav.Link as={Link} to="/basket" className="text-white">
+              Корзина
+            </Nav.Link>
             <NavDropdown title={<span className="text-white">Регионы</span>}>
+
               <NavDropdown.Item as={Link} to="/region/1">
                 Дагестан
               </NavDropdown.Item>
@@ -44,7 +56,7 @@ export default function BasicExample(): React.JSX.Element {
               <NavDropdown.Item as={Link} to="/region/4">
                 Чечня
               </NavDropdown.Item>
-              <NavDropdown.Divider />
+
             </NavDropdown>
 
             {user.status !== 'authenticated' ? (
@@ -71,6 +83,12 @@ export default function BasicExample(): React.JSX.Element {
             </Nav.Link>
               <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())}>
                 Выйти
+              </Nav.Link>
+              <Nav.Link
+                className="text-white"
+                onClick={() => void dispatch(addTourModal())}
+              >
+                Добавить тур
               </Nav.Link>
               </>
             )}
