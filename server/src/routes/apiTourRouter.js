@@ -23,6 +23,36 @@ apiTourRouter.delete("/:id", async (req, res) => {
   res.sendStatus(200);
 });
 
+apiTourRouter
+  .route("/:id")
+  .get(async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    try {
+      const regionId = await Tour.findAll({
+        where: { regionId: id },
+        include: [PhotoTour],
+      });
+      console.log(regionId);
+      res.json(regionId);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  })
+  .patch(async (req, res) => {
+    try {
+      const tour = await Tour.findByPk(req.params.id);
+      await tour.update(req.body);
+      const newTour = await Tour.findByPk(tour.id);
+      res.json(newTour);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  });
+
+
 apiTourRouter.route("/:id").get(async (req, res) => {
   const { id } = req.params;
   console.log(id);
@@ -38,4 +68,5 @@ apiTourRouter.route("/:id").get(async (req, res) => {
     res.status(500).json(error);
   }
 });
+
 module.exports = apiTourRouter;

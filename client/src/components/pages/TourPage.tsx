@@ -3,15 +3,18 @@ import { Card, CardBody, CardFooter, Stack, Image, Heading, Text, Button } from 
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import type { TourType } from '../../types/tour/tour';
+
 import { setTours } from '../../redux/slices/tour/tourSlice';
+
+import type { TourType } from '../../types/tour/tour';
+
 import { thunkTourDelete } from '../../redux/slices/tour/createAsyncThunk';
+
 
 export default function ToursPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const { id } = useParams();
-  // useEffect -> axios -> туры с вышеуказанным region id
   useEffect(() => {
     console.log(id);
     axios
@@ -24,9 +27,7 @@ export default function ToursPage(): JSX.Element {
       });
   }, [id]);
   const selector = useAppSelector((tour) => tour.tourSlice.tours);
-  // const tourId = useAppSelector((region)=> region.regionSlice.regions)
-  console.log(selector);
-  // PhotoTour.img1
+
   return (
     <div>
       {selector.map((tour) => (
@@ -43,11 +44,17 @@ export default function ToursPage(): JSX.Element {
               <Heading size="md">{tour.name}</Heading>
 
               <Text py="2">{tour.body}</Text>
+           
+             
+              <Text py="2">{tour.description}</Text>
             </CardBody>
 
             <CardFooter>
+              <Button variant="solid" colorScheme="green">
+                Подробнее
+              </Button>
               <Button variant="solid" colorScheme="blue">
-                Buy Latte
+                Изменить
               </Button>
               <Button colorScheme='red' onClick={() => void dispatch(thunkTourDelete(tour.id))}>Удалить</Button>
             </CardFooter>

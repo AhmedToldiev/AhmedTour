@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 
 import MainPage from './components/pages/MainPage';
 
-
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
 
@@ -24,8 +23,8 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
     void dispatch(thunkRegionLoad());
-    void dispatch(thunkCheckAuth())
-    void dispatch(thunkTourLoad())
+    void dispatch(thunkCheckAuth());
+    void dispatch(thunkTourLoad());
   }, []);
 
   return (
@@ -44,6 +43,7 @@ function App(): JSX.Element {
 
       {registrModal && <RegistrationModal />}
       {logModal && <LoginModal />}
+   
     </>
   );
 }
