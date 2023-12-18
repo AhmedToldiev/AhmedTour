@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, CardFooter, Stack, Image, Heading, Text, Button } from '@chakra-ui/react'
-import type { RegionType } from '../../types/region/region';
+
 
 
 export default function TourCard(): JSX.Element {
@@ -28,8 +28,11 @@ export default function TourCard(): JSX.Element {
     </CardBody>
 
     <CardFooter>
+    <Button variant='solid' colorScheme='green'>
+        Подробнее
+      </Button>
       <Button variant='solid' colorScheme='blue'>
-        Buy Latte
+        Изменить
       </Button>
     </CardFooter>
   </Stack>
