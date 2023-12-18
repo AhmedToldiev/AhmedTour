@@ -1,7 +1,10 @@
-const express = require('express');
-const { Tour, PhotoTour } = require('../../db/models');
+const express = require("express");
+
+
+const { Tour, PhotoTour } = require("../../db/models");
 
 const apiTourRouter = express.Router();
+
 
 apiTourRouter
   .route("/")
@@ -22,8 +25,7 @@ apiTourRouter
   })
   .post(async (req, res) => {
     try {
-      if (!req.body)
-        return res.status(500).json({ message: "Empty reqbody" });
+      if (!req.body) return res.status(500).json({ message: "Empty reqbody" });
       // console.log(req.body);
       // console.log(req.file);
       const { name, body, price, regionId, photoTourId } = req.body;
@@ -32,7 +34,7 @@ apiTourRouter
         name,
         body,
         price,
-        photoTourId
+        photoTourId,
       });
       return res.status(201).json(newProduct);
     } catch (error) {
@@ -40,15 +42,13 @@ apiTourRouter
     }
   });
 
-
-
 apiTourRouter.delete("/:id", async (req, res) => {
   await Tour.destroy({ where: { id: req.params.id } });
   res.sendStatus(200);
 });
 
 apiTourRouter
-  .route('/:id')
+  .route("/:id")
   .get(async (req, res) => {
     const { id } = req.params;
     // console.log(id);
@@ -65,13 +65,16 @@ apiTourRouter
     }
   })
   .put(async (req, res) => {
-    console.log(req.body, '---------------');
+    console.log(req.body, "---------------");
     try {
       const tour = await Tour.findByPk(req.params.id);
-      
+
       await tour.update(req.body);
-      const newTour = await Tour.findByPk(tour.id);
-      console.log('============', newTour)
+      const newTour = await Tour.findByPk(tour.id, {
+        include: [PhotoTour],
+      });
+
+      console.log("============", newTour);
       res.json(newTour);
     } catch (error) {
       console.log(error);
@@ -79,7 +82,7 @@ apiTourRouter
     }
   });
 
-apiTourRouter.route('/:id').get(async (req, res) => {
+apiTourRouter.route("/:id").get(async (req, res) => {
   const { id } = req.params;
   // console.log(id);
   try {
@@ -96,7 +99,7 @@ apiTourRouter.route('/:id').get(async (req, res) => {
 });
 
 apiTourRouter
-  .route('/more/:id')
+  .route("/more/:id")
   .get(async (req, res) => {
     const { id } = req.params;
     console.log(id);

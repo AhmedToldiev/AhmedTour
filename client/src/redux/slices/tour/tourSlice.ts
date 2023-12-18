@@ -62,6 +62,6 @@ export const tourSlice = createSlice({
     });
   },
 });
-export const { setTours,clearSelectedTour,setSelectedTour } = tourSlice.actions;
+export const { setTours,clearSelectedTour,setSelectedTour,addTourModal, editTourModal } = tourSlice.actions;
 
 export default tourSlice.reducer;

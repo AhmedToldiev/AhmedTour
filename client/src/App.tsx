@@ -14,6 +14,9 @@ import NavBar from './components/ui/NavBar';
 import { thunkCheckAuth } from './redux/slices/auth/checkAuthThunk';
 import ToursPage from './components/pages/TourPage';
 import { thunkTourLoad } from './redux/slices/tour/createAsyncThunk';
+import AddTourModal from './components/ui/AddTourModal';
+import EditTourModal from './components/ui/EditTourModal';
+import MorePage from './components/pages/MorePage';
 
 
 function App(): JSX.Element {

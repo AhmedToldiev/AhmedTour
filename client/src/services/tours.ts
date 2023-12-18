@@ -21,7 +21,10 @@ class TourService {
     formData: AddTourFormData,
     id: TourType['id'],
   ): Promise<TourType> {
-    const response = await apiTourInstance.put<TourType>(`/${id}`, formData);    
+    const response = await apiTourInstance.put<TourType>(`/${id}`, formData); 
+
+    console.log(response,'responnxwwwdxcehckasuhcksaucg');
+       
     if (response.status === 200) return response.data;
     return Promise.reject(new Error('Error editing on server'));
   }

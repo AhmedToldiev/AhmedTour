@@ -60,6 +60,7 @@ export default function AddTourModal(): React.JSX.Element {
               <FormLabel>Цена</FormLabel>
               <Input placeholder="Введите пароль" type="number" name="price" />
             </FormControl>
+            <input type="" />
           </ModalBody>
 
           <ModalFooter>

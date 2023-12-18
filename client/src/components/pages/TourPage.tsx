@@ -32,57 +32,64 @@ export default function ToursPage(): JSX.Element {
   const handleMoreClick = (id) => {
     window.location.href = `/more/${id}`;
   };
+console.log(selector,'sdhkjgfdhjkfbxghjhfdbhjgfbjgf');
 
   return (
     <div>
-      {selector?.map((tour) => (<>
-        {console.log(tour, '============')}
-        
-        <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
-          <Carousel style={{ width: '600px', height: '300px' }}>
-            <Carousel.Item style={{ width: '600px', height: '380px' }}>
-              <img src={tour.PhotoTour.img1} />
-            </Carousel.Item>
-            <Carousel.Item style={{ width: '600px', height: '380px' }}>
-              <img src={tour.PhotoTour.img2} />
-            </Carousel.Item>
-            <Carousel.Item style={{ width: '600px', height: '380px' }}>
-              <img src={tour.PhotoTour.img3} />
-            </Carousel.Item>
-            <Carousel.Item style={{ width: '600px', height: '380px' }}>
-              <img src={tour.PhotoTour.img4} />
-            </Carousel.Item>
-          </Carousel>
+      {selector?.map((tour) => (
+        <>
+          {/* {console.log(tour, '============')} */}
 
-          <Stack>
-            <CardBody>
-              <Heading size="md">{tour.name}</Heading>
+          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
+            <Carousel style={{ width: '600px', height: '300px' }}>
+              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+                <img src={tour.PhotoTour.img1} />
+              </Carousel.Item>
+              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+                <img src={tour.PhotoTour.img2} />
+              </Carousel.Item>
+              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+                <img src={tour.PhotoTour.img3} />
+              </Carousel.Item>
+              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+                <img src={tour.PhotoTour.img4} />
+              </Carousel.Item>
+            </Carousel>
 
-              <Text py="2">{tour.body}</Text>
+            <Stack>
+              <CardBody>
+                <Heading size="md">{tour.name}</Heading>
 
-              {/* <Text py="2">{tour.description}</Text> */}
-            </CardBody>
+                <Text py="2">{tour.body}</Text>
 
-            <CardFooter>
-              <Button variant="solid" colorScheme="green" onClick={() => handleMoreClick(tour.id)}>
-                Подробнее
-              </Button>
-              <Button
-                variant="solid"
-                colorScheme="blue"
-                onClick={() =>{ void dispatch(setSelectedTour(tour))
-                  dispatch(editTourModal())
-                }}
+                {/* <Text py="2">{tour.description}</Text> */}
+              </CardBody>
+
+              <CardFooter>
+                <Button
+                  variant="solid"
+                  colorScheme="green"
+                  onClick={() => handleMoreClick(tour.id)}
                 >
-                Изменить
-              </Button>
-              <Button colorScheme="red" onClick={() => void dispatch(thunkTourDelete(tour.id))}>
-                Удалить
-              </Button>
-            </CardFooter>
-          </Stack>
-        </Card>
-      </>
+                  Подробнее
+                </Button>
+                <Button
+                  variant="solid"
+                  colorScheme="blue"
+                  onClick={() => {
+                    void dispatch(setSelectedTour(tour));
+                    dispatch(editTourModal());
+                  }}
+                >
+                  Изменить
+                </Button>
+                <Button colorScheme="red" onClick={() => void dispatch(thunkTourDelete(tour.id))}>
+                  Удалить
+                </Button>
+              </CardFooter>
+            </Stack>
+          </Card>
+        </>
       ))}
     </div>
   );
