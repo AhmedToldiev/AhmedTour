@@ -23,7 +23,7 @@ export default function BasicExample(): React.JSX.Element {
       }}
     >
       <Container>
-        <div>
+        <div style={{marginRight: '30px'}}>
           <Logo />
         </div>
 

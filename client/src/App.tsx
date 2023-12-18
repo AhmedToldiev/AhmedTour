@@ -14,7 +14,7 @@ import NavBar from './components/ui/NavBar';
 import { thunkCheckAuth } from './redux/slices/auth/checkAuthThunk';
 import ToursPage from './components/pages/TourPage';
 import { thunkTourLoad } from './redux/slices/tour/createAsyncThunk';
-
+import MorePage from './components/pages/MorePage';
 
 function App(): JSX.Element {
   const registrModal = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
@@ -24,6 +24,7 @@ function App(): JSX.Element {
   useEffect(() => {
     void dispatch(thunkRegionLoad());
     void dispatch(thunkCheckAuth());
+    void dispatch(thunkTourLoad());
   }, []);
 
   return (
@@ -35,6 +36,7 @@ function App(): JSX.Element {
         {/* <Route path="/" element={<RegistrationModal />} /> */}
         <Route path="/" element={<MainPage />} />
         <Route path="/region/:id" element={<ToursPage />} />
+        <Route path="/more/:id" element={<MorePage />} />
         {/* <Route path="/region" element={<RegionCard />} /> */}
 
         {/* <Route path="/tours" element={<Тут админ панель />} />  */}
@@ -42,7 +44,6 @@ function App(): JSX.Element {
 
       {registrModal && <RegistrationModal />}
       {logModal && <LoginModal />}
-   
     </>
   );
 }
