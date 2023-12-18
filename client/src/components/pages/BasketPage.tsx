@@ -52,5 +52,5 @@ export default function BasketPage(): JSX.Element {
         </Card>
       ))}
     </div>
-  );
+  )
 }
