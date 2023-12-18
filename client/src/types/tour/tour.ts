@@ -9,6 +9,13 @@ export type TourType = {
   createdAt: Date;
   updatedAt: Date;
 };
+export type AddTourFormData = {
+  name:string,
+  body: string;
+  // description: string;
+  price: string;
+};
+
 export type TourState = {
   region: TourType[];
 };
@@ -16,4 +23,5 @@ export type TourState = {
 export type TourSlicesState ={
   tours: TourType[]
   currentTour: TourType | null;
+  addTourModalIsOpen: boolean;
 }

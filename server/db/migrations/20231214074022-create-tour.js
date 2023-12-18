@@ -29,6 +29,7 @@ module.exports = {
       },
       photoTourId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: "PhotoTours",
           key: "id",

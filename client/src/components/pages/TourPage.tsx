@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, CardBody, CardFooter, Stack, Image, Heading, Text, Button } from '@chakra-ui/react';
+import { Card, CardBody, CardFooter, Stack, Image, Heading, Text, Button, Stat, StatLabel, StatNumber, StatHelpText } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -44,12 +44,18 @@ export default function ToursPage(): JSX.Element {
 
               <Text py="2">{tour.body}</Text>
             </CardBody>
+            <Stat>
+              <StatLabel>Цена:</StatLabel>
+              <StatNumber>{`${tour.price}₽`}</StatNumber>
+            </Stat>
 
             <CardFooter>
               <Button variant="solid" colorScheme="blue">
                 Buy Latte
               </Button>
-              <Button colorScheme='red' onClick={() => void dispatch(thunkTourDelete(tour.id))}>Удалить</Button>
+              <Button colorScheme="red" onClick={() => void dispatch(thunkTourDelete(tour.id))}>
+                Удалить
+              </Button>
             </CardFooter>
           </Stack>
         </Card>

@@ -8,6 +8,7 @@ import { registrModal, loginModal } from '../../redux/slices/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { thunkLogout } from '../../redux/slices/auth/checkAuthThunk';
 import Logo from '../../icons/Logo';
+import { addTourModal } from '../../redux/slices/tour/tourSlice';
 
 export default function BasicExample(): React.JSX.Element {
   const dispatch = useAppDispatch();
@@ -39,7 +40,6 @@ export default function BasicExample(): React.JSX.Element {
               О нас
             </Nav.Link>
             <NavDropdown title={<span className="text-white">Регионы</span>}>
-
               <NavDropdown.Item as={Link} to="/region/1">
                 Дагестан
               </NavDropdown.Item>
@@ -52,7 +52,6 @@ export default function BasicExample(): React.JSX.Element {
               <NavDropdown.Item as={Link} to="/region/4">
                 Чечня
               </NavDropdown.Item>
-
             </NavDropdown>
 
             {user.status !== 'authenticated' ? (
@@ -73,9 +72,21 @@ export default function BasicExample(): React.JSX.Element {
                 </Nav.Link>
               </>
             ) : (
-              <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())}>
-                Выйти
-              </Nav.Link>
+              <>
+                <Nav.Link
+                  href=""
+                  className="text-white"
+                  onClick={() => void dispatch(thunkLogout())}
+                >
+                  Выйти
+                </Nav.Link>
+                <Nav.Link
+                  className="text-white"
+                  onClick={() => void dispatch(addTourModal())}
+                >
+                  Добавить тур
+                </Nav.Link>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>

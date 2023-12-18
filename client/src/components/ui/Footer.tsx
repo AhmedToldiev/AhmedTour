@@ -10,8 +10,6 @@ import { thunkLogout } from '../../redux/slices/auth/checkAuthThunk';
 import Logo from '../../icons/Logo';
 
 export default function Futer(): React.JSX.Element {
-
-
   return (
     <Navbar
       expand="lg"

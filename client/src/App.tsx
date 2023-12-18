@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 
 import MainPage from './components/pages/MainPage';
 
-
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
 
@@ -15,17 +14,19 @@ import NavBar from './components/ui/NavBar';
 import { thunkCheckAuth } from './redux/slices/auth/checkAuthThunk';
 import ToursPage from './components/pages/TourPage';
 import { thunkTourLoad } from './redux/slices/tour/createAsyncThunk';
-
+// import addTourModal from './components/ui/AddTourModal';
+import AddTourModal from './components/ui/AddTourModal';
 
 function App(): JSX.Element {
   const registrModal = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
   const logModal = useAppSelector((state) => state.authSlice.addLoginModalIsOpen);
+  const addTourModal = useAppSelector((state) => state.tourSlice.addTourModalIsOpen);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
     void dispatch(thunkRegionLoad());
-    void dispatch(thunkCheckAuth())
-    void dispatch(thunkTourLoad())
+    void dispatch(thunkCheckAuth());
+    void dispatch(thunkTourLoad());
   }, []);
 
   return (
@@ -44,6 +45,7 @@ function App(): JSX.Element {
 
       {registrModal && <RegistrationModal />}
       {logModal && <LoginModal />}
+      {addTourModal && <AddTourModal />}
     </>
   );
 }
