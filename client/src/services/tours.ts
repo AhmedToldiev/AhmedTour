@@ -20,6 +20,7 @@ class TourService {
     const response = await apiTourInstance.patch<TourType>(`/api/region/tours/${id}`, formData);
     if (response.status === 200) return response.data;
     return Promise.reject(new Error('Error editing on server'));
+  }
 
   static async deleteTour(id: TourType['id']): Promise<TourType['id']> {
     const response = await apiTourInstance.delete<TouchType>(`/${id}`);
