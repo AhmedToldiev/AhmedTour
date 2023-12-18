@@ -9,6 +9,7 @@ const initialState: TourSlicesState = {
   selectedtour: null,
 };  
 
+
 export const tourSlice = createSlice({
   name: 'regions',
   initialState,
@@ -39,14 +40,18 @@ export const tourSlice = createSlice({
       }
       state.selectedTour = null;
     });
+
     builder.addCase(thunkTourDelete.fulfilled, (state, action) => {
       const indexTour = state.tours.findIndex((tour) => tour.id === action.payload);
       if (indexTour !== -1) {
         state.tours.splice(indexTour, 1);
       }
+
       state.selectedtour = null;
+
     });
   },
+  
 });
 export const { setTours, clearSelectedTour, setSelectedTour } = tourSlice.actions;
 
