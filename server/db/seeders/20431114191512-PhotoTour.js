@@ -52,6 +52,30 @@ module.exports = {
           img3: "https://uniticket.ru/wp-content/uploads/2022/03/V-CHechne-ochen-zhivopisnye-peyzazhi1-1024x683.jpg",
           img4: "https://must-see.top/wp-content/uploads/2018/10/groznyj-siti.jpg",
         },
+        {
+          img1: "https://icdn.bolshayastrana.com/940x00/93/44/9344d4d69ba6de5c06b73653144d5077.jpeg",
+          img2: "https://locall.website.yandexcloud.net/uploads/2022/10/alexey-elfimov-KEeZknH2UJY-unsplash-1140x760.jpg",
+          img3: "https://discoverynn.ru/upload/resize_cache/webp/blog/blog-img/dagestan/DSC9512-Edit-2.webp",
+          img4: "https://radioiskatel.ru/wp-content/uploads/2018/09/sulakskij-kanon-v-dagestane.jpg",
+        },
+        {
+          img1: "https://krasivye-mesta.ru/img/Memorialnyy-Kompleks-Zhertvam-Repressiy-2.jpg",
+          img2: "https://severnykavkaz.ru/wp-content/uploads/2019/03/klimat-ingushetii.jpg",
+          img3: "https://cdn.tripster.ru/thumbs2/754c7cc2-5d86-11ec-be43-4e535e1c4b22.800x600.jpeg",
+          img4: "https://krasivye-mesta.ru/img/Dolina-Reki-Armkhi.jpg",
+        },
+        {
+          img1: "https://www.atorus.ru/sites/default/files/upload/image/News/52542/image1.jpeg",
+          img2: "https://public.mishka.travel/images/mini/089aa0ac1266e79.jpg",
+          img3: "https://youtravel.me/upload/medialibrary/32d/7ugylslrj3wjas49zs1kqka3z730yoac.jpg",
+          img4: "https://avatars.dzeninfra.ru/get-zen_doc/3540570/pub_5f47a7dd3c854b34532b27f6_5f47abbe01237e3109becdc2/scale_1200",
+        },
+        {
+          img1: "https://aif-s3.aif.ru/images/007/164/d579ff3413bf48c54619a7c86fa62398.jpg",
+          img2: "https://severnykavkaz.ru/wp-content/uploads/2019/04/dostoprimechatelnosti-chechni.jpg",
+          img3: "https://ic.pics.livejournal.com/uritsk/19436209/7690501/7690501_original.jpg",
+          img4: "https://must-see.top/wp-content/uploads/2018/10/drevnij-gorod-hoj-700x467.jpg",
+        },
       ],
       {}
     );
