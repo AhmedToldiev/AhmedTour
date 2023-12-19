@@ -27,3 +27,14 @@ export type SignupFormData = {
   name: string;
   password: string;
 };
+
+export type PayForm = {
+  card: string;
+  month: string;
+  year: string;
+  cvv: string;
+};
+
+export type SubscribePayResponseType = {
+  subscribeLevl: string;
+};

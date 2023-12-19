@@ -1,93 +1,103 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Image,
-  Stack,
-  Heading,
-  Text,
-  Button,
-  Grid,
-} from '@chakra-ui/react';
+import { Card, CardBody, Stack, Heading, Text, Grid } from '@chakra-ui/react';
 import Carousel from 'react-bootstrap/Carousel';
+import { Button } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import type { TourType } from '../../types/tour/tour';
 import { setTours } from '../../redux/slices/tour/tourSlice';
 import CardCommentList from '../ui/CardCommentList';
 import AddFormComment from '../ui/AddFormComment';
+import PayForm from '../ui/PayForm';
 
 export default function MorePage(): JSX.Element {
+  const [dataPage, setDataPage] = useState(0);
+  const [dataPageInfo, setDataPageInfo] = useState(undefined);
+  const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
   const { id } = useParams();
+
   useEffect(() => {
     console.log(id);
     axios
       .get<TourType[]>(`http://localhost:3000/api/region/tours/more/${id}`)
       .then(({ data }) => {
         dispatch(setTours(data));
+        setDataPageInfo(data[0]);
+        setDataPage(data[0].currentPlace);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [id]);
 
-  const onepage = useAppSelector((store) => store.tourSlice.tours).filter(
-    (el) => el.id === Number(id),
-  );
-  console.log('aydishnik', onepage);
+  // const onepage = useAppSelector((store) => store.tourSlice.tours).filter(
+  //   (el) => el.id === Number(id),
+  // );
 
-  //   return <div>{onepage[0]?.name}</div>;
+  const handleClickButton = (): void => {
+    setDataPage((prev) => prev - 1);
 
-  return (
-    <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
-      {/* <Image
-        objectFit="cover"
-        maxW={{ base: '100%', sm: '200px' }}
-        src={onepage[0]?.PhotoTour.img1}
-        alt="Caffe Latte"
-      /> */}
+  };
 
-      <Carousel style={{ width: '800px', height: '350px' }}>
-        <Carousel.Item style={{ width: '600px', height: '350px' }}>
-          <img src={onepage[0]?.PhotoTour.img1} />
-        </Carousel.Item>
-        <Carousel.Item style={{ width: '600px', height: '350px' }}>
-          <img src={onepage[0]?.PhotoTour.img2} />
-        </Carousel.Item>
-        <Carousel.Item style={{ width: '600px', height: '350px' }}>
-          <img src={onepage[0]?.PhotoTour.img3} />
-        </Carousel.Item>
-        <Carousel.Item style={{ width: '600px', height: '350px' }}>
-          <img src={onepage[0]?.PhotoTour.img4} />
-        </Carousel.Item>
-      </Carousel>
+  if (dataPageInfo) {
+    return (
+      <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
+        <Carousel style={{ width: '800px', height: '350px' }}>
+          <Carousel.Item style={{ width: '600px', height: '350px' }}>
+            <img src={dataPageInfo?.PhotoTour.img1} alt="12" />
+          </Carousel.Item>
+          <Carousel.Item style={{ width: '600px', height: '350px' }}>
+            <img src={dataPageInfo?.PhotoTour.img2} alt="12" />
+          </Carousel.Item>
+          <Carousel.Item style={{ width: '600px', height: '350px' }}>
+            <img src={dataPageInfo?.PhotoTour.img3} alt="12" />
+          </Carousel.Item>
+          <Carousel.Item style={{ width: '600px', height: '350px' }}>
+            <img src={dataPageInfo?.PhotoTour.img4} alt="12" />
+          </Carousel.Item>
+        </Carousel>
 
-      <Stack>
-        <CardBody>
-          <Heading size="md">{onepage[0]?.name}</Heading>
+        <Stack>
+          <CardBody>
+            <Heading size="md">{dataPageInfo?.name}</Heading>
 
-          <Text py="2">{onepage[0]?.body}</Text>
-          <Text py="2">{onepage[0]?.description}</Text>
-        </CardBody>
+            <Text py="2">{dataPageInfo?.body}</Text>
+            <Text py="2">{dataPageInfo?.description}</Text>
+            <Text py="2">Осталось мест: {dataPage}</Text>
+            <Button
+              onClick={() => setShow(true)}
+              colorScheme="green"
+              bg="green.400"
+              rounded="full"
+              px={6}
+              _hover={{
+                bg: 'green.500',
+              }}
+              my={4}
+            >
+              Купить тур
+            </Button>
+            <PayForm
+              show={show}
+              handlerClose={() => setShow(false)}
+              handleClickButton={handleClickButton}
+            />
+          </CardBody>
 
-        <CardFooter>
-          {/* <Button variant="solid" colorScheme="blue">
-            Buy Latte
-          </Button> */}
-        </CardFooter>
-        <Grid templateColumns="1fr" gap={4}>
-          <Grid item>
-            <CardCommentList />
+          <Grid templateColumns="1fr" gap={4}>
+            <Grid>
+              <CardCommentList />
+            </Grid>
+            <Grid>
+              {/* <h2>Отзывы!</h2> */}
+              <AddFormComment />
+            </Grid>
           </Grid>
-          <Grid item>
-            <AddFormComment />
-          </Grid>
-        </Grid>
-      </Stack>
-    </Card>
-  );
+        </Stack>
+      </Card>
+    );
+  }
+  return <div>Load....</div>;
 }

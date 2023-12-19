@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { AuthState } from '../../../types/auth';
 import {
+  payThanck,
   thunkCheckAuth,
   thunkLogin,
   thunkLogout,
@@ -47,6 +48,11 @@ export const authSlice = createSlice({
     });
     builder.addCase(thunkLogout.fulfilled, (state, action) => {
       state.user.status = 'guest';
+    });
+    builder.addCase(payThanck.fulfilled, (state, action) => {
+      state.user = action.payload.user;
+      state.accessToken = action.payload.accessToken;
+      state.user.status = 'authenticated';
     });
   },
 });

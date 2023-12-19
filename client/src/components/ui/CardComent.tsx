@@ -25,8 +25,7 @@ function CardComment({ oneComment }: CardCommentPropsType): JSX.Element {
         flexDirection="column"
         p={4}
       >
-        {/* <Avatar src={`http://localhost:3001/img/${user}`} size="sm" /> */}
-        <Text fontSize="xl" fontWeight="bold" mt={2}>
+        <Text fontSize="xl" fontWeight="bold" maxWidth ="600px" mt={2}>
           {oneComment?.User?.name}
         </Text>
         <Text fontSize="md" mt={1}>

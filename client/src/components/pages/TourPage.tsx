@@ -5,11 +5,7 @@ import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
-import {
-  editTourModal,
-  setSelectedTour,
-  setTours,
-} from '../../redux/slices/tour/tourSlice';
+import { editTourModal, setSelectedTour, setTours } from '../../redux/slices/tour/tourSlice';
 
 import type { TourType } from '../../types/tour/tour';
 import { thunkAddBasket, thunkTourDelete } from '../../redux/slices/tour/createAsyncThunk';
@@ -57,16 +53,16 @@ export default function ToursPage(): JSX.Element {
           <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
             <Carousel style={{ width: '600px', height: '300px' }}>
               <Carousel.Item style={{ width: '600px', height: '380px' }}>
-                <img src={tour.PhotoTour.img1} />
+                <img src={tour.PhotoTour.img1} alt="12" />
               </Carousel.Item>
               <Carousel.Item style={{ width: '600px', height: '380px' }}>
-                <img src={tour.PhotoTour.img2} />
+                <img src={tour.PhotoTour.img2} alt="12" />
               </Carousel.Item>
               <Carousel.Item style={{ width: '600px', height: '380px' }}>
-                <img src={tour.PhotoTour.img3} />
+                <img src={tour.PhotoTour.img3} alt="12" />
               </Carousel.Item>
               <Carousel.Item style={{ width: '600px', height: '380px' }}>
-                <img src={tour.PhotoTour.img4} />
+                <img src={tour.PhotoTour.img4} alt="12" />
               </Carousel.Item>
             </Carousel>
 

@@ -19,7 +19,7 @@ class BasketService {
   // 3 В компоненте достать данные из слайса БЕЗ ОШИБОК тайпскрипта
   static async getTourBasket(): Promise<BasketType[]> {
     const response = await apiBasketInstance.get<(BasketType & { Tour: TourType })[]>('/basket');
-    console.log(response.data, 333333333333333333);
+    // console.log(response.data);
     if (response.status === 200) return response.data;
     return [];
   }

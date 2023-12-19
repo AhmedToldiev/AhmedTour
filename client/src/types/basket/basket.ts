@@ -10,6 +10,8 @@ export type BasketType = {
 };
 export type TourWithUser = TourType & { User?: UserType };
 
+
+
 export type ToursState = {
   tours: TourWithUser[];
   users: UserType[];

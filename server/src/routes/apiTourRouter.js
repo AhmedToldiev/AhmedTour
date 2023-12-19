@@ -57,7 +57,7 @@ apiTourRouter
         where: { regionId: id },
         include: [PhotoTour],
       });
-      // console.log(regionId);
+  
       res.json(regionId);
     } catch (error) {
       console.log(error);
@@ -65,7 +65,6 @@ apiTourRouter
     }
   })
   .put(async (req, res) => {
-    console.log(req.body, "---------------");
     try {
       const tour = await Tour.findByPk(req.params.id);
 
@@ -74,7 +73,7 @@ apiTourRouter
         include: [PhotoTour],
       });
 
-      console.log("============", newTour);
+
       res.json(newTour);
     } catch (error) {
       console.log(error);

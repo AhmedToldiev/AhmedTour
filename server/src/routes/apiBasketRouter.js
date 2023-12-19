@@ -1,10 +1,10 @@
 const express = require('express');
-const { Basket} = require('../../db/models');
-const verifyAccessToken = require('../middlewares/verifyAccessToken');
+const { Basket, Tour, PhotoTour } = require('../../db/models');
+
 
 const apiBasketRouter = express.Router();
 
-apiBasketRouter.route('/').post(verifyAccessToken, async (req, res) => {
+apiBasketRouter.route('/').post( async (req, res) => {
   const { tourId } = req.body;
 
   try {
@@ -21,7 +21,17 @@ apiBasketRouter.route('/').post(verifyAccessToken, async (req, res) => {
 apiBasketRouter.route('/basket').get(async (req, res) => {
   try {
     const AllTours = await Basket.findAll({
-      include: 'Tour',
+      include: [
+        {
+          model: Tour,
+          as: 'Tour',
+          include: [
+            {
+              model: PhotoTour,
+            },
+          ],
+        },
+      ],
     });
     console.log(AllTours, 'asdfghjkl');
     return res.json(AllTours);

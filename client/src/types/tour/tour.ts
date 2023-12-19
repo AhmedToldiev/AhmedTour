@@ -8,23 +8,30 @@ export type TourType = {
   price: string;
   regionId: number;
   photoTourId: number;
+  currentPlace: number;
+  allPlace: number;
   createdAt: Date;
   updatedAt: Date;
+  PhotoTour: PhotoTour;
+};
+export type PhotoTour = {
+  img1: string;
+  img2: string;
+  img3: string;
+  img4: string;
 };
 export type TourState = {
   region: TourType[];
 };
 
-// какой тип должен стоять тут
 export type TourSlicesState = {
   favoriteTours: TourWithUser[];
   tours: TourType[];
-  basket: BasketType[]
+  basket: BasketType[];
   selectedTour: TourType | null;
   addTourModalIsOpen: boolean;
-  editTourModalIsOpen: boolean
+  editTourModalIsOpen: boolean;
 };
-
 
 export type AddTourFormData = {
   name: string;
@@ -39,5 +46,3 @@ export type EditTourFormData = {
   description: string;
   price: string;
 };
-
-

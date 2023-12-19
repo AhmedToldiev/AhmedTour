@@ -1,22 +1,22 @@
-const express = require('express');
-const { Comment, User } = require('../../db/models');
-const verifyAccessToken = require('../middlewares/verifyAccessToken');
+const express = require("express");
+const { Comment, User } = require("../../db/models");
+const verifyAccessToken = require("../middlewares/verifyAccessToken");
+const checkAuthor = require("../middlewares/checkAuthor");
 
-const router = express.Router();
+const apiCommentrouter = express.Router();
 
-router
-  .route('/:id')
+apiCommentrouter
+  .route("/:id")
   .get(async (req, res) => {
-    // console.log('------------------');
     const notes = await Comment.findAll({
       include: User,
       where: { tourId: req.params.id },
     });
+    console.log(notes, "------------------");
     res.json(notes);
   })
   // исправить
-  .delete(async (req, res) => {
-    console.log(req.params, 'sbhdtnuebthv');
+  .delete(verifyAccessToken,checkAuthor,async (req, res) => {
     const { id } = req.params;
     try {
       await Comment.destroy({ where: { id } });
@@ -26,10 +26,12 @@ router
       res.sendStatus(500);
     }
   })
-  .post(async (req, res) => {
+  .post(verifyAccessToken,async (req, res) => {
+    const { body } = req.body;
+    console.log(req.body, "0000000000");
     const newPost = await Comment.create({
-      userId: res.locals?.user?.id,
-      body: req.body.body,
+      text: body,
+      userId:res.locals.user.id,
       tourId: req.params.id,
     });
     const sendedComment = await Comment.findOne({
@@ -38,4 +40,4 @@ router
     });
     res.json(sendedComment);
   });
-module.exports = router;
+module.exports = apiCommentrouter;
