@@ -37,26 +37,38 @@ export default function MainPage(): JSX.Element {
       items: 1,
     },
   };
+
   const imgStyle = {
-    width: '1200px', // Задайте фиксированную ширину
-    height: '800px',
+    width: '1000px', // Задайте фиксированную ширину
+    height: '650px',
     borderRadius: '19px',
-    // boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', // Тень для изображения
+    backgroundColor: 'rgba(0.5)', // Используйте 0 для полной прозрачности
+    filter: 'brightness(60%)',
     border: '3px solid #fff', // Белая рамка шириной 2 пикселя
     transition: 'transform 0.3s ease-in-out', // Плавное изменение размера при наведении
     cursor: 'pointer', // Курсор при наведении
   };
 
+  const hoverStyle = {
+    filter: 'brightness(100%)',
+  };
+
   const regionStyles = {
     position: 'absolute',
-    top: '270px',
-    // let: '-100px',
+    top: '570px',
+    left: '50px',
     color: 'white',
     width: '968px',
     height: '726px',
+    display: 'flex',
+    justifyContent: 'center',
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.9)',
+    fontSize: '45px',
+    fontWeight: 'bold',
   };
 
   return (
+
     <>
       <Carousel infinite autoPlay autoPlaySpeed={3000} responsive={responsive}>
         {regions.map((region) => (
@@ -84,9 +96,9 @@ export default function MainPage(): JSX.Element {
           <Card.Text>
             With supporting text below as a natural lead-in to additional content.
           </Card.Text>
-
         </Card.Body>
       </Card>
     </>
+
   );
 }

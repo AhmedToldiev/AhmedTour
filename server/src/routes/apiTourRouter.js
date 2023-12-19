@@ -1,10 +1,19 @@
 const express = require("express");
 
-
+const multer = require("multer");
 const { Tour, PhotoTour } = require("../../db/models");
+// const upload = require("../middlewares/multerMid");
 
 const apiTourRouter = express.Router();
 
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, "uploads");
+  },
+  filename(req, file, cb) {
+    cb(null, `${file.fieldname}-${Date.now()}`);
+  },
+});
 
 apiTourRouter
   .route("/")
@@ -28,7 +37,10 @@ apiTourRouter
       if (!req.body) return res.status(500).json({ message: "Empty reqbody" });
       // console.log(req.body);
       // console.log(req.file);
-      const { name, body, price, regionId, photoTourId } = req.body;
+      const { name, body, price, regionId } = req.body;
+      
+      // photoTourId = Создаешь PhotoTours и кладешь в img1,2,3,4 -> req.files
+      
       const newProduct = await Tour.create({
         regionId,
         name,
@@ -36,6 +48,7 @@ apiTourRouter
         price,
         photoTourId,
       });
+
       return res.status(201).json(newProduct);
     } catch (error) {
       return res.status(500).json(error);
@@ -96,6 +109,25 @@ apiTourRouter.route("/:id").get(async (req, res) => {
     res.status(500).json(error);
   }
 });
+// apiTourRouter.post(
+//   "/upload",
+//   upload.array("photosTour", 4),
+//   async (req, res, next) => {
+//     // try{
+//     //   if(req.file){
+//     //     res.json(req.file)
+//     //   }
+//     // }catch (error){
+//     //   console.log(error);
+
+//     // }
+//     await PhotoTour.create({
+//       title: req.body.title,
+//       status: req.body.status === "on",
+//     });
+//     // const photo = await PhotoTour.findOne({where:{title: req.body.title}, attributes: ['id']})
+//   }
+// );
 
 apiTourRouter
   .route("/more/:id")

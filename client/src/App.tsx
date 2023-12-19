@@ -19,6 +19,7 @@ import BasketPage from './components/pages/BasketPage';
 import AddTourModal from './components/ui/AddTourModal';
 import EditTourModal from './components/ui/EditTourModal';
 import MorePage from './components/pages/MorePage';
+import Footer from './components/ui/Footer';
 
 function App(): JSX.Element {
   const registrModal = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
@@ -52,6 +53,7 @@ function App(): JSX.Element {
 
         {/* <Route path="/region" element={<RegionCard />} /> */}
       </Routes>
+      <Footer />
       {registrModal && <RegistrationModal />}
       {logModal && <LoginModal />}
       {addTourModal && <AddTourModal />}

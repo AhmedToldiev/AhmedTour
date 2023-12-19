@@ -1,5 +1,18 @@
 import React, { useEffect } from 'react';
-import { Card, CardBody, CardFooter, Stack, Image, Heading, Text, Button } from '@chakra-ui/react';
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  Stack,
+  Image,
+  Heading,
+  Text,
+  Button,
+  StatLabel,
+  StatNumber,
+  Stat,
+  DividerProps,
+} from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
@@ -12,6 +25,7 @@ import { thunkAddBasket, thunkTourDelete } from '../../redux/slices/tour/createA
 
 export default function ToursPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const auth = useAppSelector((store) => store.authSlice.user);
   const addToBasket = async (e, id) => {
     e.preventDefault();
     console.log('111111', id);
@@ -71,7 +85,10 @@ export default function ToursPage(): JSX.Element {
                 <Heading size="md">{tour.name}</Heading>
 
                 <Text py="2">{tour.body}</Text>
-
+                <Stat>
+                  <StatLabel>Цена:</StatLabel>
+                  <StatNumber>{`${tour.price}₽`}</StatNumber>
+                </Stat>
                 {/* <Text py="2">{tour.description}</Text> */}
               </CardBody>
 
@@ -92,19 +109,28 @@ export default function ToursPage(): JSX.Element {
                 >
                   Подробнее
                 </Button>
-                <Button
-                  variant="solid"
-                  colorScheme="blue"
-                  onClick={() => {
-                    void dispatch(setSelectedTour(tour));
-                    dispatch(editTourModal());
-                  }}
-                >
-                  Изменить
-                </Button>
-                <Button colorScheme="red" onClick={() => void dispatch(thunkTourDelete(tour.id))}>
-                  Удалить
-                </Button>
+                {auth.roleId === 1 ? (
+                  <>
+                    <Button
+                      variant="solid"
+                      colorScheme="blue"
+                      onClick={() => {
+                        void dispatch(setSelectedTour(tour));
+                        dispatch(editTourModal());
+                      }}
+                    >
+                      Изменить
+                    </Button>
+                    <Button
+                      colorScheme="red"
+                      onClick={() => void dispatch(thunkTourDelete(tour.id))}
+                    >
+                      Удалить
+                    </Button>
+                  </>
+                ) : (
+                  <div />
+                )}
               </CardFooter>
             </Stack>
           </Card>

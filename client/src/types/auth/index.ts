@@ -2,6 +2,7 @@ export type UserType = {
   id: number;
   name: string;
   email: string;
+  roleId: number;
 };
 
 export type BackendAuth = { user: UserType; accessToken: string };
@@ -9,7 +10,7 @@ export type BackendAuth = { user: UserType; accessToken: string };
 export type UserState =
   | { status: 'pending' }
   | { status: 'guest' }
-  | ({ status: 'authenticated' } & UserType);
+  | ({ status: 'authenticated'; } & UserType );
 
 export type AuthState = {
   user: UserState;

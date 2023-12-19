@@ -19,7 +19,7 @@ export default function MorePage(): JSX.Element {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log(id);
+    console.log(typeof id);
     axios
       .get<TourType[]>(`http://localhost:3000/api/region/tours/more/${id}`)
       .then(({ data }) => {
@@ -30,7 +30,7 @@ export default function MorePage(): JSX.Element {
       .catch((error) => {
         console.log(error);
       });
-  }, [id]);
+  }, [dispatch, id]);
 
   // const onepage = useAppSelector((store) => store.tourSlice.tours).filter(
   //   (el) => el.id === Number(id),
@@ -40,6 +40,7 @@ export default function MorePage(): JSX.Element {
     setDataPage((prev) => prev - 1);
 
   };
+
 
   if (dataPageInfo) {
     return (
@@ -58,6 +59,23 @@ export default function MorePage(): JSX.Element {
             <img src={dataPageInfo?.PhotoTour.img4} alt="12" />
           </Carousel.Item>
         </Carousel>
+
+      <Carousel style={{ width: '800px', height: '350px' }}>
+        <Carousel.Item style={{ width: '600px', height: '350px' }}>
+          <img src={onepage[0]?.PhotoTour.img1} alt="123" />
+        </Carousel.Item>
+        <Carousel.Item style={{ width: '600px', height: '350px' }}>
+          <img src={onepage[0]?.PhotoTour.img2} alt="123" />
+        </Carousel.Item>
+        <Carousel.Item style={{ width: '600px', height: '350px' }}>
+
+          <img src={onepage[0]?.PhotoTour.img3} alt="123" />
+        </Carousel.Item>
+        <Carousel.Item style={{ width: '600px', height: '350px' }}>
+          <img src={onepage[0]?.PhotoTour.img4} alt="123" />
+        </Carousel.Item>
+      </Carousel>
+
 
         <Stack>
           <CardBody>

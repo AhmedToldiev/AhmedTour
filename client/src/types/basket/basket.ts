@@ -8,6 +8,7 @@ export type BasketType = {
   createdAt: Date;
   updatedAt: Date;
 };
+
 export type TourWithUser = TourType & { User?: UserType };
 
 
