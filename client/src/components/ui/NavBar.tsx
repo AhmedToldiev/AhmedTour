@@ -8,6 +8,7 @@ import { registrModal, loginModal } from '../../redux/slices/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { thunkLogout } from '../../redux/slices/auth/checkAuthThunk';
 import Logo from '../../icons/Logo';
+import { addTourModal } from '../../redux/slices/tour/tourSlice';
 
 export default function BasicExample(): React.JSX.Element {
   const dispatch = useAppDispatch();
@@ -23,7 +24,7 @@ export default function BasicExample(): React.JSX.Element {
       }}
     >
       <Container>
-        <div>
+        <div style={{marginRight: '30px'}}>
           <Logo />
         </div>
 
@@ -37,6 +38,9 @@ export default function BasicExample(): React.JSX.Element {
             </Navbar.Brand>
             <Nav.Link as={Link} to="/about" className="text-white">
               О нас
+            </Nav.Link>
+            <Nav.Link as={Link} to="/basket" className="text-white">
+              Корзина
             </Nav.Link>
             <NavDropdown title={<span className="text-white">Регионы</span>}>
 
@@ -73,9 +77,20 @@ export default function BasicExample(): React.JSX.Element {
                 </Nav.Link>
               </>
             ) : (
+              <>
+            <Nav.Link as={Link} to="/basket" className="text-white">
+              Корзина Туров
+            </Nav.Link>
               <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())}>
                 Выйти
               </Nav.Link>
+              <Nav.Link
+                className="text-white"
+                onClick={() => void dispatch(addTourModal())}
+              >
+                Добавить тур
+              </Nav.Link>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>

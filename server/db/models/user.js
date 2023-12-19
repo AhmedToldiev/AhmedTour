@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.Role, { foreignKey: 'roleId' });
       this.belongsToMany(models.Tour,{through: 'Basket'},{foreignKey: 'userId'})
+      this.hasMany(models.Comment, { foreignKey: 'userId' });
     }
   }
   User.init(
