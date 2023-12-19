@@ -5,6 +5,7 @@ import regionsReducer from './slices/region/regionSlice';
 import tourReducer from './slices/tour/tourSlice'
 import commentReducer from './slices/comment/commentSlice'
 
+
 export const store = configureStore({
   reducer: {
     authSlice: authReducer,
@@ -12,6 +13,7 @@ export const store = configureStore({
     tourSlice: tourReducer,
     commentSlice: commentReducer,
  
+    basketSlice: tourReducer,
     
   },
 });

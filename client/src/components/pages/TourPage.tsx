@@ -5,18 +5,27 @@ import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
-import { setTours } from '../../redux/slices/tour/tourSlice';
+import {
+  editTourModal,
+  setSelectedTour,
+  setTours,
+} from '../../redux/slices/tour/tourSlice';
 
 import type { TourType } from '../../types/tour/tour';
-
-import { thunkTourDelete } from '../../redux/slices/tour/createAsyncThunk';
+import { thunkAddBasket, thunkTourDelete } from '../../redux/slices/tour/createAsyncThunk';
 
 export default function ToursPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const addToBasket = async (e, id) => {
+    e.preventDefault();
+    console.log('111111', id);
+    console.log('basket', id);
+    void dispatch(thunkAddBasket({ tourId: id }));
+  };
 
   const { id } = useParams();
   useEffect(() => {
-    console.log(id);
+    // console.log(id);
     axios
       .get<TourType[]>(`http://localhost:3000/api/region/tours/${id}`)
       .then(({ data }) => {
@@ -28,52 +37,82 @@ export default function ToursPage(): JSX.Element {
   }, [id]);
 
   const selector = useAppSelector((tour) => tour.tourSlice.tours);
+  // const tourId = useAppSelector((region)=> region.regionSlice.regions)
+  console.log(selector);
+
+  console.log('CARD WITH BUTTON');
+  // PhotoTour.img1
 
   const handleMoreClick = (id) => {
     window.location.href = `/more/${id}`;
   };
+  console.log(selector, 'sdhkjgfdhjkfbxghjhfdbhjgfbjgf');
 
   return (
     <div>
-      {selector.map((tour) => (
-        <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
-          <Carousel style={{ width: '600px', height: '300px' }}>
-            <Carousel.Item style={{ width: '600px', height: '380px' }}>
-              <img src={tour.PhotoTour.img1} />
-            </Carousel.Item>
-            <Carousel.Item style={{ width: '600px', height: '380px' }}>
-              <img src={tour.PhotoTour.img2} />
-            </Carousel.Item>
-            <Carousel.Item style={{ width: '600px', height: '380px' }}>
-              <img src={tour.PhotoTour.img3} />
-            </Carousel.Item>
-            <Carousel.Item style={{ width: '600px', height: '380px' }}>
-              <img src={tour.PhotoTour.img4} />
-            </Carousel.Item>
-          </Carousel>
+      {selector?.map((tour) => (
+        <>
+          {/* {console.log(tour, '============')} */}
 
-          <Stack>
-            <CardBody>
-              <Heading size="md">{tour.name}</Heading>
+          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
+            <Carousel style={{ width: '600px', height: '300px' }}>
+              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+                <img src={tour.PhotoTour.img1} />
+              </Carousel.Item>
+              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+                <img src={tour.PhotoTour.img2} />
+              </Carousel.Item>
+              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+                <img src={tour.PhotoTour.img3} />
+              </Carousel.Item>
+              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+                <img src={tour.PhotoTour.img4} />
+              </Carousel.Item>
+            </Carousel>
 
-              <Text py="2">{tour.body}</Text>
+            <Stack>
+              <CardBody>
+                <Heading size="md">{tour.name}</Heading>
 
-              {/* <Text py="2">{tour.description}</Text> */}
-            </CardBody>
+                <Text py="2">{tour.body}</Text>
 
-            <CardFooter>
-              <Button variant="solid" colorScheme="green" onClick={() => handleMoreClick(tour.id)}>
-                Подробнее
-              </Button>
-              <Button variant="solid" colorScheme="blue">
-                Изменить
-              </Button>
-              <Button colorScheme="red" onClick={() => void dispatch(thunkTourDelete(tour.id))}>
-                Удалить
-              </Button>
-            </CardFooter>
-          </Stack>
-        </Card>
+                {/* <Text py="2">{tour.description}</Text> */}
+              </CardBody>
+
+              <CardFooter>
+                <Button
+                  onClick={(event) => {
+                    addToBasket(event, tour.id);
+                  }}
+                  variant="solid"
+                  colorScheme="blue"
+                >
+                  Добавить в корзину
+                </Button>
+                <Button
+                  variant="solid"
+                  colorScheme="green"
+                  onClick={() => handleMoreClick(tour.id)}
+                >
+                  Подробнее
+                </Button>
+                <Button
+                  variant="solid"
+                  colorScheme="blue"
+                  onClick={() => {
+                    void dispatch(setSelectedTour(tour));
+                    dispatch(editTourModal());
+                  }}
+                >
+                  Изменить
+                </Button>
+                <Button colorScheme="red" onClick={() => void dispatch(thunkTourDelete(tour.id))}>
+                  Удалить
+                </Button>
+              </CardFooter>
+            </Stack>
+          </Card>
+        </>
       ))}
     </div>
   );

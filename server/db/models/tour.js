@@ -14,12 +14,12 @@ module.exports = (sequelize, DataTypes) => {
         through: 'Basket',
         foreignKey: 'tourId',
       });
-      this.hasMany(models.Comment, { foreignKey: 'tourId' });
+      this.hasMany(models.Basket, { foreignKey: 'tourId', as: 'basket' });
     }
   }
   Tour.init(
     {
-      name: DataTypes.STRING,
+      name: DataTypes.TEXT,
       body: DataTypes.TEXT,
       description: DataTypes.TEXT,
       price: DataTypes.INTEGER,
