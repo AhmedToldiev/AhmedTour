@@ -21,7 +21,17 @@ apiBasketRouter.route('/').post(verifyAccessToken, async (req, res) => {
 apiBasketRouter.route('/basket').get(async (req, res) => {
   try {
     const AllTours = await Basket.findAll({
-      include: 'Tour',
+      include: [
+        {
+          model: Tour,
+          as: 'Tour',
+          include: [
+            {
+              model: PhotoTour,
+            },
+          ],
+        },
+      ],
     });
     console.log(AllTours, 'asdfghjkl');
     return res.json(AllTours);

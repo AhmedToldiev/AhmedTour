@@ -68,6 +68,7 @@ export default function MainPage(): JSX.Element {
   };
 
   return (
+
     <>
       <Carousel infinite autoPlay autoPlaySpeed={3000} responsive={responsive}>
         {regions.map((region) => (
@@ -98,5 +99,6 @@ export default function MainPage(): JSX.Element {
         </Card.Body>
       </Card>
     </>
+
   );
 }

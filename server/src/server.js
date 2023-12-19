@@ -7,9 +7,10 @@ const authRouter = require('./routes/authRouter');
 const apiRegionRouter = require('./routes/apiRegionRouter');
 const apiTourRouter = require('./routes/apiTourRouter');
 const apiBasketRouter = require('./routes/apiBasketRouter');
+const apiCommentRouter = require('./routes/apiCommentRouter')
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 app.use(
   cors({
@@ -25,7 +26,9 @@ app.use(express.json());
 app.use('/api/regions', apiRegionRouter);
 app.use('/tokens', tokensRouter);
 app.use('/auth', authRouter);
-app.use('/api/region/tours', apiTourRouter);
+app.use('/api/region/tours', apiTourRouter)
+app.use('/api/comments', apiCommentRouter);
+
 app.use('/api/tours/basket', apiBasketRouter);
 
 app.listen(PORT, () => console.log(`Server has started on port ${PORT}`));

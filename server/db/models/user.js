@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         through: 'Basket',
         foreignKey: 'userId',
       });
+      this.hasMany(models.Comment, { foreignKey: 'userId' });
     }
   }
   User.init(

@@ -11,17 +11,20 @@ import {
   Heading,
   Text,
   Button,
+  Grid,
 } from '@chakra-ui/react';
 import Carousel from 'react-bootstrap/Carousel';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import type { TourType } from '../../types/tour/tour';
 import { setTours } from '../../redux/slices/tour/tourSlice';
+import CardCommentList from '../ui/CardCommentList';
+import AddFormComment from '../ui/AddFormComment';
 
 export default function MorePage(): JSX.Element {
   const dispatch = useAppDispatch();
   const { id } = useParams();
   useEffect(() => {
-    console.log(id);
+    console.log(typeof id);
     axios
       .get<TourType[]>(`http://localhost:3000/api/region/tours/more/${id}`)
       .then(({ data }) => {
@@ -30,7 +33,7 @@ export default function MorePage(): JSX.Element {
       .catch((error) => {
         console.log(error);
       });
-  }, [id]);
+  }, [dispatch, id]);
 
   const onepage = useAppSelector((store) => store.tourSlice.tours).filter(
     (el) => el.id === Number(id),
@@ -50,16 +53,17 @@ export default function MorePage(): JSX.Element {
 
       <Carousel style={{ width: '800px', height: '350px' }}>
         <Carousel.Item style={{ width: '600px', height: '350px' }}>
-          <img src={onepage[0]?.PhotoTour.img1} />
+          <img src={onepage[0]?.PhotoTour.img1} alt="123" />
         </Carousel.Item>
         <Carousel.Item style={{ width: '600px', height: '350px' }}>
-          <img src={onepage[0]?.PhotoTour.img2} />
+          <img src={onepage[0]?.PhotoTour.img2} alt="123" />
         </Carousel.Item>
         <Carousel.Item style={{ width: '600px', height: '350px' }}>
-          <img src={onepage[0]?.PhotoTour.img3}/>
+
+          <img src={onepage[0]?.PhotoTour.img3} alt="123" />
         </Carousel.Item>
         <Carousel.Item style={{ width: '600px', height: '350px' }}>
-          <img src={onepage[0]?.PhotoTour.img4} />
+          <img src={onepage[0]?.PhotoTour.img4} alt="123" />
         </Carousel.Item>
       </Carousel>
 
@@ -76,6 +80,14 @@ export default function MorePage(): JSX.Element {
             Buy Latte
           </Button> */}
         </CardFooter>
+        <Grid templateColumns="1fr" gap={4}>
+          <Grid item>
+            <CardCommentList />
+          </Grid>
+          <Grid item>
+            <AddFormComment />
+          </Grid>
+        </Grid>
       </Stack>
     </Card>
   );

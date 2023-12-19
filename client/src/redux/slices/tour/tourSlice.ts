@@ -49,7 +49,7 @@ export const tourSlice = createSlice({
     });
     builder.addCase(thunkAddBasket.fulfilled, (state, action) => {
       console.log(state.tours);
-      state.favoriteTours.push(state.tours.filter((tour) => tour.id === action.payload.tourId)[0]);
+      state.favoriteTours.unshift(state.tours.filter((tour) => tour.id === action.payload.tourId)[0]);
     });
     builder.addCase(thunkBasketLoad.fulfilled, (state, action) => {
       state.basket = action.payload;
