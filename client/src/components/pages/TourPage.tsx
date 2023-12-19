@@ -1,15 +1,23 @@
 import React, { useEffect } from 'react';
-import { Card, CardBody, CardFooter, Stack, Image, Heading, Text, Button } from '@chakra-ui/react';
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  Stack,
+  Image,
+  Heading,
+  Text,
+  Button,
+  StatLabel,
+  StatNumber,
+  Stat,
+} from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
-import {
-  editTourModal,
-  setSelectedTour,
-  setTours,
-} from '../../redux/slices/tour/tourSlice';
+import { editTourModal, setSelectedTour, setTours } from '../../redux/slices/tour/tourSlice';
 
 import type { TourType } from '../../types/tour/tour';
 import { thunkAddBasket, thunkTourDelete } from '../../redux/slices/tour/createAsyncThunk';
@@ -75,7 +83,10 @@ export default function ToursPage(): JSX.Element {
                 <Heading size="md">{tour.name}</Heading>
 
                 <Text py="2">{tour.body}</Text>
-
+                <Stat>
+                  <StatLabel>Цена:</StatLabel>
+                  <StatNumber>{`${tour.price}₽`}</StatNumber>
+                </Stat>
                 {/* <Text py="2">{tour.description}</Text> */}
               </CardBody>
 
