@@ -25,6 +25,9 @@ app.use(express.json());
 app.use('/api/regions', apiRegionRouter);
 app.use('/tokens', tokensRouter);
 app.use('/auth', authRouter);
+app.use('/api/region/tours', apiTourRouter)
+app.use('/api/comments', apiCommentRouter);
+
 app.use('/api/region/tours', apiTourRouter);
 app.use('/api/tours/basket', apiBasketRouter);
 

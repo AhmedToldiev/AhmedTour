@@ -42,6 +42,8 @@ function App(): JSX.Element {
   useAxiosInterceptors(apiTourInstance);
   useAxiosInterceptors(apiBasketInstance);
 
+
+  
   return (
     <Loader isLoading={status === 'pending'}>
       <NavBar />

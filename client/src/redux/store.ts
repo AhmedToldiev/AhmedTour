@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/auth';
 import regionsReducer from './slices/region/regionSlice';
 import tourReducer from './slices/tour/tourSlice'
+import commentReducer from './slices/comment/commentSlice'
 
 
 export const store = configureStore({
@@ -10,6 +11,8 @@ export const store = configureStore({
     authSlice: authReducer,
     regionSlice: regionsReducer,
     tourSlice: tourReducer,
+    commentSlice: commentReducer,
+ 
     basketSlice: tourReducer,
     
   },
