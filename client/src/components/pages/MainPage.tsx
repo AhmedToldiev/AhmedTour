@@ -57,36 +57,16 @@ export default function MainPage(): JSX.Element {
   };
 
   return (
-    <>
-      <Carousel infinite autoPlay autoPlaySpeed={3000} responsive={responsive}>
-        {regions.map((region) => (
-          <div key={region.id} style={{ marginTop: '50px' }}>
-            <Link to={`/region/${region.id}`} style={{ textDecoration: 'none' }}>
-              <img key={region.id} src={region.img} alt="Img" style={imgStyle} />
-              <h1 style={regionStyles}>{`${region.name}`}</h1>
-              {/* <h5 style={regionStyles}>{`${region.description}`}</h5> */}
-            </Link>
-          </div>
-        ))}
-      </Carousel>
-
-      <Card
-        style={{
-          marginTop: '30px',
-          backgroundColor: '#363030',
-          borderRadius: '15px 15px 0 0',
-          boxShadow: '0 2px 10px rgba(0, 0, 0, 0.7)',
-        }}
-      >
-        {/* <Card.Header as="h5">Информация о нас</Card.Header> */}
-        <Card.Body>
-          <Card.Title>Special title treatment</Card.Title>
-          <Card.Text>
-            With supporting text below as a natural lead-in to additional content.
-          </Card.Text>
-
-        </Card.Body>
-      </Card>
-    </>
+    <Carousel infinite autoPlay autoPlaySpeed={3000} responsive={responsive}>
+      {regions.map((region) => (
+        <div key={region.id} style={{ marginTop: '50px' }}>
+          <Link to={`/region/${region.id}`} style={{ textDecoration: 'none' }}>
+            <img key={region.id} src={region.img} alt="Img" style={imgStyle} />
+            <h1 style={regionStyles}>{`${region.name}`}</h1>
+            {/* <h5 style={regionStyles}>{`${region.description}`}</h5> */}
+          </Link>
+        </div>
+      ))}
+    </Carousel>
   );
 }
