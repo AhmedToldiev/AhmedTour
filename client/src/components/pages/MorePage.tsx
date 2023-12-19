@@ -11,11 +11,14 @@ import {
   Heading,
   Text,
   Button,
+  Grid,
 } from '@chakra-ui/react';
 import Carousel from 'react-bootstrap/Carousel';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import type { TourType } from '../../types/tour/tour';
 import { setTours } from '../../redux/slices/tour/tourSlice';
+import CardCommentList from '../ui/CardCommentList';
+import AddFormComment from '../ui/AddFormComment';
 
 export default function MorePage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -56,6 +59,7 @@ export default function MorePage(): JSX.Element {
           <img src={onepage[0]?.PhotoTour.img2} alt="123" />
         </Carousel.Item>
         <Carousel.Item style={{ width: '600px', height: '350px' }}>
+
           <img src={onepage[0]?.PhotoTour.img3} alt="123" />
         </Carousel.Item>
         <Carousel.Item style={{ width: '600px', height: '350px' }}>
@@ -76,6 +80,14 @@ export default function MorePage(): JSX.Element {
             Buy Latte
           </Button> */}
         </CardFooter>
+        <Grid templateColumns="1fr" gap={4}>
+          <Grid item>
+            <CardCommentList />
+          </Grid>
+          <Grid item>
+            <AddFormComment />
+          </Grid>
+        </Grid>
       </Stack>
     </Card>
   );

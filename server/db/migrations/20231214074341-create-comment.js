@@ -17,7 +17,7 @@ module.exports = {
           model: 'Tours',
           key: 'id',
         },
-        onDelete: "CASCADE"
+        onDelete: "CASCADE",
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -25,7 +25,7 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
-        onDelete: "CASCADE"
+        onDelete: "CASCADE",
       },
       createdAt: {
         allowNull: false,
