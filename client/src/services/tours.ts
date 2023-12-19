@@ -11,20 +11,18 @@ class TourService {
     if (response.status === 200) return response.data;
     return [];
   }
+
   static async addTour(formData: AddTourFormData): Promise<TourType> {
     const response = await apiTourInstance.post<TourType>('/', formData);
     if (response.status === 201) return response.data;
     return Promise.reject(new Error('Server error adding product'));
   }
 
-  static async editTour(
-    formData: AddTourFormData,
-    id: TourType['id'],
-  ): Promise<TourType> {
-    const response = await apiTourInstance.put<TourType>(`/${id}`, formData); 
+  static async editTour(formData: AddTourFormData, id: TourType['id']): Promise<TourType> {
+    const response = await apiTourInstance.put<TourType>(`/${id}`, formData);
 
-    console.log(response,'responnxwwwdxcehckasuhcksaucg');
-       
+    console.log(response, 'responnxwwwdxcehckasuhcksaucg');
+
     if (response.status === 200) return response.data;
     return Promise.reject(new Error('Error editing on server'));
   }
