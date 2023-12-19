@@ -3,12 +3,15 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/auth';
 import regionsReducer from './slices/region/regionSlice';
 import tourReducer from './slices/tour/tourSlice'
+import commentReducer from './slices/comment/commentSlice'
 
 export const store = configureStore({
   reducer: {
     authSlice: authReducer,
     regionSlice: regionsReducer,
-    tourSlice: tourReducer
+    tourSlice: tourReducer,
+    commentSlice: commentReducer,
+ 
     
   },
 });

@@ -27,6 +27,8 @@ function App(): JSX.Element {
     void dispatch(thunkTourLoad());
   }, []);
 
+
+  
   return (
     <>
       <NavBar />

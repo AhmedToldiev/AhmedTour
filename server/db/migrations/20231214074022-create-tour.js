@@ -20,6 +20,12 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER,
       },
+      currentPlace: {
+        type: Sequelize.INTEGER,
+      },
+      allPlace: {
+        type: Sequelize.INTEGER,
+      },
       regionId: {
         type: Sequelize.INTEGER,
         references: {

@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         through: 'Basket',
         foreignKey: 'tourId',
       });
+      this.hasMany(models.Comment, { foreignKey: 'tourId' });
     }
   }
   Tour.init(
@@ -22,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       body: DataTypes.TEXT,
       description: DataTypes.TEXT,
       price: DataTypes.INTEGER,
+      currentPlace: DataTypes.INTEGER,
+      allPlace: DataTypes.INTEGER,
       regionId: DataTypes.INTEGER,
       photoTourId: DataTypes.INTEGER,
     },
