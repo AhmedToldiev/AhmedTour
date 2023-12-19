@@ -13,12 +13,8 @@ import NavBar from './components/ui/NavBar';
 // import RegionCard from './components/ui/RegionCard';
 import { thunkCheckAuth } from './redux/slices/auth/checkAuthThunk';
 import ToursPage from './components/pages/TourPage';
-import { thunkTourLoad } from './redux/slices/tour/createAsyncThunk';
 import useAxiosInterceptors from './components/customHooks/useAxiosInterceptors';
 import Loader from './components/hocs/Loader';
-import { apiRegionInstance } from './services/regions';
-import { apiBasketInstance } from './services/baskets';
-import { apiTourInstance } from './services/tours';
 import BasketPage from './components/pages/BasketPage';
 import AddTourModal from './components/ui/AddTourModal';
 import EditTourModal from './components/ui/EditTourModal';
@@ -39,9 +35,8 @@ function App(): JSX.Element {
     void dispatch(thunkCheckAuth());
     // void dispatch(thunkTourLoad())
   }, []);
-  useAxiosInterceptors(apiRegionInstance);
-  useAxiosInterceptors(apiTourInstance);
-  useAxiosInterceptors(apiBasketInstance);
+  useAxiosInterceptors();
+ 
 
   return (
     <Loader isLoading={status === 'pending'}>
