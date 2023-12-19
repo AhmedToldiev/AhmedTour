@@ -1,20 +1,25 @@
-const multer = require("multer"); // Подключаем библиотеку Multer для обработки загрузки файлов
-const path = require("path");
+import multer from "multer";
+import path from "path";
 
-const upload = multer({
-  storage: multer.memoryStorage(),
-
-  // Устанавливаем ограничение на размер загружаемых файлов (10 МБ)
-  limits: { fileSize: 10 * 1024 * 1024 },
-  fileFilter(req, file, cb) {
-    // Фильтр для определения разрешенных типов файлов
-    if (file.mimetype.includes("image")) {
-      // Если файл имеет MIME-тип, начинающийся с 'image', считаем его допустимым
-      cb(null, true);
-    } else {
-      // В противном случае файл не допускается
-      cb(null, false);
-    }
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, path.resolve(__dirname, "/public")); // Укажите путь для сохранения фотографий
+  },
+  filename(req, file, cb) {
+    cb(null, `${new Date().toISOString()}-${file.originalname}`);
   },
 });
-module.exports = upload;
+const fileFilter = function (req, file, cb) {
+  if (file.mimetype.startsWith("image/")) {
+    cb(null, true);
+  } else {
+    cb(new Error("Invalid file type"), false);
+  }
+};
+
+const upload = multer({
+  storage,
+  fileFilter,
+});
+
+export default upload;

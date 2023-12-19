@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Input,
   ModalCloseButton,
@@ -23,9 +23,21 @@ export default function AddTourModal(): React.JSX.Element {
   const { onOpen, onClose } = useAppDispatch();
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.tourSlice.addTourModalIsOpen);
+//   const [img, setImg] = useState(null);
 
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
+
+//   const sendFile = useCallback(async () => {
+//     try {
+//       const data = new FormData();
+//       data.append('photosTour', e.currentTarget['photosTour'].files[0]);
+//       console.log();
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   },[]);
+
   return (
     <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
       <form
@@ -33,6 +45,7 @@ export default function AddTourModal(): React.JSX.Element {
           e.preventDefault();
           const formData = Object.fromEntries(new FormData(e.currentTarget)) as AddTourFormData;
           // console.log(formData);
+        //   sendFile();
 
           void dispatch(thunkTourAdd(formData));
           dispatch(addTourModal());
@@ -43,24 +56,26 @@ export default function AddTourModal(): React.JSX.Element {
           <ModalCloseButton onClick={() => dispatch(addTourModal())} />
           <ModalBody pb={6}>
             <Select placeholder="Регион" name="regionId">
-              <option value="1">Тут нужно зделать выбор регионы для тура</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-              <option value="4">Option 4</option>
+              <option value="1">Дагестан</option>
+              <option value="2">Ингушетия</option>
+              <option value="3">КБР</option>
+              <option value="4">Чечня</option>
             </Select>
             <FormControl mt={4}>
               <FormLabel>Название тура</FormLabel>
-              <Input placeholder="Введите почту" type="text" name="name" />
+              <Input placeholder="Название" type="text" name="name" />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Опписание тура</FormLabel>
-              <Input placeholder="Введите пароль" type="text" name="body" />
+              <Input placeholder="Описание" type="text" name="body" />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Цена</FormLabel>
-              <Input placeholder="Введите пароль" type="number" name="price" />
+              <Input placeholder="Цена" type="number" name="price" />
             </FormControl>
-            <input type="" />
+            <form action="/upload/photo" encType="multipart/form-data" method="POST">
+              <input type="file" name="photosTour" accept="image/*" />
+            </form>
           </ModalBody>
 
           <ModalFooter>

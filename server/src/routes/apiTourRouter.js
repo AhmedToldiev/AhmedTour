@@ -1,10 +1,19 @@
 const express = require("express");
 
-
+const multer = require("multer");
 const { Tour, PhotoTour } = require("../../db/models");
+// const upload = require("../middlewares/multerMid");
 
 const apiTourRouter = express.Router();
 
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, "uploads");
+  },
+  filename(req, file, cb) {
+    cb(null, `${file.fieldname}-${Date.now()}`);
+  },
+});
 
 apiTourRouter
   .route("/")
@@ -97,6 +106,25 @@ apiTourRouter.route("/:id").get(async (req, res) => {
     res.status(500).json(error);
   }
 });
+// apiTourRouter.post(
+//   "/upload",
+//   upload.array("photosTour", 4),
+//   async (req, res, next) => {
+//     // try{
+//     //   if(req.file){
+//     //     res.json(req.file)
+//     //   }
+//     // }catch (error){
+//     //   console.log(error);
+
+//     // }
+//     await PhotoTour.create({
+//       title: req.body.title,
+//       status: req.body.status === "on",
+//     });
+//     // const photo = await PhotoTour.findOne({where:{title: req.body.title}, attributes: ['id']})
+//   }
+// );
 
 apiTourRouter
   .route("/more/:id")
