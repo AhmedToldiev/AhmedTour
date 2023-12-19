@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Card, CardBody, Stack, Heading, Text, Grid } from '@chakra-ui/react';
 import Carousel from 'react-bootstrap/Carousel';
 import { Button } from 'react-bootstrap';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useAppDispatch } from '../../redux/hooks';
 import type { TourType } from '../../types/tour/tour';
 import { setTours } from '../../redux/slices/tour/tourSlice';
 import CardCommentList from '../ui/CardCommentList';
@@ -59,22 +59,6 @@ export default function MorePage(): JSX.Element {
             <img src={dataPageInfo?.PhotoTour.img4} alt="12" />
           </Carousel.Item>
         </Carousel>
-
-      <Carousel style={{ width: '800px', height: '350px' }}>
-        <Carousel.Item style={{ width: '600px', height: '350px' }}>
-          <img src={onepage[0]?.PhotoTour.img1} alt="123" />
-        </Carousel.Item>
-        <Carousel.Item style={{ width: '600px', height: '350px' }}>
-          <img src={onepage[0]?.PhotoTour.img2} alt="123" />
-        </Carousel.Item>
-        <Carousel.Item style={{ width: '600px', height: '350px' }}>
-
-          <img src={onepage[0]?.PhotoTour.img3} alt="123" />
-        </Carousel.Item>
-        <Carousel.Item style={{ width: '600px', height: '350px' }}>
-          <img src={onepage[0]?.PhotoTour.img4} alt="123" />
-        </Carousel.Item>
-      </Carousel>
 
 
         <Stack>

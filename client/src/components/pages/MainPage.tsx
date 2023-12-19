@@ -39,8 +39,9 @@ export default function MainPage(): JSX.Element {
   };
 
   const imgStyle = {
-    width: '1000px', // Задайте фиксированную ширину
-    height: '650px',
+    width: '800px', // Задайте фиксированную ширину
+    height: '570px',
+    justifyContent:'space-around',
     borderRadius: '19px',
     backgroundColor: 'rgba(0.5)', // Используйте 0 для полной прозрачности
     filter: 'brightness(60%)',
@@ -55,13 +56,14 @@ export default function MainPage(): JSX.Element {
 
   const regionStyles = {
     position: 'absolute',
-    top: '570px',
-    left: '50px',
+    top: '540px',
+    // right: '6px',
     color: 'white',
     width: '968px',
     height: '726px',
     display: 'flex',
     justifyContent: 'center',
+
     textShadow: '2px 2px 4px rgba(0, 0, 0, 0.9)',
     fontSize: '45px',
     fontWeight: 'bold',
@@ -91,12 +93,12 @@ export default function MainPage(): JSX.Element {
         }}
       >
         {/* <Card.Header as="h5">Информация о нас</Card.Header> */}
-        <Card.Body>
+        {/* <Card.Body>
           <Card.Title>Special title treatment</Card.Title>
           <Card.Text>
             With supporting text below as a natural lead-in to additional content.
           </Card.Text>
-        </Card.Body>
+        </Card.Body> */}
       </Card>
     </>
 
