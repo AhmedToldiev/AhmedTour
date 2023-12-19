@@ -1,5 +1,5 @@
 const express = require('express');
-const { Basket, Tour, PhotoTour } = require('../../db/models');
+const { Basket} = require('../../db/models');
 const verifyAccessToken = require('../middlewares/verifyAccessToken');
 
 const apiBasketRouter = express.Router();
