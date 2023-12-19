@@ -11,6 +11,7 @@ import {
   StatLabel,
   StatNumber,
   Stat,
+  DividerProps,
 } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -24,6 +25,7 @@ import { thunkAddBasket, thunkTourDelete } from '../../redux/slices/tour/createA
 
 export default function ToursPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const auth = useAppSelector((store) => store.authSlice.user);
   const addToBasket = async (e, id) => {
     e.preventDefault();
     console.log('111111', id);
@@ -107,19 +109,28 @@ export default function ToursPage(): JSX.Element {
                 >
                   Подробнее
                 </Button>
-                <Button
-                  variant="solid"
-                  colorScheme="blue"
-                  onClick={() => {
-                    void dispatch(setSelectedTour(tour));
-                    dispatch(editTourModal());
-                  }}
-                >
-                  Изменить
-                </Button>
-                <Button colorScheme="red" onClick={() => void dispatch(thunkTourDelete(tour.id))}>
-                  Удалить
-                </Button>
+                {auth.roleId === 1 ? (
+                  <>
+                    <Button
+                      variant="solid"
+                      colorScheme="blue"
+                      onClick={() => {
+                        void dispatch(setSelectedTour(tour));
+                        dispatch(editTourModal());
+                      }}
+                    >
+                      Изменить
+                    </Button>
+                    <Button
+                      colorScheme="red"
+                      onClick={() => void dispatch(thunkTourDelete(tour.id))}
+                    >
+                      Удалить
+                    </Button>
+                  </>
+                ) : (
+                  <div />
+                )}
               </CardFooter>
             </Stack>
           </Card>

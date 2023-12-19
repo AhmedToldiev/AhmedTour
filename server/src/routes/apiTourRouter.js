@@ -37,7 +37,10 @@ apiTourRouter
       if (!req.body) return res.status(500).json({ message: "Empty reqbody" });
       // console.log(req.body);
       // console.log(req.file);
-      const { name, body, price, regionId, photoTourId } = req.body;
+      const { name, body, price, regionId } = req.body;
+      
+      // photoTourId = Создаешь PhotoTours и кладешь в img1,2,3,4 -> req.files
+      
       const newProduct = await Tour.create({
         regionId,
         name,
@@ -45,6 +48,7 @@ apiTourRouter
         price,
         photoTourId,
       });
+
       return res.status(201).json(newProduct);
     } catch (error) {
       return res.status(500).json(error);
