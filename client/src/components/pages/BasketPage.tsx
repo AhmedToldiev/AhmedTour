@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import Carousel from 'react-bootstrap/Carousel';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { thunkBasketLoad } from '../../redux/slices/tour/createAsyncThunk';
+import { thunkBasDel, thunkBasketLoad } from '../../redux/slices/tour/createAsyncThunk';
 
 export default function BasketPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -28,6 +28,8 @@ export default function BasketPage(): JSX.Element {
   return (
     <div>
       {selector?.map((tour, index) => (
+
+        
         <Card maxW="sm" style={{ display: 'inline-block', marginLeft: '20px' }}>
           <CardBody>
             <Stack mt="6" spacing="3">
@@ -59,7 +61,7 @@ export default function BasketPage(): JSX.Element {
               <Button variant="solid" colorScheme="blue">
                 Купить
               </Button>
-              <Button variant="ghost" colorScheme="blue">
+              <Button colorScheme="red" onClick={() => void dispatch(thunkBasDel(tour.tourId))}>
                 Удалить
               </Button>
             </ButtonGroup>
