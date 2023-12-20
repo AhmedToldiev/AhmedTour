@@ -35,3 +35,8 @@ export const thunkBasDel = createAsyncThunk(
   'tourSlice/thunkBasDel',
   async (id: BasketType['id']) => BasketService.deleteElFromBasket(id)
 );
+
+export const thunkEditCountPay = createAsyncThunk(
+  'tourSlice/thunkEditCountPay',
+  async(id: TourType['id']) => TourService.editCountTours(id)
+  );

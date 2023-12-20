@@ -9,6 +9,7 @@ import {
   thunkTourAdd,
   thunkTourDelete,
   thunkBasDel,
+  thunkEditCountPay,
 } from './createAsyncThunk';
 
 const initialState: TourSlicesState = {
@@ -75,6 +76,11 @@ export const tourSlice = createSlice({
         state.tours.splice(indexTour, 1);
       }
       state.selectedTour = null;
+    });
+
+    builder.addCase(thunkEditCountPay.fulfilled, (state, action) => {
+      console.log(200);
+      
     });
 
     builder.addCase(thunkBasDel.fulfilled, (state, action) => {
