@@ -55,7 +55,7 @@ export default function PayForm({
   };
   return (
     <Box>
-      <Container style={{ backgroundColor: 'black' }}>
+      <Container >
         <Modal isOpen={show} onClose={handlerClose}>
           <ModalOverlay />
           <ModalContent bg={useColorModeValue('#CBD5E0', 'gray.800')} sx={{ p: '20px' }}>

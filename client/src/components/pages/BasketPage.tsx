@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Card,
   CardHeader,
@@ -15,6 +15,7 @@ import {
 import Carousel from 'react-bootstrap/Carousel';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { thunkBasketLoad } from '../../redux/slices/tour/createAsyncThunk';
+import PayForm from '../ui/PayForm';
 
 export default function BasketPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -23,11 +24,15 @@ export default function BasketPage(): JSX.Element {
   }, []);
   const selector = useAppSelector((state) => state.basketSlice.basket);
 
-  console.log(selector, 222222);
+  const [show, setShow] = useState(false);
+  const [dataPage, setDataPage] = useState(0);
+  const handleClickButton = (): void => {
+    setDataPage((prev) => prev - 1);
+  };
 
   return (
     <div>
-      {selector?.map((tour, index) => (
+      {selector?.map((tour) => (
         <Card maxW="sm" style={{ display: 'inline-block', marginLeft: '20px' }}>
           <CardBody>
             <Stack mt="6" spacing="3">
@@ -56,9 +61,23 @@ export default function BasketPage(): JSX.Element {
           <Divider />
           <CardFooter>
             <ButtonGroup spacing="2">
-              <Button variant="solid" colorScheme="blue">
+              <Button onClick={() => setShow(true)}
+                colorScheme="green"
+                bg="green.400"
+                rounded="full"
+                px={6}
+                _hover={{
+                  bg: 'green.500',
+                }}
+                my={4}
+              >
                 Купить
               </Button>
+              <PayForm
+              show={show}
+              handlerClose={() => setShow(false)}
+              handleClickButton={handleClickButton}
+            />
               <Button variant="ghost" colorScheme="blue">
                 Удалить
               </Button>

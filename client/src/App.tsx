@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-
+import { Container } from 'react-bootstrap';
 import MainPage from './components/pages/MainPage';
 
 import { useAppDispatch, useAppSelector } from './redux/hooks';
@@ -21,7 +21,6 @@ import AddTourModal from './components/ui/AddTourModal';
 import EditTourModal from './components/ui/EditTourModal';
 import MorePage from './components/pages/MorePage';
 import Footer from './components/ui/Footer';
-import { Container } from 'react-bootstrap';
 
 function App(): JSX.Element {
   const registrModal = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
@@ -35,14 +34,13 @@ function App(): JSX.Element {
   useEffect(() => {
     void dispatch(thunkRegionLoad());
     void dispatch(thunkCheckAuth());
-    // void dispatch(thunkTourLoad())
   }, []);
   useAxiosInterceptors();
- 
 
   return (
-    <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '150vh' }}>
-      <Loader isLoading={status === 'pending'}>
+    // <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '150vh' }}>
+    <Loader isLoading={status === 'pending'}>
+      <>
         <NavBar />
         <Routes>
           {/* <Route path="/login" element={<LoginPage />} />
@@ -52,17 +50,15 @@ function App(): JSX.Element {
           <Route path="/region/:id" element={<ToursPage />} />
           <Route path="/basket" element={<BasketPage />} />
           <Route path="/more/:id" element={<MorePage />} />
-          {/* <Route path="/region" element={<RegionCard />} /> */}
-
-          {/* <Route path="/region" element={<RegionCard />} /> */}
         </Routes>
         <Footer />
         {registrModal && <RegistrationModal />}
         {logModal && <LoginModal />}
         {addTourModal && <AddTourModal />}
         {editTourModal && <EditTourModal />}
-      </Loader>
-    </Container>
+      </>
+    </Loader>
+    // </Container>
   );
 }
 

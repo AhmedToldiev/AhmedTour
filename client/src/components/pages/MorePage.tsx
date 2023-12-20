@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Card, CardBody, Stack, Heading, Text, Grid } from '@chakra-ui/react';
 import Carousel from 'react-bootstrap/Carousel';
 import { Button } from 'react-bootstrap';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import type { TourType } from '../../types/tour/tour';
 import { setTours } from '../../redux/slices/tour/tourSlice';
 import CardCommentList from '../ui/CardCommentList';
@@ -17,6 +17,7 @@ export default function MorePage(): JSX.Element {
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
   const { id } = useParams();
+  const auth = useAppSelector((store)=>store.authSlice.user)
 
   useEffect(() => {
     console.log(typeof id);
@@ -38,9 +39,7 @@ export default function MorePage(): JSX.Element {
 
   const handleClickButton = (): void => {
     setDataPage((prev) => prev - 1);
-
   };
-
 
   if (dataPageInfo) {
     return (
@@ -60,7 +59,6 @@ export default function MorePage(): JSX.Element {
           </Carousel.Item>
         </Carousel>
 
-
         <Stack>
           <CardBody>
             <Heading size="md">{dataPageInfo?.name}</Heading>
@@ -68,19 +66,23 @@ export default function MorePage(): JSX.Element {
             <Text py="2">{dataPageInfo?.body}</Text>
             <Text py="2">{dataPageInfo?.description}</Text>
             <Text py="2">Осталось мест: {dataPage}</Text>
-            <Button
-              onClick={() => setShow(true)}
-              colorScheme="green"
-              bg="green.400"
-              rounded="full"
-              px={6}
-              _hover={{
-                bg: 'green.500',
-              }}
-              my={4}
-            >
-              Купить тур
-            </Button>
+            {auth.status === 'authenticated' ? (
+              <Button
+                onClick={() => setShow(true)}
+                colorScheme="green"
+                bg="green.400"
+                rounded="full"
+                px={6}
+                _hover={{
+                  bg: 'green.500',
+                }}
+                my={4}
+              >
+                Купить тур
+              </Button>
+            ) : (
+              <></>
+            )}
             <PayForm
               show={show}
               handlerClose={() => setShow(false)}

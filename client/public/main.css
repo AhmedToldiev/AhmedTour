@@ -16,11 +16,11 @@
 	font-family: merriweather-italic-3d;
 	src: url(../fonts/merriweather-regular-italic.woff2);
 }
-body {
+/* body {
 	background-color: #000;
 	color: #fff;
 	font-family: kamerik-3d;
-}
+} */
 .logo {
 	--logo-size: calc(var(--index) * 7.8);
 	width: var(--logo-size);
