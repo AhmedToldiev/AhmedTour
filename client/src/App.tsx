@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+
 import MainPage from './components/pages/MainPage';
 
 import { useAppDispatch, useAppSelector } from './redux/hooks';
@@ -20,6 +21,7 @@ import AddTourModal from './components/ui/AddTourModal';
 import EditTourModal from './components/ui/EditTourModal';
 import MorePage from './components/pages/MorePage';
 import Footer from './components/ui/Footer';
+import { Container } from 'react-bootstrap';
 
 function App(): JSX.Element {
   const registrModal = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
@@ -39,26 +41,28 @@ function App(): JSX.Element {
  
 
   return (
-    <Loader isLoading={status === 'pending'}>
-      <NavBar />
-      <Routes>
-        {/* <Route path="/login" element={<LoginPage />} />
+    <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '150vh' }}>
+      <Loader isLoading={status === 'pending'}>
+        <NavBar />
+        <Routes>
+          {/* <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} /> */}
-        {/* <Route path="/" element={<RegistrationModal />} /> */}
-        <Route path="/" element={<MainPage />} />
-        <Route path="/region/:id" element={<ToursPage />} />
-        <Route path="/basket" element={<BasketPage />} />
-        <Route path="/more/:id" element={<MorePage />} />
-        {/* <Route path="/region" element={<RegionCard />} /> */}
+          {/* <Route path="/" element={<RegistrationModal />} /> */}
+          <Route path="/" element={<MainPage />} />
+          <Route path="/region/:id" element={<ToursPage />} />
+          <Route path="/basket" element={<BasketPage />} />
+          <Route path="/more/:id" element={<MorePage />} />
+          {/* <Route path="/region" element={<RegionCard />} /> */}
 
-        {/* <Route path="/region" element={<RegionCard />} /> */}
-      </Routes>
-      <Footer />
-      {registrModal && <RegistrationModal />}
-      {logModal && <LoginModal />}
-      {addTourModal && <AddTourModal />}
-      {editTourModal && <EditTourModal />}
-    </Loader>
+          {/* <Route path="/region" element={<RegionCard />} /> */}
+        </Routes>
+        <Footer />
+        {registrModal && <RegistrationModal />}
+        {logModal && <LoginModal />}
+        {addTourModal && <AddTourModal />}
+        {editTourModal && <EditTourModal />}
+      </Loader>
+    </Container>
   );
 }
 

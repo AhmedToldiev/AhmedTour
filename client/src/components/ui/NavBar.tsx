@@ -36,9 +36,7 @@ export default function BasicExample(): React.JSX.Element {
                 ? `Добро пожаловать, ${user.name}`
                 : 'Добро пожаловать, гость'}
             </Navbar.Brand>
-            {/* <Nav.Link as={Link} to="/about" className="text-white">
-              О нас
-            </Nav.Link> */}
+
             <NavDropdown title={<span className="text-white">Регионы</span>}>
 
               <NavDropdown.Item as={Link} to="/region/1">
