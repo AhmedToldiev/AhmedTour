@@ -82,7 +82,7 @@ export default function BasicExample(): React.JSX.Element {
               >
                 Добавить тур
               </Nav.Link> */}
-              <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())}>
+              <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())} style={{marginLeft: '650px'}}>
                 Выйти
               </Nav.Link>
               </>

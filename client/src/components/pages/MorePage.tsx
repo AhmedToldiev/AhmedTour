@@ -90,7 +90,7 @@ export default function MorePage(): JSX.Element {
             />
           </CardBody>
 
-          <Grid templateColumns="1fr" gap={4}>
+          <Grid templateColumns="1fr" gap={4} style={{marginBottom: '330px'}}>
             <Grid>
               <CardCommentList />
             </Grid>
