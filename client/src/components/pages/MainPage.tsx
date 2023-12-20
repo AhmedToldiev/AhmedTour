@@ -56,10 +56,10 @@ export default function MainPage(): JSX.Element {
 
   const regionStyles = {
     position: 'absolute',
-    top: '540px',
+    top: '500px',
     // right: '6px',
     color: 'white',
-    width: '968px',
+    width: '800px',
     height: '726px',
     display: 'flex',
     justifyContent: 'center',

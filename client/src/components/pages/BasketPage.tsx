@@ -28,21 +28,21 @@ export default function BasketPage(): JSX.Element {
   return (
     <div>
       {selector?.map((tour, index) => (
-        <Card maxW="sm">
+        <Card maxW="sm" style={{ display: 'inline-block', marginLeft: '20px' }}>
           <CardBody>
             <Stack mt="6" spacing="3">
               {/* <img src={tour.Tour.PhotoTour.img1} alt="123" /> */}
-              <Carousel style={{ width: '500px', height: '300px' }}>
-                <Carousel.Item style={{ width: '500px', height: '380px' }}>
+              <Carousel style={{ width: '350px', height: '200px' }}>
+                <Carousel.Item style={{ width: '350px', height: '200px' }}>
                   <img src={tour.Tour.PhotoTour.img1} />
                 </Carousel.Item>
-                <Carousel.Item style={{ width: '500px', height: '380px' }}>
+                <Carousel.Item style={{ width: '350px', height: '200px' }}>
                   <img src={tour.Tour.PhotoTour.img2} />
                 </Carousel.Item>
-                <Carousel.Item style={{ width: '500px', height: '380px' }}>
+                <Carousel.Item style={{ width: '350px', height: '200px' }}>
                   <img src={tour.Tour.PhotoTour.img3} />
                 </Carousel.Item>
-                <Carousel.Item style={{ width: '500px', height: '380px' }}>
+                <Carousel.Item style={{ width: '350px', height: '200px' }}>
                   <img src={tour.Tour.PhotoTour.img4} />
                 </Carousel.Item>
               </Carousel>
@@ -57,10 +57,10 @@ export default function BasketPage(): JSX.Element {
           <CardFooter>
             <ButtonGroup spacing="2">
               <Button variant="solid" colorScheme="blue">
-                Buy now
+                Купить
               </Button>
               <Button variant="ghost" colorScheme="blue">
-                Add to cart
+                Удалить
               </Button>
             </ButtonGroup>
           </CardFooter>
