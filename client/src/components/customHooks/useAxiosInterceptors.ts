@@ -5,6 +5,8 @@ import { thunkRefreshToken } from '../../redux/slices/auth/checkAuthThunk';
 import { apiRegionInstance } from '../../services/regions';
 import { apiTourInstance } from '../../services/tours';
 import { apiBasketInstance } from '../../services/baskets';
+import { authInstance } from '../services/authService';
+import { apiCommentsInstance } from '../../services/commentService';
 
 // useAxiosInterceptors(axiosInstance)
 export default function useAxiosInterceptors(): void {
@@ -83,6 +85,53 @@ export default function useAxiosInterceptors(): void {
       },
     );
 
+    const requestInterceptorAuth = authInstance.interceptors.request.use(
+      (config) => {
+        if (!config.headers.Authorization) {
+          config.headers.Authorization = `Bearer ${accessToken}`;
+        }
+        return config;
+      },
+      (err) => Promise.reject(err),
+    );
+
+    const responseInterceptorAuth = authInstance.interceptors.response.use(
+      (res) => res,
+      async (err: AxiosError & { config: { sent?: boolean } }) => {
+        const prevRequest = err.config;
+        if (err.response?.status === 403 && !prevRequest.sent) {
+          prevRequest.sent = true;
+          const newAccessToken = await dispatch(thunkRefreshToken()).unwrap();
+          prevRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+          return apiTourInstance(prevRequest);
+        }
+        return Promise.reject(err);
+      },
+    );
+    const requestInterceptorComment = apiCommentsInstance.interceptors.request.use(
+      (config) => {
+        if (!config.headers.Authorization) {
+          config.headers.Authorization = `Bearer ${accessToken}`;
+        }
+        return config;
+      },
+      (err) => Promise.reject(err),
+    );
+
+    const responseInterceptorComment = apiCommentsInstance.interceptors.response.use(
+      (res) => res,
+      async (err: AxiosError & { config: { sent?: boolean } }) => {
+        const prevRequest = err.config;
+        if (err.response?.status === 403 && !prevRequest.sent) {
+          prevRequest.sent = true;
+          const newAccessToken = await dispatch(thunkRefreshToken()).unwrap();
+          prevRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+          return apiRegionInstance(prevRequest);
+        }
+        return Promise.reject(err);
+      },
+    );
+
     return () => {
       apiRegionInstance.interceptors.request.eject(requestInterceptorRegion);
       apiRegionInstance.interceptors.response.eject(responseInterceptorRegion);
@@ -90,7 +139,10 @@ export default function useAxiosInterceptors(): void {
       apiTourInstance.interceptors.response.eject(responseInterceptorTour);
       apiBasketInstance.interceptors.request.eject(requestBasketLoadInterceptor);
       apiBasketInstance.interceptors.response.eject(responseBasketLoadInterceprot);
-
+      authInstance.interceptors.request.eject(requestInterceptorAuth);
+      authInstance.interceptors.response.eject(responseInterceptorAuth);
+      apiCommentsInstance.interceptors.request.eject(requestInterceptorComment);
+      apiCommentsInstance.interceptors.response.eject(responseInterceptorComment);
     };
   }, [accessToken, dispatch]);
 }

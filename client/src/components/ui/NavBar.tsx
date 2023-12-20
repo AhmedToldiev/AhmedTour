@@ -36,6 +36,12 @@ export default function BasicExample(): React.JSX.Element {
                 ? `Добро пожаловать, ${user.name}`
                 : 'Добро пожаловать, гость'}
             </Navbar.Brand>
+<<<<<<< HEAD
+=======
+            {/* <Nav.Link as={Link} to="/about" className="text-white">
+              О нас
+            </Nav.Link> */}
+>>>>>>> dev
             <NavDropdown title={<span className="text-white">Регионы</span>}>
 
               <NavDropdown.Item as={Link} to="/region/1">
@@ -75,14 +81,14 @@ export default function BasicExample(): React.JSX.Element {
             <Nav.Link as={Link} to="/basket" className="text-white">
               Корзина 
             </Nav.Link>
-              <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())}>
-                Выйти
-              </Nav.Link>
               <Nav.Link
                 className="text-white"
                 onClick={() => void dispatch(addTourModal())}
               >
                 Добавить тур
+              </Nav.Link>
+              <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())}>
+                Выйти
               </Nav.Link>
               </>
             )}

@@ -20,23 +20,23 @@ import { thunkTourAdd } from '../../redux/slices/tour/createAsyncThunk';
 import type { AddTourFormData } from '../../types/tour/tour';
 
 export default function AddTourModal(): React.JSX.Element {
-  const { onOpen, onClose } = useAppDispatch();
+  const { onOpen, onClose } = useDisclosure();
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.tourSlice.addTourModalIsOpen);
-//   const [img, setImg] = useState(null);
+  //   const [img, setImg] = useState(null);
 
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
-//   const sendFile = useCallback(async () => {
-//     try {
-//       const data = new FormData();
-//       data.append('photosTour', e.currentTarget['photosTour'].files[0]);
-//       console.log();
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   },[]);
+  //   const sendFile = useCallback(async () => {
+  //     try {
+  //       const data = new FormData();, e.currentTarget['photosTour'].files[0]
+  //       data.append('photosTour');
+  //       console.log();
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   },[]);
 
   return (
     <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
@@ -44,9 +44,7 @@ export default function AddTourModal(): React.JSX.Element {
         onSubmit={(e) => {
           e.preventDefault();
           const formData = Object.fromEntries(new FormData(e.currentTarget)) as AddTourFormData;
-          // console.log(formData);
-        //   sendFile();
-
+        //   const data = new FormData();, e.currentTarget['photosTour'].files[0]
           void dispatch(thunkTourAdd(formData));
           dispatch(addTourModal());
         }}
@@ -73,9 +71,10 @@ export default function AddTourModal(): React.JSX.Element {
               <FormLabel>Цена</FormLabel>
               <Input placeholder="Цена" type="number" name="price" />
             </FormControl>
-            <form action="/upload/photo" encType="multipart/form-data" method="POST">
-              <input type="file" name="photosTour" accept="image/*" />
-            </form>
+            <FormControl mt={4}>
+              <FormLabel>Картинка</FormLabel>
+              <Input placeholder="Картинка" type="file" name="photosTour" />
+            </FormControl>
           </ModalBody>
 
           <ModalFooter>

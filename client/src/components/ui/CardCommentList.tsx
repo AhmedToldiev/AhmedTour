@@ -10,20 +10,19 @@ function CardCommentList(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const { id } = useParams();
-  console.log(comment,'-----');
-
   useEffect(() => {
     void dispatch(getCommentsThunk(Number(id)));
   }, []);
 
   return (
-    <Grid templateColumns="repeat(1, 1fr)" gap={3} marginTop={4}>
-      {comment.map((el) => (
-        <Grid key={el.id} item colSpan={4.5}>
-          <CardComment oneComment={el} />
-        </Grid>
-      ))}
-    </Grid>
+    <Grid templateColumns="repeat(1, 1fr)" gap={3} marginTop={4} maxW="620px">
+    {comment.map((el) => (
+      <Grid key={el.id} item colSpan={4.5}>
+        <CardComment oneComment={el} />
+      </Grid>
+    ))}
+  </Grid>
+  
   );
 }
 
