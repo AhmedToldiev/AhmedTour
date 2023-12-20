@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AddTourFormData, TourType } from '../../../types/tour/tour';
 import TourService from '../../../services/tours';
 import BasketService from '../../../services/baskets';
+import { BasketType } from '../../../types/basket/basket';
 
 export const thunkTourLoad = createAsyncThunk('tourSlice/thunkTourLoad', async () =>
   TourService.getTour(),
@@ -28,4 +29,9 @@ export const thunkEditTour = createAsyncThunk(
 export const thunkTourDelete = createAsyncThunk(
   'tourSlice/thunkTourDelete',
   async (id: TourType['id']) => TourService.deleteTour(id),
+);
+
+export const thunkBasDel = createAsyncThunk(
+  'tourSlice/thunkBasDel',
+  async (id: BasketType['id']) => BasketService.deleteElFromBasket(id)
 );

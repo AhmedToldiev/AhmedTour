@@ -23,6 +23,14 @@ class BasketService {
     if (response.status === 200) return response.data;
     return [];
   }
+
+  static async deleteElFromBasket(id: BasketType['id']): Promise<BasketType['id']> {
+    const response = await apiBasketInstance.delete<BasketType>(`/${id}`);
+    // console.log(response);
+    
+    if (response.status === 200) return id;
+    return Promise.reject(new Error('Server error delete book'));
+  }
 }
 
 export default BasketService;
