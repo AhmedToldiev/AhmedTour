@@ -46,8 +46,9 @@ function SocialButton({
 export default function Footer(): JSX.Element {
   return (
     <Box
-      bg={useColorModeValue('gray.300', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}
+      bg={useColorModeValue('#363030')}
+      color={useColorModeValue('white')}
+      style={{ borderRadius: '15px 15px 0 0', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.7)' }}
     >
       <Container
         as={Stack}
@@ -59,7 +60,10 @@ export default function Footer(): JSX.Element {
         align={{ base: 'center', md: 'center' }}
         marginTop="auto"
       >
-        <Text>© 2023 </Text>
+        <Text>
+          Наш проект решает множество проблем с поиском незабываемых туров по Северному Кавказу ©
+          2023{' '}
+        </Text>
         <Stack direction="row" spacing={6}>
           <SocialButton label="Twitter" href="#">
             <FaTwitter />
