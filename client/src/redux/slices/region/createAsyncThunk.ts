@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import RegionService from '../../../services/regions';
 
-export const thunkRegionLoad = createAsyncThunk('regionSlice/thunkRegionLoad', async () =>
+export const thunkRegionLoad = createAsyncThunk('historySlice/thunkRegionLoad', async () =>
   RegionService.getRegion(),
 );
 

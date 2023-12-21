@@ -56,10 +56,10 @@ export default function MainPage(): JSX.Element {
 
   const regionStyles = {
     position: 'absolute',
-    top: '540px',
+    top: '500px',
     // right: '6px',
     color: 'white',
-    width: '968px',
+    width: '800px',
     height: '726px',
     display: 'flex',
     justifyContent: 'center',
@@ -72,7 +72,7 @@ export default function MainPage(): JSX.Element {
   return (
     <Carousel infinite autoPlay autoPlaySpeed={3000} responsive={responsive}>
       {regions.map((region) => (
-        <div key={region.id} style={{ marginTop: '1px' }}>
+        <div key={region.id} style={{ marginBottom: '10px' }}>
           <Link to={`/region/${region.id}`} style={{ textDecoration: 'none' }}>
             <img key={region.id} src={region.img} alt="Img" style={imgStyle} />
             <h1 style={regionStyles}>{`${region.name}`}</h1>

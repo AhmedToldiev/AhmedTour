@@ -38,9 +38,9 @@ apiTourRouter
       // console.log(req.body);
       // console.log(req.file);
       const { name, body, price, regionId } = req.body;
-      
+
       // photoTourId = Создаешь PhotoTours и кладешь в img1,2,3,4 -> req.files
-      
+
       const newProduct = await Tour.create({
         regionId,
         name,
@@ -70,7 +70,7 @@ apiTourRouter
         where: { regionId: id },
         include: [PhotoTour],
       });
-  
+
       res.json(regionId);
     } catch (error) {
       console.log(error);
@@ -85,7 +85,6 @@ apiTourRouter
       const newTour = await Tour.findByPk(tour.id, {
         include: [PhotoTour],
       });
-
 
       res.json(newTour);
     } catch (error) {
@@ -157,5 +156,13 @@ apiTourRouter
       res.status(500).json(error);
     }
   });
+
+apiTourRouter.route("/updateplaces/:id").patch(async (req, res) => {
+  
+  const tour = await Tour.findByPk(req.params.id);
+  console.log(req.params.id , '-----------123');
+  await tour.update({ currentPlace: tour.currentPlace - 1 });
+  res.status(200).json(tour);
+});
 
 module.exports = apiTourRouter;

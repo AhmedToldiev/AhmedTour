@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Card,
   CardHeader,
@@ -14,7 +14,11 @@ import {
 } from '@chakra-ui/react';
 import Carousel from 'react-bootstrap/Carousel';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { thunkBasketLoad } from '../../redux/slices/tour/createAsyncThunk';
+
+import PayForm from '../ui/PayForm';
+
+import { thunkBasDel, thunkBasketLoad } from '../../redux/slices/tour/createAsyncThunk';
+
 
 export default function BasketPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -23,26 +27,33 @@ export default function BasketPage(): JSX.Element {
   }, []);
   const selector = useAppSelector((state) => state.basketSlice.basket);
 
-  console.log(selector, 222222);
+  const [show, setShow] = useState(false);
+  const [dataPage, setDataPage] = useState(0);
+  const handleClickButton = (): void => {
+    setDataPage((prev) => prev - 1);
+  };
 
   return (
     <div>
+
       {selector?.map((tour, index) => (
-        <Card maxW="sm">
+
+
+        <Card maxW="sm" style={{ display: 'inline-block', marginLeft: '20px' }}>
           <CardBody>
             <Stack mt="6" spacing="3">
               {/* <img src={tour.Tour.PhotoTour.img1} alt="123" /> */}
-              <Carousel style={{ width: '500px', height: '300px' }}>
-                <Carousel.Item style={{ width: '500px', height: '380px' }}>
+              <Carousel style={{ width: '350px', height: '200px' }}>
+                <Carousel.Item style={{ width: '350px', height: '200px' }}>
                   <img src={tour.Tour.PhotoTour.img1} />
                 </Carousel.Item>
-                <Carousel.Item style={{ width: '500px', height: '380px' }}>
+                <Carousel.Item style={{ width: '350px', height: '200px' }}>
                   <img src={tour.Tour.PhotoTour.img2} />
                 </Carousel.Item>
-                <Carousel.Item style={{ width: '500px', height: '380px' }}>
+                <Carousel.Item style={{ width: '350px', height: '200px' }}>
                   <img src={tour.Tour.PhotoTour.img3} />
                 </Carousel.Item>
-                <Carousel.Item style={{ width: '500px', height: '380px' }}>
+                <Carousel.Item style={{ width: '350px', height: '200px' }}>
                   <img src={tour.Tour.PhotoTour.img4} />
                 </Carousel.Item>
               </Carousel>
@@ -56,11 +67,29 @@ export default function BasketPage(): JSX.Element {
           <Divider />
           <CardFooter>
             <ButtonGroup spacing="2">
-              <Button variant="solid" colorScheme="blue">
-                Buy now
+              <Button onClick={() => setShow(true)}
+                colorScheme="green"
+                bg="green.400"
+                rounded="full"
+                px={6}
+                _hover={{
+                  bg: 'green.500',
+                }}
+                my={4}
+              >
+                Купить
               </Button>
+
+              <PayForm
+              show={show}
+              handlerClose={() => setShow(false)}
+              handleClickButton={handleClickButton}
+            />
               <Button variant="ghost" colorScheme="blue">
-                Add to cart
+
+              <Button colorScheme="red" onClick={() => void dispatch(thunkBasDel(tour.tourId))}>
+
+                Удалить
               </Button>
             </ButtonGroup>
           </CardFooter>
