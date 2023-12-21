@@ -33,6 +33,8 @@ export default function PayForm({
 }: PayFormPropsType): JSX.Element {
   const dispatсh = useAppDispatch();
   const { id } = useParams();
+  console.log(id,'0000000000');
+  
   const [input, setInput] = useState({
     card: '',
     month: '',
@@ -44,7 +46,7 @@ export default function PayForm({
     store.tourSlice.tours.filter((el) => el.id === Number(id)),
   );
   const [place, setPlace] = useState(onePage[0]?.currentPlace);
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const handleClick = () => {
     setPlace((prevOnePlace) => ({
@@ -128,7 +130,7 @@ export default function PayForm({
                     <Button
                       onClick={() => {
                         handleClickButton();
-                        dispatсh(thunkPostAllTour());
+                        void dispatсh(thunkPostAllTour(id));
                       }}
                       type="submit"
                       colorScheme="green"

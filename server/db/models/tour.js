@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.Region, { foreignKey: "regionId" });
+      this.hasMany(models.History, { foreignKey: "tourId" });
       this.belongsTo(models.PhotoTour, { foreignKey: "photoTourId" });
       this.belongsToMany(models.User, {
         through: "Basket",
@@ -26,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       currentPlace: DataTypes.INTEGER,
       allPlace: DataTypes.INTEGER,
       date: DataTypes.TEXT,
-      days:DataTypes.TEXT,
+      days: DataTypes.TEXT,
       regionId: DataTypes.INTEGER,
       photoTourId: DataTypes.INTEGER,
     },

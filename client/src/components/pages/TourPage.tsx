@@ -117,7 +117,7 @@ export default function ToursPage(): JSX.Element {
               </CardBody>
 
               <CardFooter>
-                {auth.status === 'authenticated' ? (
+                {auth.status === 'authenticated' && auth.roleId !==1 ? (
                   <Button
                     onClick={(event) => {
                       addToBasket(event, tour.id);
