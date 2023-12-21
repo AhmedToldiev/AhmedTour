@@ -44,7 +44,6 @@ function App(): JSX.Element {
         backgroundImage: 'url("https://otkritkis.com/wp-content/uploads/2022/07/gu7hb.gif")',
         backgroundSize: 'cover',
       }}
-      
     >
       <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '150vh' }}>
         <Loader isLoading={status === 'pending'}>

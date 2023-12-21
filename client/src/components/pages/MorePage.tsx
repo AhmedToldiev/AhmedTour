@@ -46,7 +46,7 @@ export default function MorePage(): JSX.Element {
 
   if (dataPageInfo) {
     return (
-      <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline" style={{backgroundColor: 'black'}}>
+      <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline" style={{backgroundColor: 'black', opacity: '0.6'}}>
         <Carousel style={{ width: '800px', height: '350px' }}>
           <Carousel.Item style={{ width: '600px', height: '350px' }}>
             <img src={dataPageInfo?.PhotoTour.img1} alt="12" />
@@ -62,7 +62,7 @@ export default function MorePage(): JSX.Element {
           </Carousel.Item>
         </Carousel>
 
-        <Stack style={{opacity: '0.8'}}>
+        <Stack>
           <CardBody>
             <Heading size="md" style={{color: 'white'}}>{dataPageInfo?.name}</Heading>
 
