@@ -3,8 +3,8 @@ import type { TourType } from '../tour/tour';
 
 export type HistoryType = {
   id: number;
-  user: UserType;
-  tour: TourType;
+  User: UserType;
+  Tour: TourType;
 };
 
 

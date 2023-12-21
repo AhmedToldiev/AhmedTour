@@ -14,9 +14,15 @@ import {
 } from '@chakra-ui/react';
 import Carousel from 'react-bootstrap/Carousel';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { thunkBasDel, thunkBasketLoad } from '../../redux/slices/tour/createAsyncThunk';
+
+import PayForm from '../ui/PayForm';
+
+import { thunkBasDel, thunkBasketLoad, thunkEditCountPay } from '../../redux/slices/tour/createAsyncThunk';
 
 export default function BasketPage(): JSX.Element {
+  const [show, setShow] = useState(false);
+  const [dataPage, setDataPage] = useState(0);
+  const auth = useAppSelector((store) => store.authSlice.user);
   const dispatch = useAppDispatch();
   useEffect(() => {
     void dispatch(thunkBasketLoad());
@@ -24,7 +30,10 @@ export default function BasketPage(): JSX.Element {
   const selector = useAppSelector((state) => state.basketSlice.basket);
 
   console.log(selector, 222222);
-
+  const handleClickButton = (): void => {
+    setDataPage((prev) => prev - 1);
+    void dispatch(thunkEditCountPay(Number(id)));
+  };
   return (
     <div>
       {selector?.map((tour, index) => (
@@ -49,7 +58,7 @@ export default function BasketPage(): JSX.Element {
               <Heading size="md">{tour.Tour.name}</Heading>
               <Text>{tour.Tour.body}</Text>
               <Text color="blue.600" fontSize="2xl">
-                {tour.Tour.price}
+                {tour.Tour.price}₽
               </Text>
             </Stack>
           </CardBody>
@@ -59,6 +68,13 @@ export default function BasketPage(): JSX.Element {
               <Button variant="solid" colorScheme="blue">
                 Купить
               </Button>
+
+              <PayForm
+              show={show}
+              handlerClose={() => setShow(false)}
+              handleClickButton={handleClickButton}
+            />
+
               <Button colorScheme="red" onClick={() => void dispatch(thunkBasDel(tour.tourId))}>
                 Удалить
               </Button>
