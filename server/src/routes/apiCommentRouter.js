@@ -14,7 +14,7 @@ apiCommentrouter
     });
     res.json(notes);
   })
-  .delete(verifyAccessToken,checkAuthor,async (req, res) => {
+  .delete(verifyAccessToken,async (req, res) => {
     const { id } = req.params;
     try {
       await Comment.destroy({ where: { id } });

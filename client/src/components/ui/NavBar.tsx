@@ -24,7 +24,7 @@ export default function BasicExample(): React.JSX.Element {
       }}
     >
       <Container>
-        <div style={{marginRight: '30px'}}>
+        <div style={{ marginRight: '30px' }}>
           <Logo />
         </div>
 
@@ -38,7 +38,6 @@ export default function BasicExample(): React.JSX.Element {
             </Navbar.Brand>
 
             <NavDropdown title={<span className="text-white">Регионы</span>}>
-
               <NavDropdown.Item as={Link} to="/region/1">
                 Дагестан
               </NavDropdown.Item>
@@ -51,7 +50,6 @@ export default function BasicExample(): React.JSX.Element {
               <NavDropdown.Item as={Link} to="/region/4">
                 Чечня
               </NavDropdown.Item>
-
             </NavDropdown>
 
             {user.status !== 'authenticated' ? (
@@ -73,24 +71,29 @@ export default function BasicExample(): React.JSX.Element {
               </>
             ) : (
               <>
-            <Nav.Link as={Link} to="/basket" className="text-white">
-              Корзина 
-            </Nav.Link>
+                <Nav.Link as={Link} to="/basket" className="text-white">
+                  Корзина
+                </Nav.Link>
 
-            <Nav.Link as={Link} to="/history" className="text-white">
-              История  
-            </Nav.Link>
-              {/* <Nav.Link
-                className="text-white"
-                onClick={() => void dispatch(addTourModal())}
-              >
-                Добавить тур
-              </Nav.Link> */}
+                <Nav.Link as={Link} to="/history" className="text-white">
+                  История
+                </Nav.Link>
+                {user.roleId === 1 ? (
+                  <Nav.Link className="text-white" onClick={() => void dispatch(addTourModal())}>
+                    Добавить тур
+                  </Nav.Link>
+                ) : (
+                  <div />
+                )}
 
-              <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())} style={{marginLeft: '550px'}}>
-
-                Выйти
-              </Nav.Link>
+                <Nav.Link
+                  href=""
+                  className="text-white"
+                  onClick={() => void dispatch(thunkLogout())}
+                  style={{ marginLeft: '550px' }}
+                >
+                  Выйти
+                </Nav.Link>
               </>
             )}
           </Nav>

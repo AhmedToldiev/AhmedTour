@@ -19,7 +19,7 @@ apiBasketRouter.route('/').post(verifyAccessToken, async (req, res) => {
     res.status(500).json(error);
   }
 });
-apiBasketRouter.route("/basket").get(verifyAccessToken, async (req, res) => {
+apiBasketRouter.route('/basket').get(verifyAccessToken, async (req, res) => {
   try {
     const AllTours = await Basket.findAll({
       where: { userId: res.locals.user.id },

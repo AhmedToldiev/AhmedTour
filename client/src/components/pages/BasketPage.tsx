@@ -17,25 +17,30 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import PayForm from '../ui/PayForm';
 
-import { thunkBasDel, thunkBasketLoad } from '../../redux/slices/tour/createAsyncThunk';
+
+import { thunkBasDel, thunkBasketLoad, thunkEditCountPay } from '../../redux/slices/tour/createAsyncThunk';
 
 export default function BasketPage(): JSX.Element {
+  const [show, setShow] = useState(false);
+  const [dataPage, setDataPage] = useState(0);
+  const auth = useAppSelector((store) => store.authSlice.user);
   const dispatch = useAppDispatch();
   useEffect(() => {
     void dispatch(thunkBasketLoad());
   }, []);
   const selector = useAppSelector((state) => state.basketSlice.basket);
 
-  const [show, setShow] = useState(false);
-  const [dataPage, setDataPage] = useState(0);
+  console.log(selector, 222222);
   const handleClickButton = (): void => {
     setDataPage((prev) => prev - 1);
+    void dispatch(thunkEditCountPay(Number(id)));
   };
-
   return (
     <div>
       {selector?.map((tour, index) => (
+
         <Card key={tour.id} maxW="sm" style={{ display: 'inline-block', marginLeft: '20px' }}>
+
           <CardBody>
             <Stack mt="6" spacing="3">
               {/* <img src={tour.Tour.PhotoTour.img1} alt="123" /> */}
@@ -56,13 +61,14 @@ export default function BasketPage(): JSX.Element {
               <Heading size="md">{tour.Tour.name}</Heading>
               <Text>{tour.Tour.body}</Text>
               <Text color="blue.600" fontSize="2xl">
-                {tour.Tour.price}
+                {tour.Tour.price}₽
               </Text>
             </Stack>
           </CardBody>
           <Divider />
           <CardFooter>
             <ButtonGroup spacing="2">
+
               <Button
                 onClick={() => setShow(true)}
                 colorScheme="green"
@@ -74,14 +80,17 @@ export default function BasketPage(): JSX.Element {
                 }}
                 my={4}
               >
+
                 Купить
               </Button>
 
               <PayForm
+
                 show={show}
                 handlerClose={() => setShow(false)}
                 handleClickButton={handleClickButton}
               />
+
 
               <Button colorScheme="red" onClick={() => void dispatch(thunkBasDel(tour.tourId))}>
                 Удалить

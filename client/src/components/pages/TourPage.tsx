@@ -71,7 +71,13 @@ export default function ToursPage(): JSX.Element {
   };
 
   return (
-    <div>
+    <div
+      // style={{
+      //   backgroundImage: 'url("https://otkritkis.com/wp-content/uploads/2022/07/gu7hb.gif")',
+      //   backgroundSize: 'cover',
+      //   backgroundRepeat: 'repeat-x'
+      // }}
+    >
       {selector?.map((tour) => (
         <>
           {/* {console.log(tour, '============')} */}

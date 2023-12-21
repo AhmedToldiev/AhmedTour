@@ -11,7 +11,7 @@ import CardCommentList from '../ui/CardCommentList';
 import AddFormComment from '../ui/AddFormComment';
 import PayForm from '../ui/PayForm';
 import { thunkEditCountPay } from '../../redux/slices/tour/createAsyncThunk';
-import auth, { registrModal } from '../../redux/slices/auth';
+import { registrModal } from '../../redux/slices/auth';
 
 export default function MorePage(): JSX.Element {
   const auth = useAppSelector((store) => store.authSlice.user);
@@ -69,7 +69,9 @@ export default function MorePage(): JSX.Element {
             <Text py="2">{dataPageInfo?.body}</Text>
             <Text py="2">{dataPageInfo?.description}</Text>
 
-            <Text py="2">Осталось мест: {dataPage}</Text>
+            <Text py="2">
+              <strong> Осталось мест:</strong> {dataPage}
+            </Text>
 
             <Text py="2">
               <strong>Дата начала тура:</strong> {dataPageInfo?.date}
@@ -93,6 +95,7 @@ export default function MorePage(): JSX.Element {
                 Купить тур
               </Button>
             ) : (
+
               <Button
                 onClick={() => void dispatch(registrModal())}
                 colorScheme="green"
@@ -106,6 +109,7 @@ export default function MorePage(): JSX.Element {
               >
                 Купить тур
               </Button>
+
             )}
             <PayForm
               show={show}
@@ -114,15 +118,18 @@ export default function MorePage(): JSX.Element {
             />
           </CardBody>
 
-          <Grid templateColumns="1fr" gap={4} style={{ marginBottom: '330px' }}>
-            <Grid>
-              <CardCommentList />
+          {auth.status === 'authenticated' ? (
+            <Grid templateColumns="1fr" gap={4} style={{ marginBottom: '330px' }}>
+              <Grid>
+                <CardCommentList />
+              </Grid>
+              <Grid>
+                <AddFormComment />
+              </Grid>
             </Grid>
-            <Grid>
-              {/* <h2>Отзывы!</h2> */}
-              <AddFormComment />
-            </Grid>
-          </Grid>
+          ) : (
+            <div />
+          )}
         </Stack>
       </Card>
     );

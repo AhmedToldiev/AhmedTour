@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
 import { Container } from 'react-bootstrap';
+
 import MainPage from './components/pages/MainPage';
 
 import { useAppDispatch, useAppSelector } from './redux/hooks';
@@ -39,29 +39,37 @@ function App(): JSX.Element {
   useAxiosInterceptors();
 
   return (
-    
-    <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '150vh' }}>
-      <Loader isLoading={status === 'pending'}>
-        <>
-          <NavBar />
-          <Routes>
-            {/* <Route path="/login" element={<LoginPage />} />
+
+    <div
+      style={{
+        backgroundImage: 'url("https://otkritkis.com/wp-content/uploads/2022/07/gu7hb.gif")',
+        backgroundSize: 'cover',
+      }}
+    >
+      <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto' }}>
+        <Loader isLoading={status === 'pending'}>
+          <>
+            <NavBar />
+            <Routes>
+              {/* <Route path="/login" element={<LoginPage />} />
+
           <Route path="/registration" element={<RegistrationPage />} /> */}
-            {/* <Route path="/" element={<RegistrationModal />} /> */}
-            <Route path="/" element={<MainPage />} />
-            <Route path="/region/:id" element={<ToursPage />} />
-            <Route path="/basket" element={<BasketPage />} />
-            <Route path="/more/:id" element={<MorePage />} />
-            <Route path="/history" element={<AdminPage />} />
-          </Routes>
-          <Footer />
-          {registrModal && <RegistrationModal />}
-          {logModal && <LoginModal />}
-          {addTourModal && <AddTourModal />}
-          {editTourModal && <EditTourModal />}
-        </>
-      </Loader>
-    </Container>
+              {/* <Route path="/" element={<RegistrationModal />} /> */}
+              <Route path="/" element={<MainPage />} />
+              <Route path="/region/:id" element={<ToursPage />} />
+              <Route path="/basket" element={<BasketPage />} />
+              <Route path="/more/:id" element={<MorePage />} />
+              <Route path="/history" element={<AdminPage />} />
+            </Routes>
+            <Footer />
+            {registrModal && <RegistrationModal />}
+            {logModal && <LoginModal />}
+            {addTourModal && <AddTourModal />}
+            {editTourModal && <EditTourModal />}
+          </>
+        </Loader>
+      </Container>
+    </div>
   );
 }
 
