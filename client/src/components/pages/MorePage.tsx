@@ -46,7 +46,7 @@ export default function MorePage(): JSX.Element {
 
   if (dataPageInfo) {
     return (
-      <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
+      <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline" style={{backgroundColor: 'black', opacity: '0.6'}}>
         <Carousel style={{ width: '800px', height: '350px' }}>
           <Carousel.Item style={{ width: '600px', height: '350px' }}>
             <img src={dataPageInfo?.PhotoTour.img1} alt="12" />
@@ -64,19 +64,19 @@ export default function MorePage(): JSX.Element {
 
         <Stack>
           <CardBody>
-            <Heading size="md">{dataPageInfo?.name}</Heading>
+            <Heading size="md" style={{color: 'white'}}>{dataPageInfo?.name}</Heading>
 
-            <Text py="2">{dataPageInfo?.body}</Text>
-            <Text py="2">{dataPageInfo?.description}</Text>
+            <Text py="2" style={{color: 'white'}}>{dataPageInfo?.body}</Text>
+            <Text py="2" style={{color: 'white'}}>{dataPageInfo?.description}</Text>
 
-            <Text py="2">
+            <Text py="2" style={{color: 'white'}}>
               <strong> Осталось мест:</strong> {dataPage}
             </Text>
 
-            <Text py="2">
+            <Text py="2" style={{color: 'white'}}>
               <strong>Дата начала тура:</strong> {dataPageInfo?.date}
             </Text>
-            <Text py="2">
+            <Text py="2" style={{color: 'white'}}>
               <strong>Тур длится (в днях): </strong> {dataPageInfo?.days}
             </Text>
 

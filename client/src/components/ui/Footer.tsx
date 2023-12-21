@@ -60,10 +60,7 @@ export default function Footer(): JSX.Element {
         align={{ base: 'center', md: 'center' }}
         marginTop="auto"
       >
-        <Text>
-          Наш проект решает множество проблем с поиском незабываемых туров по Северному Кавказу ©
-          2023{' '}
-        </Text>
+        <Text style={{marginTop: '10px'}}>© 2023</Text>
         <Stack direction="row" spacing={6}>
           <SocialButton label="Twitter" href="#">
             <FaTwitter />

@@ -25,16 +25,6 @@ export default function RegistrationModal(): React.JSX.Element {
   
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
-  const [formFields, setFormFields] = useState({
-    email: '',
-    password: '',
-  });
-  const isFormValid = Object.values(formFields).every((field) => field.trim() !== '');
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormFields((prevState) => ({ ...prevState, [name]: value }));
-  };
 
   return (
     <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
@@ -53,24 +43,12 @@ export default function RegistrationModal(): React.JSX.Element {
           <ModalBody pb={6}>
             <FormControl mt={4}>
               <FormLabel>Почта</FormLabel>
-              <Input
-                placeholder="Введите почту"
-                type="email"
-                name="email"
-                value={formFields.email}
-                onChange={handleInputChange}
-              />
+              <Input placeholder="Введите почту" type="email" name="email" />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Пароль</FormLabel>
-              <Input
-                placeholder="Введите пароль"
-                type="text"
-                name="password"
-                value={formFields.password}
-                onChange={handleInputChange}
-              />
+              <Input placeholder="Введите пароль" type="password" name="password" />
             </FormControl>
 
             {/* <FormControl mt={4}>
@@ -80,7 +58,7 @@ export default function RegistrationModal(): React.JSX.Element {
           </ModalBody>
 
           <ModalFooter>
-            <Button type="submit" colorScheme="blue" mr={3} disabled={!isFormValid}>
+            <Button type="submit" colorScheme="blue" mr={3}>
               Войти
             </Button>
             <Button onClick={() => dispatch(loginModal())}>Закрыть</Button>
