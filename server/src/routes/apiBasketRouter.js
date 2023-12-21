@@ -1,6 +1,6 @@
-const express = require("express");
-const { Basket, Tour, PhotoTour } = require("../../db/models");
-const verifyAccessToken = require("../middlewares/verifyAccessToken");
+const express = require('express');
+const { Basket, Tour, PhotoTour } = require('../../db/models');
+const verifyAccessToken = require('../middlewares/verifyAccessToken');
 
 const apiBasketRouter = express.Router();
 
@@ -18,7 +18,7 @@ apiBasketRouter.route("/").post(verifyAccessToken, async (req, res) => {
     res.status(500).json(error);
   }
 });
-apiBasketRouter.route("/basket").get(verifyAccessToken, async (req, res) => {
+apiBasketRouter.route('/basket').get(verifyAccessToken, async (req, res) => {
   try {
     const AllTours = await Basket.findAll({
       where: { userId: res.locals.user.id },

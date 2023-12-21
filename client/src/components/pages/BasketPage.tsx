@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Card,
   CardHeader,
@@ -19,7 +19,6 @@ import PayForm from '../ui/PayForm';
 
 import { thunkBasDel, thunkBasketLoad, thunkEditCountPay } from '../../redux/slices/tour/createAsyncThunk';
 
-
 export default function BasketPage(): JSX.Element {
   const [show, setShow] = useState(false);
   const [dataPage, setDataPage] = useState(0);
@@ -37,10 +36,7 @@ export default function BasketPage(): JSX.Element {
   };
   return (
     <div>
-
       {selector?.map((tour, index) => (
-
-
         <Card maxW="sm" style={{ display: 'inline-block', marginLeft: '20px' }}>
           <CardBody>
             <Stack mt="6" spacing="3">
@@ -69,16 +65,7 @@ export default function BasketPage(): JSX.Element {
           <Divider />
           <CardFooter>
             <ButtonGroup spacing="2">
-              <Button onClick={() => setShow(true)}
-                colorScheme="green"
-                bg="green.400"
-                rounded="full"
-                px={6}
-                _hover={{
-                  bg: 'green.500',
-                }}
-                my={4}
-              >
+              <Button variant="solid" colorScheme="blue">
                 Купить
               </Button>
 
@@ -89,7 +76,6 @@ export default function BasketPage(): JSX.Element {
             />
 
               <Button colorScheme="red" onClick={() => void dispatch(thunkBasDel(tour.tourId))}>
-
                 Удалить
               </Button>
             </ButtonGroup>
