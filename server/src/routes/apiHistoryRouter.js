@@ -1,6 +1,6 @@
 const express = require("express");
 const { History,Tour,User } = require("../../db/models");
-const verifyAccessToken = require("../middlewares/verifyAccessToken");
+// const verifyAccessToken = require("../middlewares/verifyAccessToken");
 
 const apiHistoryRouter = express.Router();
 
