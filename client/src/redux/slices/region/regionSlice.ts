@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { thunkRegionLoad } from './createAsyncThunk';
 import type { RegionSlicesState } from '../../../types/region/region';
-
+import { thunkRegionLoad } from './createAsyncThunk';
 
 const initialState: RegionSlicesState = {
   regions: [],

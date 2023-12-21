@@ -9,6 +9,7 @@ const apiTourRouter = require("./routes/apiTourRouter");
 const apiBasketRouter = require("./routes/apiBasketRouter");
 const apiCommentrouter = require("./routes/apiCommentRouter");
 const apiPayRouter = require("./routes/apiPayRouter");
+const apiHistoryRouter = require("./routes/apiHistoryRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -31,5 +32,6 @@ app.use("/api/region/tours", apiTourRouter);
 app.use("/api/tours/basket", apiBasketRouter);
 app.use("/api/comments", apiCommentrouter);
 app.use('/api/pay', apiPayRouter)
+app.use('/api/history', apiHistoryRouter)
 
 app.listen(PORT, () => console.log(`Server has started on port ${PORT}`));

@@ -97,15 +97,19 @@ export default function ToursPage(): JSX.Element {
               </CardBody>
 
               <CardFooter>
-                <Button
-                  onClick={(event) => {
-                    addToBasket(event, tour.id);
-                  }}
-                  variant="solid"
-                  colorScheme="blue"
-                >
-                  Добавить в корзину
-                </Button>
+                {auth.status === 'authenticated' ? (
+                  <Button
+                    onClick={(event) => {
+                      addToBasket(event, tour.id);
+                    }}
+                    variant="solid"
+                    colorScheme="blue"
+                  >
+                    Добавить в корзину
+                  </Button>
+                ) : (
+                  <></>
+                )}
                 <Button
                   variant="solid"
                   colorScheme="green"
