@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 
-
+import { Box, Flex } from '@chakra-ui/react';
 import MainPage from './components/pages/MainPage';
 
 import { useAppDispatch, useAppSelector } from './redux/hooks';
@@ -21,7 +22,7 @@ import AddTourModal from './components/ui/AddTourModal';
 import EditTourModal from './components/ui/EditTourModal';
 import MorePage from './components/pages/MorePage';
 import Footer from './components/ui/Footer';
-import { Container } from 'react-bootstrap';
+import Video from './components/Video';
 
 function App(): JSX.Element {
   const registrModal = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
@@ -38,9 +39,9 @@ function App(): JSX.Element {
     // void dispatch(thunkTourLoad())
   }, []);
   useAxiosInterceptors();
- 
 
   return (
+    <div style={{backgroundImage: 'url("https://otkritkis.com/wp-content/uploads/2022/07/gu7hb.gif")',  backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
     <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '110vh' }}>
       <Loader isLoading={status === 'pending'}>
         <NavBar />
@@ -63,6 +64,7 @@ function App(): JSX.Element {
         {editTourModal && <EditTourModal />}
       </Loader>
     </Container>
+    </div>
   );
 }
 
