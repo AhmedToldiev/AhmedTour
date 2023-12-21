@@ -95,20 +95,21 @@ export default function MorePage(): JSX.Element {
                 Купить тур
               </Button>
             ) : (
-              <div />
-              // <Button
-              //   onClick={() => void dispatch(registrModal())}
-              //   colorScheme="green"
-              //   bg="green.400"
-              //   rounded="full"
-              //   px={6}
-              //   _hover={{
-              //     bg: 'green.500',
-              //   }}
-              //   my={4}
-              // >
-              //   Купить тур
-              // </Button>
+
+              <Button
+                onClick={() => void dispatch(registrModal())}
+                colorScheme="green"
+                bg="green.400"
+                rounded="full"
+                px={6}
+                _hover={{
+                  bg: 'green.500',
+                }}
+                my={4}
+              >
+                Купить тур
+              </Button>
+
             )}
             <PayForm
               show={show}

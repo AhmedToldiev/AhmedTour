@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Card,
   CardBody,
@@ -62,6 +62,14 @@ export default function ToursPage(): JSX.Element {
   };
   console.log(selector, 'sdhkjgfdhjkfbxghjhfdbhjgfbjgf');
 
+  const [buttonStates, setButtonStates] = useState({});
+  const changeButton = (id) => {
+    setButtonStates((prevStates) => ({
+      ...prevStates,
+      [id]: true,
+    }));
+  };
+
   return (
     <div
       // style={{
@@ -75,6 +83,7 @@ export default function ToursPage(): JSX.Element {
           {/* {console.log(tour, '============')} */}
 
           <Card
+            key={tour.id}
             direction={{ base: 'column', sm: 'row' }}
             overflow="hidden"
             variant="outline"
@@ -112,18 +121,19 @@ export default function ToursPage(): JSX.Element {
                   <Button
                     onClick={(event) => {
                       addToBasket(event, tour.id);
+                      changeButton(tour.id);
                     }}
                     variant="solid"
                     colorScheme="blue"
+                    isDisabled={buttonStates[tour.id]}
                   >
-                    Добавить в корзину
+                    {buttonStates[tour.id] ? 'Добавлено' : 'Добавить в корзину'}
                   </Button>
                 ) : (
-                  <div />
-
+                  <></>
                 )}
                 <Button
-                  variant="solid"
+                  variant="ghost"
                   colorScheme="green"
                   onClick={() => handleMoreClick(tour.id)}
                 >
@@ -132,7 +142,7 @@ export default function ToursPage(): JSX.Element {
                 {auth.roleId === 1 ? (
                   <>
                     <Button
-                      variant="solid"
+                      variant="ghost"
                       colorScheme="blue"
                       onClick={() => {
                         void dispatch(setSelectedTour(tour));
@@ -142,6 +152,7 @@ export default function ToursPage(): JSX.Element {
                       Изменить
                     </Button>
                     <Button
+                      variant="ghost"
                       colorScheme="red"
                       onClick={() => void dispatch(thunkTourDelete(tour.id))}
                     >
