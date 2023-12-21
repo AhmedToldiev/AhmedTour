@@ -19,6 +19,7 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { payThanck } from '../../redux/slices/auth/checkAuthThunk';
+import { thunkPostAllTour } from '../../redux/slices/history/createAsyncThunk';
 
 type PayFormPropsType = {
   show: boolean;
@@ -43,6 +44,7 @@ export default function PayForm({
     store.tourSlice.tours.filter((el) => el.id === Number(id)),
   );
   const [place, setPlace] = useState(onePage[0]?.currentPlace);
+  const dispatch = useAppDispatch();
 
   const handleClick = () => {
     setPlace((prevOnePlace) => ({
@@ -55,7 +57,7 @@ export default function PayForm({
   };
   return (
     <Box>
-      <Container >
+      <Container>
         <Modal isOpen={show} onClose={handlerClose}>
           <ModalOverlay />
           <ModalContent bg={useColorModeValue('#CBD5E0', 'gray.800')} sx={{ p: '20px' }}>
@@ -112,7 +114,10 @@ export default function PayForm({
                 <ModalFooter>
                   <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                     <Button
-                      onClick={() => handleClickButton()}
+                      onClick={() => {
+                        handleClickButton();
+                        dispatсh(thunkPostAllTour());
+                      }}
                       type="submit"
                       colorScheme="green"
                       bg="green.400"

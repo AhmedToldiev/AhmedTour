@@ -38,7 +38,7 @@ export default function AddFormComment(): JSX.Element {
           onClick={(e) => {
             void dispatch(addCommentThunk({ id: Number(id), formData: inputs, userId: user.id }));
             setInputs({ text: '' });
-            // e.target.reset();
+           
           }}
         >
           Добавить комментарий
