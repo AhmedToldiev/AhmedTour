@@ -39,7 +39,6 @@ function App(): JSX.Element {
   useAxiosInterceptors();
 
   return (
-
     <div
       style={{
         backgroundImage: 'url("https://otkritkis.com/wp-content/uploads/2022/07/gu7hb.gif")',

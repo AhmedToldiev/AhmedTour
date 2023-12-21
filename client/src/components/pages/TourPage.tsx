@@ -87,30 +87,30 @@ export default function ToursPage(): JSX.Element {
             direction={{ base: 'column', sm: 'row' }}
             overflow="hidden"
             variant="outline"
-            style={{ marginTop: '20px' }}
+            style={{ marginTop: '20px', border: '2px solid black' }}
           >
-            <Carousel style={{ width: '600px', height: '380px' }}>
-              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+            <Carousel style={{ width: '600px', height: '300px' }}>
+              <Carousel.Item style={{ width: '600px', height: '400px' }}>
                 <img src={tour.PhotoTour.img1} alt="12" />
               </Carousel.Item>
-              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+              <Carousel.Item style={{ width: '600px', height: '400px' }}>
                 <img src={tour.PhotoTour.img2} alt="12" />
               </Carousel.Item>
-              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+              <Carousel.Item style={{ width: '600px', height: '400px' }}>
                 <img src={tour.PhotoTour.img3} alt="12" />
               </Carousel.Item>
-              <Carousel.Item style={{ width: '600px', height: '380px' }}>
+              <Carousel.Item style={{ width: '600px', height: '400px' }}>
                 <img src={tour.PhotoTour.img4} alt="12" />
               </Carousel.Item>
             </Carousel>
 
-            <Stack>
+            <Stack style={{ backgroundColor: 'black', opacity: '0.8'}}>
               <CardBody>
-                <Heading size="md">{tour.name}</Heading>
+                <Heading size="md" style={{color: 'white'}}>{tour.name}</Heading>
 
-                <Text py="2">{tour.body}</Text>
-                <Stat>
-                  <StatLabel>Цена:</StatLabel>
+                <Text py="2" style={{color: 'white'}}>{tour.body}</Text>
+                <Stat style={{color: 'white'}}>
+                  <StatLabel >Цена:</StatLabel>
                   <StatNumber>{`${tour.price}₽`}</StatNumber>
                 </Stat>
                 {/* <Text py="2">{tour.description}</Text> */}
@@ -123,8 +123,7 @@ export default function ToursPage(): JSX.Element {
                       addToBasket(event, tour.id);
                       changeButton(tour.id);
                     }}
-                    variant="solid"
-                    colorScheme="blue"
+                    colorScheme="whiteAlpha"
                     isDisabled={buttonStates[tour.id]}
                   >
                     {buttonStates[tour.id] ? 'Добавлено' : 'Добавить в корзину'}

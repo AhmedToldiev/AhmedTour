@@ -48,7 +48,7 @@ export default function RegistrationModal(): React.JSX.Element {
 
             <FormControl mt={4}>
               <FormLabel>Пароль</FormLabel>
-              <Input placeholder="Введите пароль" type="text" name="password" />
+              <Input placeholder="Введите пароль" type="password" name="password" />
             </FormControl>
 
             {/* <FormControl mt={4}>
