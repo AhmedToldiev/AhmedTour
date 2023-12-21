@@ -10,6 +10,7 @@ import { setTours } from '../../redux/slices/tour/tourSlice';
 import CardCommentList from '../ui/CardCommentList';
 import AddFormComment from '../ui/AddFormComment';
 import PayForm from '../ui/PayForm';
+import { thunkEditCountPay } from '../../redux/slices/tour/createAsyncThunk';
 
 export default function MorePage(): JSX.Element {
   const [dataPage, setDataPage] = useState(0);
@@ -39,6 +40,8 @@ export default function MorePage(): JSX.Element {
 
   const handleClickButton = (): void => {
     setDataPage((prev) => prev - 1);
+    void dispatch(thunkEditCountPay(Number(id)));
+
   };
 
   if (dataPageInfo) {

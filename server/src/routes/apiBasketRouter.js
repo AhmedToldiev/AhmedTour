@@ -40,5 +40,10 @@ apiBasketRouter.route("/basket").get(verifyAccessToken, async (req, res) => {
     res.status(500).json(error);
   }
 });
+apiBasketRouter.delete("/:id", async (req, res) => {
+  console.log(req.params, '------------');
+  await Basket.destroy({ where: { tourId: req.params.id } });
+  res.sendStatus(200);
+});
 
 module.exports = apiBasketRouter;
