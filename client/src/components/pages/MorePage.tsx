@@ -4,15 +4,17 @@ import axios from 'axios';
 import { Card, CardBody, Stack, Heading, Text, Grid } from '@chakra-ui/react';
 import Carousel from 'react-bootstrap/Carousel';
 import { Button } from 'react-bootstrap';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import type { TourType } from '../../types/tour/tour';
 import { setTours } from '../../redux/slices/tour/tourSlice';
 import CardCommentList from '../ui/CardCommentList';
 import AddFormComment from '../ui/AddFormComment';
 import PayForm from '../ui/PayForm';
 import { thunkEditCountPay } from '../../redux/slices/tour/createAsyncThunk';
+import auth, { registrModal } from '../../redux/slices/auth';
 
 export default function MorePage(): JSX.Element {
+  const auth = useAppSelector((store) => store.authSlice.user);
   const [dataPage, setDataPage] = useState(0);
   const [dataPageInfo, setDataPageInfo] = useState(undefined);
   const [show, setShow] = useState(false);
@@ -67,19 +69,35 @@ export default function MorePage(): JSX.Element {
             <Text py="2">{dataPageInfo?.body}</Text>
             <Text py="2">{dataPageInfo?.description}</Text>
             <Text py="2">Осталось мест: {dataPage}</Text>
-            <Button
-              onClick={() => setShow(true)}
-              colorScheme="green"
-              bg="green.400"
-              rounded="full"
-              px={6}
-              _hover={{
-                bg: 'green.500',
-              }}
-              my={4}
-            >
-              Купить тур
-            </Button>
+            {auth.status === 'authenticated' ? (
+              <Button
+                onClick={() => setShow(true)}
+                colorScheme="green"
+                bg="green.400"
+                rounded="full"
+                px={6}
+                _hover={{
+                  bg: 'green.500',
+                }}
+                my={4}
+              >
+                Купить тур
+              </Button>
+            ) : (
+              <Button
+                onClick={() => void dispatch(registrModal())}
+                colorScheme="green"
+                bg="green.400"
+                rounded="full"
+                px={6}
+                _hover={{
+                  bg: 'green.500',
+                }}
+                my={4}
+              >
+                Купить тур
+              </Button>
+            )}
             <PayForm
               show={show}
               handlerClose={() => setShow(false)}
@@ -87,7 +105,7 @@ export default function MorePage(): JSX.Element {
             />
           </CardBody>
 
-          <Grid templateColumns="1fr" gap={4} style={{marginBottom: '330px'}}>
+          <Grid templateColumns="1fr" gap={4} style={{ marginBottom: '330px' }}>
             <Grid>
               <CardCommentList />
             </Grid>

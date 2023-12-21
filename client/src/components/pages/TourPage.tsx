@@ -68,7 +68,12 @@ export default function ToursPage(): JSX.Element {
         <>
           {/* {console.log(tour, '============')} */}
 
-          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline" style={{marginTop: '20px'}}>
+          <Card
+            direction={{ base: 'column', sm: 'row' }}
+            overflow="hidden"
+            variant="outline"
+            style={{ marginTop: '20px' }}
+          >
             <Carousel style={{ width: '600px', height: '380px' }}>
               <Carousel.Item style={{ width: '600px', height: '380px' }}>
                 <img src={tour.PhotoTour.img1} alt="12" />
@@ -97,15 +102,19 @@ export default function ToursPage(): JSX.Element {
               </CardBody>
 
               <CardFooter>
-                <Button
-                  onClick={(event) => {
-                    addToBasket(event, tour.id);
-                  }}
-                  variant="solid"
-                  colorScheme="blue"
-                >
-                  Добавить в корзину
-                </Button>
+                {auth.status === 'authenticated' ? (
+                  <Button
+                    onClick={(event) => {
+                      addToBasket(event, tour.id);
+                    }}
+                    variant="solid"
+                    colorScheme="blue"
+                  >
+                    Добавить в корзину
+                  </Button>
+                ) : (
+                  <div />
+                )}
                 <Button
                   variant="solid"
                   colorScheme="green"

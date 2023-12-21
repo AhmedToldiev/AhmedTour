@@ -41,7 +41,7 @@ export default function MainPage(): JSX.Element {
   const imgStyle = {
     width: '800px', // Задайте фиксированную ширину
     height: '570px',
-    justifyContent:'space-around',
+    justifyContent: 'space-around',
     borderRadius: '19px',
     backgroundColor: 'rgba(0.5)', // Используйте 0 для полной прозрачности
     filter: 'brightness(60%)',
@@ -70,7 +70,13 @@ export default function MainPage(): JSX.Element {
   };
 
   return (
-    <Carousel infinite autoPlay autoPlaySpeed={3000} responsive={responsive}>
+    <Carousel
+      infinite
+      autoPlay
+      autoPlaySpeed={3000}
+      responsive={responsive}
+
+    >
       {regions.map((region) => (
         <div key={region.id} style={{ marginBottom: '10px' }}>
           <Link to={`/region/${region.id}`} style={{ textDecoration: 'none' }}>
