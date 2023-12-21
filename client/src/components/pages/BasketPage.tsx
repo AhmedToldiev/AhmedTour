@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import PayForm from '../ui/PayForm';
 
+
 import { thunkBasDel, thunkBasketLoad, thunkEditCountPay } from '../../redux/slices/tour/createAsyncThunk';
 
 export default function BasketPage(): JSX.Element {
@@ -37,7 +38,9 @@ export default function BasketPage(): JSX.Element {
   return (
     <div>
       {selector?.map((tour, index) => (
-        <Card maxW="sm" style={{ display: 'inline-block', marginLeft: '20px' }}>
+
+        <Card key={tour.id} maxW="sm" style={{ display: 'inline-block', marginLeft: '20px' }}>
+
           <CardBody>
             <Stack mt="6" spacing="3">
               {/* <img src={tour.Tour.PhotoTour.img1} alt="123" /> */}
@@ -65,15 +68,29 @@ export default function BasketPage(): JSX.Element {
           <Divider />
           <CardFooter>
             <ButtonGroup spacing="2">
-              <Button variant="solid" colorScheme="blue">
+
+              <Button
+                onClick={() => setShow(true)}
+                colorScheme="green"
+                bg="green.400"
+                rounded="full"
+                px={6}
+                _hover={{
+                  bg: 'green.500',
+                }}
+                my={4}
+              >
+
                 Купить
               </Button>
 
               <PayForm
-              show={show}
-              handlerClose={() => setShow(false)}
-              handleClickButton={handleClickButton}
-            />
+
+                show={show}
+                handlerClose={() => setShow(false)}
+                handleClickButton={handleClickButton}
+              />
+
 
               <Button colorScheme="red" onClick={() => void dispatch(thunkBasDel(tour.tourId))}>
                 Удалить

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { HistorySlicesState } from '../../../types/history/history';
-import { thunkAllTourLoad } from './createAsyncThunk';
+import { thunkAllTourLoad, thunkPostAllTour } from './createAsyncThunk';
 
 const initialState: HistorySlicesState = {
   history: [],
@@ -17,6 +17,9 @@ export const historySlice = createSlice({
     });
     builder.addCase(thunkAllTourLoad.rejected, (state, action) => {
       console.log(action.error);
+    });
+    builder.addCase(thunkPostAllTour.fulfilled, (state, action) => {
+      state.history.push(action.payload);
     });
   },
 });

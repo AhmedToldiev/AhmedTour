@@ -69,10 +69,16 @@ export default function MorePage(): JSX.Element {
             <Text py="2">{dataPageInfo?.body}</Text>
             <Text py="2">{dataPageInfo?.description}</Text>
 
-            <Text py="2">Осталось мест: {dataPage}</Text>
+            <Text py="2">
+              <strong> Осталось мест:</strong> {dataPage}
+            </Text>
 
-            <Text py="2"><strong>Дата начала тура:</strong>  {dataPageInfo?.date}</Text>
-            <Text py="2"><strong>Тур длится (в днях): </strong> {dataPageInfo?.days}</Text>
+            <Text py="2">
+              <strong>Дата начала тура:</strong> {dataPageInfo?.date}
+            </Text>
+            <Text py="2">
+              <strong>Тур длится (в днях): </strong> {dataPageInfo?.days}
+            </Text>
 
             {auth.status === 'authenticated' ? (
               <Button
@@ -103,6 +109,7 @@ export default function MorePage(): JSX.Element {
               >
                 Купить тур
               </Button>
+
             )}
             <PayForm
               show={show}
@@ -111,15 +118,18 @@ export default function MorePage(): JSX.Element {
             />
           </CardBody>
 
-          <Grid templateColumns="1fr" gap={4} style={{ marginBottom: '330px' }}>
-            <Grid>
-              <CardCommentList />
+          {auth.status === 'authenticated' ? (
+            <Grid templateColumns="1fr" gap={4} style={{ marginBottom: '330px' }}>
+              <Grid>
+                <CardCommentList />
+              </Grid>
+              <Grid>
+                <AddFormComment />
+              </Grid>
             </Grid>
-            <Grid>
-              {/* <h2>Отзывы!</h2> */}
-              <AddFormComment />
-            </Grid>
-          </Grid>
+          ) : (
+            <div />
+          )}
         </Stack>
       </Card>
     );

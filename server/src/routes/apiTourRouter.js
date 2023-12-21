@@ -46,7 +46,6 @@ apiTourRouter
         name,
         body,
         price,
-        photoTourId,
       });
 
       return res.status(201).json(newProduct);

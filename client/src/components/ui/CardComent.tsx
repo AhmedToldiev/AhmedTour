@@ -11,7 +11,7 @@ export type CardCommentPropsType = {
 };
 
 function CardComment({ oneComment }: CardCommentPropsType): JSX.Element {
-  const user = useAppSelector((store) => store.authSlice.user);
+  const auth = useAppSelector((store) => store.authSlice.user);
   const dispatch = useAppDispatch();
 
   return (
@@ -25,19 +25,23 @@ function CardComment({ oneComment }: CardCommentPropsType): JSX.Element {
         flexDirection="column"
         p={4}
       >
-        <Text fontSize="xl" fontWeight="bold" maxWidth ="600px" mt={2}>
+        <Text fontSize="xl" fontWeight="bold" maxWidth="600px" mt={2}>
           {oneComment?.User?.name}
         </Text>
         <Text fontSize="md" mt={1}>
           {oneComment?.text}
         </Text>
-        <Button
-          variant="outline"
-          colorScheme="red"
-          onClick={() => void dispatch(deleteCommentThunk({ id: oneComment.id }))}
-        >
-          Удалить
-        </Button>
+        {auth.roleId === 1 ? (
+          <Button
+            variant="outline"
+            colorScheme="red"
+            onClick={() => void dispatch(deleteCommentThunk({ id: oneComment.id }))}
+          >
+            Удалить
+          </Button>
+        ) : (
+          <div />
+        )}
       </Box>
     </Container>
   );

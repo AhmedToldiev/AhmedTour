@@ -15,37 +15,23 @@ export default function AdminPage(): JSX.Element {
   }, []);
 
   return (
-    <>
-      {selector.map((tour) => (
-        <TableContainer key={tour.id}>
-          <Table variant="simple">
-            <Thead>
-              <Tr>
-                <Th>{tour.User.email}</Th>
-                <Th>{tour.Tour.name}</Th>
-                <Th isNumeric>{tour.Tour.price}</Th>
-              </Tr>
-            </Thead>
-            {/* <Tbody>
-              <Tr>
-                <Td>inches</Td>
-                <Td>millimetres (mm)</Td>
-                <Td isNumeric>25.4</Td>
-              </Tr>
-              <Tr>
-                <Td>feet</Td>
-                <Td>centimetres (cm)</Td>
-                <Td isNumeric>30.48</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
-              </Tr>
-            </Tbody> */}
-          </Table>
-        </TableContainer>
-      ))}
-    </>
+    <table style={{ backgroundColor: 'white' }}>
+      <thead>
+        <tr style={{ backgroundColor: 'black', color: 'white' }}>
+          <th>Почта пользователя</th>
+          <th>Название тура</th>
+          <th>Цена</th>
+        </tr>
+      </thead>
+      <tbody>
+        {selector.map((tour) => (
+          <tr key={tour.id}>
+            <td>{tour.User.email}</td>
+            <td>{tour.Tour.name}</td>
+            <td>{tour.Tour.price} ₽</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }

@@ -19,6 +19,7 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { payThanck } from '../../redux/slices/auth/checkAuthThunk';
+import { thunkPostAllTour } from '../../redux/slices/history/createAsyncThunk';
 
 type PayFormPropsType = {
   show: boolean;
@@ -43,6 +44,7 @@ export default function PayForm({
     store.tourSlice.tours.filter((el) => el.id === Number(id)),
   );
   const [place, setPlace] = useState(onePage[0]?.currentPlace);
+  const dispatch = useAppDispatch();
 
   const handleClick = () => {
     setPlace((prevOnePlace) => ({
@@ -55,7 +57,7 @@ export default function PayForm({
   };
   return (
     <Box>
-      <Container >
+      <Container>
         <Modal isOpen={show} onClose={handlerClose}>
           <ModalOverlay />
           <ModalContent bg={useColorModeValue('#CBD5E0', 'gray.800')} sx={{ p: '20px' }}>
@@ -78,6 +80,9 @@ export default function PayForm({
                     name="card"
                     sx={{ w: '264px' }}
                     placeholder="номер карты"
+                    pattern="^\d{16}$"
+                    title="Номер карты должен состоять из 16 цифр"
+                    required
                   />
                 </FormControl>
                 <FormControl mt={4}>
@@ -88,6 +93,9 @@ export default function PayForm({
                     name="month"
                     sx={{ w: '50px', h: '30px', p: '8px', mr: '5px' }}
                     placeholder="мм"
+                    pattern="^\d{2}$"
+                    title="Укажите срок действия карты"
+                    required
                   />
                   /
                   <Input
@@ -96,6 +104,9 @@ export default function PayForm({
                     name="year"
                     sx={{ w: '50px', h: '30px', p: '8px', ml: '5px' }}
                     placeholder="гг"
+                    pattern="^\d{2}$"
+                    title="Укажите срок действия карты"
+                    required
                   />
                 </FormControl>
                 <FormControl mt={4}>
@@ -107,12 +118,18 @@ export default function PayForm({
                     type="password"
                     sx={{ w: '50px', h: '30px', p: '8px', mr: '5px' }}
                     placeholder="cvv"
+                    pattern="^\d{3}$"
+                    title="Укажите CVV код"
+                    required
                   />
                 </FormControl>
                 <ModalFooter>
                   <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                     <Button
-                      onClick={() => handleClickButton()}
+                      onClick={() => {
+                        handleClickButton();
+                        dispatсh(thunkPostAllTour());
+                      }}
                       type="submit"
                       colorScheme="green"
                       bg="green.400"
