@@ -7,6 +7,7 @@ import { apiTourInstance } from '../../services/tours';
 import { apiBasketInstance } from '../../services/baskets';
 import { authInstance } from '../services/authService';
 import { apiCommentsInstance } from '../../services/commentService';
+import { apiHistoryInstance } from '../../services/historyService';
 
 // useAxiosInterceptors(axiosInstance)
 export default function useAxiosInterceptors(): void {
@@ -131,7 +132,28 @@ export default function useAxiosInterceptors(): void {
         return Promise.reject(err);
       },
     );
-
+    const requestHistoryInterceptor = apiHistoryInstance.interceptors.request.use(
+      (config) => {
+        if (!config.headers.Authorization) {
+          config.headers.Authorization = `Bearer ${accessToken}`;
+        }
+        return config;
+      },
+      (err) => Promise.reject(err),
+    );
+    const responseHistoryInterceptor = apiHistoryInstance.interceptors.response.use(
+      (res) => res,
+      async (err: AxiosError & { config: { sent?: boolean } }) => {
+        const prevRequest = err.config;
+        if (err.response?.status === 403 && !prevRequest.sent) {
+          prevRequest.sent = true;
+          const newAccessToken = await dispatch(thunkRefreshToken()).unwrap();
+          prevRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+          return apiHistoryInstance(prevRequest);
+        }
+        return Promise.reject(err);
+      },
+    );
     return () => {
       apiRegionInstance.interceptors.request.eject(requestInterceptorRegion);
       apiRegionInstance.interceptors.response.eject(responseInterceptorRegion);
@@ -143,6 +165,8 @@ export default function useAxiosInterceptors(): void {
       authInstance.interceptors.response.eject(responseInterceptorAuth);
       apiCommentsInstance.interceptors.request.eject(requestInterceptorComment);
       apiCommentsInstance.interceptors.response.eject(responseInterceptorComment);
+      apiHistoryInstance.interceptors.request.eject(requestHistoryInterceptor);
+      apiHistoryInstance.interceptors.response.eject(responseHistoryInterceptor);
     };
   }, [accessToken, dispatch]);
 }

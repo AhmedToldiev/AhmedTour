@@ -8,5 +8,5 @@ export const thunkAllTourLoad = createAsyncThunk('historySlice/thunkAllTourLoad'
 
 export const thunkPostAllTour = createAsyncThunk(
   'historySlice/thunkPostAllTour',
-  (formData: HistoryType) => HistoryService.postHistory(formData),
+  (id: number) => HistoryService.postHistory(id),
 );

@@ -12,8 +12,8 @@ class HistoryService {
     return data;
   }
 
-  static async postHistory(formData: HistoryType): Promise<HistoryType> {
-    const response = await apiHistoryInstance.post<HistoryType>('/history', formData);
+  static async postHistory(id: number): Promise<HistoryType> {
+    const response = await apiHistoryInstance.post<HistoryType>(`/history/${id}`);
     if (response.status === 201) return response.data;
     return Promise.reject(new Error('Error posting to server'));
   }

@@ -79,7 +79,7 @@ export default function BasicExample(): React.JSX.Element {
                   История
                 </Nav.Link>
                 {user.roleId === 1 ? (
-                  <Nav.Link className="text-white" onClick={() => void dispatch(addTourModal())}>
+                  <Nav.Link style={{width:"120px"}} className="text-white" onClick={() => void dispatch(addTourModal())}>
                     Добавить тур
                   </Nav.Link>
                 ) : (

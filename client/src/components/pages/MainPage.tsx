@@ -4,20 +4,11 @@ import 'react-multi-carousel/lib/styles.css';
 // import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 // import CarouselCard from '../ui/CarouselCard';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+
 import { useAppSelector } from '../../redux/hooks';
 
 export default function MainPage(): JSX.Element {
   const regions = useAppSelector((store) => store.regionSlice.regions);
-  // console.log(regions);
-
-  // console.log(regions);
-  // const [index, setIndex] = useState(0);
-
-  // const handleSelect = (selectedIndex) => {
-  //   setIndex(selectedIndex);
-  // };
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -70,13 +61,7 @@ export default function MainPage(): JSX.Element {
   };
 
   return (
-    <Carousel
-      infinite
-      autoPlay
-      autoPlaySpeed={3000}
-      responsive={responsive}
-
-    >
+    <Carousel infinite autoPlay autoPlaySpeed={3000} responsive={responsive}>
       {regions.map((region) => (
         <div key={region.id} style={{ marginBottom: '10px' }}>
           <Link to={`/region/${region.id}`} style={{ textDecoration: 'none' }}>

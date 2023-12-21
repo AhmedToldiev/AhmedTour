@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Input,
   ModalCloseButton,
@@ -22,9 +22,19 @@ export default function RegistrationModal(): React.JSX.Element {
   const { onOpen, onClose } = useDisclosure();
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.authSlice.addLoginModalIsOpen);
-
+  
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
+  const [formFields, setFormFields] = useState({
+    email: '',
+    password: '',
+  });
+  const isFormValid = Object.values(formFields).every((field) => field.trim() !== '');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormFields((prevState) => ({ ...prevState, [name]: value }));
+  };
 
   return (
     <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
@@ -43,12 +53,24 @@ export default function RegistrationModal(): React.JSX.Element {
           <ModalBody pb={6}>
             <FormControl mt={4}>
               <FormLabel>Почта</FormLabel>
-              <Input placeholder="Введите почту" type="email" name="email" />
+              <Input
+                placeholder="Введите почту"
+                type="email"
+                name="email"
+                value={formFields.email}
+                onChange={handleInputChange}
+              />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Пароль</FormLabel>
-              <Input placeholder="Введите пароль" type="text" name="password" />
+              <Input
+                placeholder="Введите пароль"
+                type="text"
+                name="password"
+                value={formFields.password}
+                onChange={handleInputChange}
+              />
             </FormControl>
 
             {/* <FormControl mt={4}>
@@ -58,7 +80,7 @@ export default function RegistrationModal(): React.JSX.Element {
           </ModalBody>
 
           <ModalFooter>
-            <Button type="submit" colorScheme="blue" mr={3}>
+            <Button type="submit" colorScheme="blue" mr={3} disabled={!isFormValid}>
               Войти
             </Button>
             <Button onClick={() => dispatch(loginModal())}>Закрыть</Button>
