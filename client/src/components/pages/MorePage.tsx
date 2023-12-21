@@ -11,7 +11,7 @@ import CardCommentList from '../ui/CardCommentList';
 import AddFormComment from '../ui/AddFormComment';
 import PayForm from '../ui/PayForm';
 import { thunkEditCountPay } from '../../redux/slices/tour/createAsyncThunk';
-import auth, { registrModal } from '../../redux/slices/auth';
+import { registrModal } from '../../redux/slices/auth';
 
 export default function MorePage(): JSX.Element {
   const auth = useAppSelector((store) => store.authSlice.user);
@@ -20,7 +20,6 @@ export default function MorePage(): JSX.Element {
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const auth = useAppSelector((store)=>store.authSlice.user)
 
   useEffect(() => {
     console.log(typeof id);
@@ -43,7 +42,6 @@ export default function MorePage(): JSX.Element {
   const handleClickButton = (): void => {
     setDataPage((prev) => prev - 1);
     void dispatch(thunkEditCountPay(Number(id)));
-
   };
 
   if (dataPageInfo) {
