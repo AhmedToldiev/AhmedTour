@@ -5,7 +5,6 @@ import { Container } from 'react-bootstrap';
 import MainPage from './components/pages/MainPage';
 
 import { useAppDispatch, useAppSelector } from './redux/hooks';
-import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
 
 import RegistrationModal from './components/ui/RegistrationModal';
 import LoginModal from './components/ui/LoginModal';
@@ -21,6 +20,8 @@ import AddTourModal from './components/ui/AddTourModal';
 import EditTourModal from './components/ui/EditTourModal';
 import MorePage from './components/pages/MorePage';
 import Footer from './components/ui/Footer';
+import AdminPage from './components/pages/AdminPage';
+import { thunkRegionLoad } from './redux/slices/region/createAsyncThunk';
 
 function App(): JSX.Element {
   const registrModal = useAppSelector((state) => state.authSlice.addRegistrationModalIsOpen);
@@ -38,27 +39,28 @@ function App(): JSX.Element {
   useAxiosInterceptors();
 
   return (
-    // <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '150vh' }}>
-    <Loader isLoading={status === 'pending'}>
-      <>
-        <NavBar />
-        <Routes>
-          {/* <Route path="/login" element={<LoginPage />} />
+    <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '150vh' }}>
+      <Loader isLoading={status === 'pending'}>
+        <>
+          <NavBar />
+          <Routes>
+            {/* <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} /> */}
-          {/* <Route path="/" element={<RegistrationModal />} /> */}
-          <Route path="/" element={<MainPage />} />
-          <Route path="/region/:id" element={<ToursPage />} />
-          <Route path="/basket" element={<BasketPage />} />
-          <Route path="/more/:id" element={<MorePage />} />
-        </Routes>
-        <Footer />
-        {registrModal && <RegistrationModal />}
-        {logModal && <LoginModal />}
-        {addTourModal && <AddTourModal />}
-        {editTourModal && <EditTourModal />}
-      </>
-    </Loader>
-    // </Container>
+            {/* <Route path="/" element={<RegistrationModal />} /> */}
+            <Route path="/" element={<MainPage />} />
+            <Route path="/region/:id" element={<ToursPage />} />
+            <Route path="/basket" element={<BasketPage />} />
+            <Route path="/more/:id" element={<MorePage />} />
+            <Route path="/history" element={<AdminPage />} />
+          </Routes>
+          <Footer />
+          {registrModal && <RegistrationModal />}
+          {logModal && <LoginModal />}
+          {addTourModal && <AddTourModal />}
+          {editTourModal && <EditTourModal />}
+        </>
+      </Loader>
+    </Container>
   );
 }
 

@@ -65,7 +65,9 @@ export default function MorePage(): JSX.Element {
 
             <Text py="2">{dataPageInfo?.body}</Text>
             <Text py="2">{dataPageInfo?.description}</Text>
-            <Text py="2">Осталось мест: {dataPage}</Text>
+            <Text py="2"><strong>Дата начала тура:</strong>  {dataPageInfo?.date}</Text>
+            <Text py="2"><strong>Тур длится (в днях): </strong> {dataPageInfo?.days}</Text>
+            <Text py="2"><strong>Осталось мест: </strong> {dataPage}</Text>
             {auth.status === 'authenticated' ? (
               <Button
                 onClick={() => setShow(true)}

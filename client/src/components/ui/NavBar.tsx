@@ -76,6 +76,10 @@ export default function BasicExample(): React.JSX.Element {
             <Nav.Link as={Link} to="/basket" className="text-white">
               Корзина 
             </Nav.Link>
+
+            <Nav.Link as={Link} to="/history" className="text-white">
+              История  
+            </Nav.Link>
               {/* <Nav.Link
                 className="text-white"
                 onClick={() => void dispatch(addTourModal())}
