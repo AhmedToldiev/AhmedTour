@@ -4,7 +4,7 @@ const verifyAccessToken = require('../middlewares/verifyAccessToken');
 
 const apiBasketRouter = express.Router();
 
-apiBasketRouter.route('/').post(verifyAccessToken, async (req, res) => {
+apiBasketRouter.route("/").post(verifyAccessToken, async (req, res) => {
   const { tourId } = req.body;
 
   try {
@@ -25,7 +25,7 @@ apiBasketRouter.route('/basket').get(verifyAccessToken, async (req, res) => {
       include: [
         {
           model: Tour,
-          as: 'Tour',
+          as: "Tour",
           include: [
             {
               model: PhotoTour,
@@ -34,12 +34,16 @@ apiBasketRouter.route('/basket').get(verifyAccessToken, async (req, res) => {
         },
       ],
     });
-    console.log(AllTours, 'asdfghjkl');
     return res.json(AllTours);
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
   }
+});
+apiBasketRouter.delete("/:id", async (req, res) => {
+  console.log(req.params, '------------');
+  await Basket.destroy({ where: { tourId: req.params.id } });
+  res.sendStatus(200);
 });
 
 module.exports = apiBasketRouter;

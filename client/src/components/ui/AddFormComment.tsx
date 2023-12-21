@@ -41,7 +41,7 @@ export default function AddFormComment(): JSX.Element {
             // e.target.reset();
           }}
         >
-          Send
+          Добавить комментарий
         </Button>
       </Form>
     </Card>

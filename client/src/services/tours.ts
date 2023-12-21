@@ -33,6 +33,16 @@ class TourService {
     if (response.status === 200) return id;
     return Promise.reject(new Error('Server error delete book'));
   }
+
+  static async editCountTours(id: TourType['id']): Promise<TourType> {
+    const response = await apiTourInstance.patch<TourType>(`/updateplaces/${id}`);
+    console.log(response, '123132132132', response.data, '231221321321321321Data');
+    
+    if (response.status === 200) return response.data;
+
+    return Promise.reject(new Error('Error editing on server'));
+  }
+
 }
 
 export default TourService;

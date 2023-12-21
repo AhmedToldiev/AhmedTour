@@ -12,10 +12,8 @@ apiCommentrouter
       include: User,
       where: { tourId: req.params.id },
     });
-    console.log(notes, "------------------");
     res.json(notes);
   })
-  // исправить
   .delete(verifyAccessToken,checkAuthor,async (req, res) => {
     const { id } = req.params;
     try {
@@ -28,7 +26,6 @@ apiCommentrouter
   })
   .post(verifyAccessToken,async (req, res) => {
     const { body } = req.body;
-    console.log(req.body, "0000000000");
     const newPost = await Comment.create({
       text: body,
       userId:res.locals.user.id,

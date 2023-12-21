@@ -8,6 +8,8 @@ import {
   thunkEditTour,
   thunkTourAdd,
   thunkTourDelete,
+  thunkBasDel,
+  thunkEditCountPay,
 } from './createAsyncThunk';
 
 const initialState: TourSlicesState = {
@@ -72,6 +74,21 @@ export const tourSlice = createSlice({
       const indexTour = state.tours.findIndex((tour) => tour.id === action.payload);
       if (indexTour !== -1) {
         state.tours.splice(indexTour, 1);
+      }
+      state.selectedTour = null;
+    });
+
+    builder.addCase(thunkEditCountPay.fulfilled, (state, action) => {
+      console.log(200);
+      
+    });
+
+    builder.addCase(thunkBasDel.fulfilled, (state, action) => {
+      console.log(action.payload, '+++++++++++++++++++');
+
+      const indexTour = state.basket.findIndex((basket) => basket.tourId === action.payload);
+      if (indexTour !== -1) {
+        state.basket.splice(indexTour, 1);
       }
       state.selectedTour = null;
     });
