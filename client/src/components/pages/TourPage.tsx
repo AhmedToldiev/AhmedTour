@@ -63,12 +63,23 @@ export default function ToursPage(): JSX.Element {
   console.log(selector, 'sdhkjgfdhjkfbxghjhfdbhjgfbjgf');
 
   return (
-    <div>
+    <div
+      // style={{
+      //   backgroundImage: 'url("https://otkritkis.com/wp-content/uploads/2022/07/gu7hb.gif")',
+      //   backgroundSize: 'cover',
+      //   backgroundRepeat: 'repeat-x'
+      // }}
+    >
       {selector?.map((tour) => (
         <>
           {/* {console.log(tour, '============')} */}
 
-          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline" style={{marginTop: '20px'}}>
+          <Card
+            direction={{ base: 'column', sm: 'row' }}
+            overflow="hidden"
+            variant="outline"
+            style={{ marginTop: '20px' }}
+          >
             <Carousel style={{ width: '600px', height: '380px' }}>
               <Carousel.Item style={{ width: '600px', height: '380px' }}>
                 <img src={tour.PhotoTour.img1} alt="12" />
