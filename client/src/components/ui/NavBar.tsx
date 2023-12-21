@@ -24,13 +24,13 @@ export default function BasicExample(): React.JSX.Element {
       }}
     >
       <Container>
-        <div style={{marginRight: '30px'}}>
+        <div style={{position: 'absolute', width: '115px', marginTop: '7px'}}>
           <Logo />
         </div>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto" style={{ marginLeft: '70px'}}>
             <Navbar.Brand as={Link} to="/" className="nav-item slam-left text-white">
               {user.status === 'authenticated'
                 ? `Добро пожаловать, ${user.name}`
