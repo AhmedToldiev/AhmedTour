@@ -62,7 +62,7 @@ export default function BasketPage(): JSX.Element {
               <Heading size="md">{tour.Tour.name}</Heading>
               <Text>{tour.Tour.body}</Text>
               <Text color="blue.600" fontSize="2xl">
-                {tour.Tour.price}
+                {tour.Tour.price}₽
               </Text>
             </Stack>
           </CardBody>

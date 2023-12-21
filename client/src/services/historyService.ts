@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TourType } from '../types/tour/tour';
+import type { TourType } from '../types/tour/tour';
 
 export const apiHistoryInstance = axios.create({
   baseURL: 'http://localhost:3000/api',
