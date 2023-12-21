@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Card,
   CardBody,
@@ -62,14 +62,28 @@ export default function ToursPage(): JSX.Element {
   };
   console.log(selector, 'sdhkjgfdhjkfbxghjhfdbhjgfbjgf');
 
+  const [buttonStates, setButtonStates] = useState({});
+  const changeButton = (id) => {
+    setButtonStates((prevStates) => ({
+      ...prevStates,
+      [id]: true,
+    }));
+  };
+
   return (
     <div>
       {selector?.map((tour) => (
         <>
           {/* {console.log(tour, '============')} */}
 
-          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
-            <Carousel style={{ width: '600px', height: '300px' }}>
+          <Card
+            key={tour.id}
+            direction={{ base: 'column', sm: 'row' }}
+            overflow="hidden"
+            variant="outline"
+            style={{ marginTop: '20px' }}
+          >
+            <Carousel style={{ width: '600px', height: '380px' }}>
               <Carousel.Item style={{ width: '600px', height: '380px' }}>
                 <img src={tour.PhotoTour.img1} alt="12" />
               </Carousel.Item>
@@ -97,15 +111,21 @@ export default function ToursPage(): JSX.Element {
               </CardBody>
 
               <CardFooter>
-                <Button
-                  onClick={(event) => {
-                    addToBasket(event, tour.id);
-                  }}
-                  variant="solid"
-                  colorScheme="blue"
-                >
-                  Добавить в корзину
-                </Button>
+                {auth.status === 'authenticated' ? (
+                  <Button
+                    onClick={(event) => {
+                      addToBasket(event, tour.id);
+                      changeButton(tour.id);
+                    }}
+                    variant="solid"
+                    colorScheme="blue"
+                    isDisabled={buttonStates[tour.id]}
+                  >
+                    {buttonStates[tour.id] ? 'Добавлено' : 'Добавить в корзину'}
+                  </Button>
+                ) : (
+                  <></>
+                )}
                 <Button
                   variant="ghost"
                   colorScheme="green"
