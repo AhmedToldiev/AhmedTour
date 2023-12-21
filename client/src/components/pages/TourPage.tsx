@@ -114,6 +114,7 @@ export default function ToursPage(): JSX.Element {
                   </Button>
                 ) : (
                   <div />
+
                 )}
                 <Button
                   variant="solid"

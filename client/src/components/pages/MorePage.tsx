@@ -20,6 +20,7 @@ export default function MorePage(): JSX.Element {
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
   const { id } = useParams();
+  const auth = useAppSelector((store)=>store.authSlice.user)
 
   useEffect(() => {
     console.log(typeof id);
@@ -42,6 +43,7 @@ export default function MorePage(): JSX.Element {
   const handleClickButton = (): void => {
     setDataPage((prev) => prev - 1);
     void dispatch(thunkEditCountPay(Number(id)));
+
   };
 
   if (dataPageInfo) {
@@ -68,7 +70,12 @@ export default function MorePage(): JSX.Element {
 
             <Text py="2">{dataPageInfo?.body}</Text>
             <Text py="2">{dataPageInfo?.description}</Text>
+
             <Text py="2">Осталось мест: {dataPage}</Text>
+
+            <Text py="2"><strong>Дата начала тура:</strong>  {dataPageInfo?.date}</Text>
+            <Text py="2"><strong>Тур длится (в днях): </strong> {dataPageInfo?.days}</Text>
+
             {auth.status === 'authenticated' ? (
               <Button
                 onClick={() => setShow(true)}
@@ -84,6 +91,7 @@ export default function MorePage(): JSX.Element {
                 Купить тур
               </Button>
             ) : (
+
               <Button
                 onClick={() => void dispatch(registrModal())}
                 colorScheme="green"

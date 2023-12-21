@@ -10,20 +10,18 @@ export type TourType = {
   photoTourId: number;
   currentPlace: number;
   allPlace: number;
+  date: string;
+  days: number;
   createdAt: Date;
   updatedAt: Date;
   PhotoTour: PhotoTour;
-
 };
 export type PhotoTour = {
   img1: string;
   img2: string;
   img3: string;
   img4: string;
-
 };
-
-
 
 export type TourState = {
   region: TourType[];
