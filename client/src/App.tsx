@@ -36,11 +36,12 @@ function App(): JSX.Element {
     void dispatch(thunkRegionLoad());
     void dispatch(thunkCheckAuth());
     // void dispatch(thunkTourLoad())
-  }, []);
+  }, [dispatch]);
   useAxiosInterceptors();
  
 
   return (
+    
     <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '150vh' }}>
       <Loader isLoading={status === 'pending'}>
         <NavBar />

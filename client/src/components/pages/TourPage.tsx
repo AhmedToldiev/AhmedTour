@@ -64,7 +64,7 @@ export default function ToursPage(): JSX.Element {
         <>
           {/* {console.log(tour, '============')} */}
 
-          <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
+          <Card direction={{ base: 'column', sm: 'row' }} style={{backgroundColor: '#DCDCDC', marginTop: '20px'}} overflow="hidden" variant="outline">
             <Carousel style={{ width: '600px', height: '300px' }}>
               <Carousel.Item style={{ width: '600px', height: '380px' }}>
                 <img src={tour.PhotoTour.img1} alt="12" />
@@ -97,13 +97,13 @@ export default function ToursPage(): JSX.Element {
                   onClick={(event) => {
                     addToBasket(event, tour.id);
                   }}
-                  variant="solid"
-                  colorScheme="blue"
+                  variant="ghost"
+                  colorScheme="red"
                 >
                   Добавить в корзину
                 </Button>
                 <Button
-                  variant="solid"
+                  variant="ghost"
                   colorScheme="green"
                   onClick={() => handleMoreClick(tour.id)}
                 >
@@ -112,7 +112,7 @@ export default function ToursPage(): JSX.Element {
                 {auth.roleId === 1 ? (
                   <>
                     <Button
-                      variant="solid"
+                      variant="ghost"
                       colorScheme="blue"
                       onClick={() => {
                         void dispatch(setSelectedTour(tour));
@@ -122,6 +122,7 @@ export default function ToursPage(): JSX.Element {
                       Изменить
                     </Button>
                     <Button
+                      variant="ghost"
                       colorScheme="red"
                       onClick={() => void dispatch(thunkTourDelete(tour.id))}
                     >
