@@ -119,7 +119,8 @@ export default function ToursPage(): JSX.Element {
                     Добавить в корзину
                   </Button>
                 ) : (
-                  <></>
+                  <div />
+
                 )}
                 <Button
                   variant="solid"

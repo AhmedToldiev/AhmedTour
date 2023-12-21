@@ -70,7 +70,13 @@ export default function MainPage(): JSX.Element {
   };
 
   return (
-    <Carousel infinite autoPlay autoPlaySpeed={3000} responsive={responsive}>
+    <Carousel
+      infinite
+      autoPlay
+      autoPlaySpeed={3000}
+      responsive={responsive}
+
+    >
       {regions.map((region) => (
         <div key={region.id} style={{ marginBottom: '10px' }}>
           <Link to={`/region/${region.id}`} style={{ textDecoration: 'none' }}>
