@@ -24,13 +24,13 @@ export default function BasicExample(): React.JSX.Element {
       }}
     >
       <Container>
-        <div style={{ marginRight: '30px' }}>
+        <div style={{ position: 'absolute', width: '115px', marginTop: '7px' }}>
           <Logo />
         </div>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto" style={{ marginLeft: '70px' }}>
             <Navbar.Brand as={Link} to="/" className="nav-item slam-left text-white">
               {user.status === 'authenticated'
                 ? `Добро пожаловать, ${user.name}`
@@ -75,13 +75,15 @@ export default function BasicExample(): React.JSX.Element {
                   Корзина
                 </Nav.Link>
 
-                <Nav.Link as={Link} to="/history" className="text-white">
-                  История
-                </Nav.Link>
                 {user.roleId === 1 ? (
-                  <Nav.Link style={{width:"120px"}} className="text-white" onClick={() => void dispatch(addTourModal())}>
-                    Добавить тур
-                  </Nav.Link>
+                  <>
+                    <Nav.Link as={Link} to="/history" className="text-white">
+                      История
+                    </Nav.Link>
+                    <Nav.Link style={{width: '120px'}} className="text-white" onClick={() => void dispatch(addTourModal())}>
+                      Добавить тур
+                    </Nav.Link>
+                  </>
                 ) : (
                   <div />
                 )}
@@ -90,7 +92,7 @@ export default function BasicExample(): React.JSX.Element {
                   href=""
                   className="text-white"
                   onClick={() => void dispatch(thunkLogout())}
-                  style={{ marginLeft: '550px' }}
+                  style={{ marginLeft: '500px' }}
                 >
                   Выйти
                 </Nav.Link>
