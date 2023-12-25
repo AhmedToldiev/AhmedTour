@@ -15,7 +15,7 @@ function CardComment({ oneComment }: CardCommentPropsType): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
-    <Container maxW="container.xl" marginTop="10px" >
+    <Container maxW="container.xl" style={{ marginLeft: '-3px'}} >
       <Box
         border="1px"
         borderColor="gray.200"
@@ -26,10 +26,10 @@ function CardComment({ oneComment }: CardCommentPropsType): JSX.Element {
         p={4}
       >
         <Text fontSize="xl" fontWeight="bold" maxWidth="600px" mt={2} style={{color: 'white'}}>
-          {oneComment?.User?.name}
+          Имя пользователя: {oneComment?.User?.name}
         </Text>
         <Text fontSize="md" mt={1} style={{color: 'white'}}>
-          {oneComment?.text}
+          Комментарий: {oneComment?.text}
         </Text>
         {auth.roleId === 1 ? (
           <Button

@@ -156,7 +156,7 @@ export default function PayForm({
                       }}
                       onClick={handlerClose}
                     >
-                      Cancel
+                      Отменить
                     </Button>
                   </motion.div>
                 </ModalFooter>

@@ -46,8 +46,9 @@ export default function MorePage(): JSX.Element {
 
   if (dataPageInfo) {
     return (
-      <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline" style={{backgroundColor: 'black', opacity: '0.6'}}>
-        <Carousel style={{ width: '800px', height: '350px' }}>
+      <>
+      <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline" style={{backgroundColor: 'black', opacity: '0.8', marginTop: '5px'}}>
+      <Carousel style={{ width: '800px', height: '350px' }}>
           <Carousel.Item style={{ width: '600px', height: '350px' }}>
             <img src={dataPageInfo?.PhotoTour.img1} alt="12" />
           </Carousel.Item>
@@ -61,22 +62,21 @@ export default function MorePage(): JSX.Element {
             <img src={dataPageInfo?.PhotoTour.img4} alt="12" />
           </Carousel.Item>
         </Carousel>
-
         <Stack>
           <CardBody>
-            <Heading size="md" style={{color: 'white'}}>{dataPageInfo?.name}</Heading>
+            <Heading size="md" style={{color: 'white', fontWeight: 'bold'}}>{dataPageInfo?.name}</Heading>
 
-            <Text py="2" style={{color: 'white'}}>{dataPageInfo?.body}</Text>
-            <Text py="2" style={{color: 'white'}}>{dataPageInfo?.description}</Text>
+            <Text py="2" style={{color: 'white', fontWeight: 'bold'}}>{dataPageInfo?.body}</Text>
+            <Text py="2" style={{color: 'white', fontWeight: 'bold'}}>{dataPageInfo?.description}</Text>
 
-            <Text py="2" style={{color: 'white'}}>
+            <Text py="2" style={{color: 'white', fontWeight: 'bold'}}>
               <strong> Осталось мест:</strong> {dataPage}
             </Text>
 
-            <Text py="2" style={{color: 'white'}}>
+            <Text py="2" style={{color: 'white', fontWeight: 'bold'}}>
               <strong>Дата начала тура:</strong> {dataPageInfo?.date}
             </Text>
-            <Text py="2" style={{color: 'white'}}>
+            <Text py="2" style={{color: 'white', fontWeight: 'bold'}}>
               <strong>Тур длится (в днях): </strong> {dataPageInfo?.days}
             </Text>
 
@@ -118,20 +118,37 @@ export default function MorePage(): JSX.Element {
             />
           </CardBody>
 
-          {auth.status === 'authenticated' ? (
-            <Grid templateColumns="1fr" gap={4} style={{ marginBottom: '330px' }}>
-              <Grid>
-                <CardCommentList />
-              </Grid>
+          
+        </Stack>
+      </Card>
+      <Carousel style={{ width: '600px', height: '350px', position: 'absolute', marginTop: '62px', marginLeft:'2px' }}>
+          <Carousel.Item style={{ width: '600px', height: '350px' }}>
+            <img src={dataPageInfo?.PhotoTour.img1} alt="12" />
+          </Carousel.Item>
+          <Carousel.Item style={{ width: '600px', height: '350px' }}>
+            <img src={dataPageInfo?.PhotoTour.img2} alt="12" />
+          </Carousel.Item>
+          <Carousel.Item style={{ width: '600px', height: '350px' }}>
+            <img src={dataPageInfo?.PhotoTour.img3} alt="12" />
+          </Carousel.Item>
+          <Carousel.Item style={{ width: '600px', height: '350px' }}>
+            <img src={dataPageInfo?.PhotoTour.img4} alt="12" />
+          </Carousel.Item>
+        </Carousel>
+
+        {auth.status === 'authenticated' ? (
+            <Grid templateColumns="1fr" gap={4} style={{ position: 'absolute', marginTop: '500px', width: '600px'}}>
               <Grid>
                 <AddFormComment />
+              </Grid>
+              <Grid>
+                <CardCommentList />
               </Grid>
             </Grid>
           ) : (
             <div />
           )}
-        </Stack>
-      </Card>
+      </>
     );
   }
   return <div>Load....</div>;
