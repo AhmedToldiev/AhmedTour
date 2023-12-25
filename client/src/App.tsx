@@ -45,7 +45,7 @@ function App(): JSX.Element {
         backgroundSize: 'cover',
       }}
     >
-      <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '150vh' }}>
+      <Container style={{ display: 'grid', gridTemplateRows: 'auto 1fr auto', height: '166vh' }}>
         <Loader isLoading={status === 'pending'}>
           <>
             <NavBar />

@@ -35,6 +35,12 @@ module.exports = {
           hashpass: hashSync('1', 10),
           roleId: 3,
         },
+        {
+          name: 'Гоша',
+          email: 'gosha@mail.ru',
+          hashpass: hashSync('1', 10),
+          roleId: 3,
+        },
       ],
       {}
     );

@@ -9,10 +9,11 @@ export default function AddFormComment(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = useAppSelector((store) => store.authSlice.user);
   const [inputs, setInputs] = useState<CommentTypesFormType>({
-    text: '',
+    body: '',
   });
-
   const { id } = useParams();
+  console.log(inputs);
+  
 
   const changeHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -25,7 +26,7 @@ export default function AddFormComment(): JSX.Element {
           type="text"
           name="body"
           placeholder="Введите комментарий"
-  
+          value={inputs.body}
           onChange={(e) => {
             e.preventDefault(); // Prevent default form submission
             changeHandler(e);
@@ -37,8 +38,7 @@ export default function AddFormComment(): JSX.Element {
           size="lg"
           onClick={(e) => {
             void dispatch(addCommentThunk({ id: Number(id), formData: inputs, userId: user.id }));
-            setInputs({ text: '' });
-           
+            setInputs({ body: '' });
           }}
         >
           Добавить комментарий

@@ -36,10 +36,10 @@ export default function BasketPage(): JSX.Element {
     void dispatch(thunkEditCountPay(Number(id)));
   };
   return (
-    <div>
+    <div style={{ display: 'flex', gap: '10px 10px', marginTop: '10px'}}>
       {selector?.map((tour, index) => (
 
-        <Card key={tour.id} maxW="sm" style={{ display: 'inline-block', marginLeft: '20px' }}>
+        <Card key={tour.id} maxW="sm" style={{ height: '700px',  backgroundColor: '#DCDCDC'}}>
 
           <CardBody>
             <Stack mt="6" spacing="3">
@@ -72,13 +72,12 @@ export default function BasketPage(): JSX.Element {
               <Button
                 onClick={() => setShow(true)}
                 colorScheme="green"
-                bg="green.400"
-                rounded="full"
+                variant='ghost'
+              
                 px={6}
-                _hover={{
-                  bg: 'green.500',
-                }}
+                
                 my={4}
+                style={{marginTop: '-10px'}}
               >
 
                 Купить
@@ -92,7 +91,7 @@ export default function BasketPage(): JSX.Element {
               />
 
 
-              <Button colorScheme="red" onClick={() => void dispatch(thunkBasDel(tour.tourId))}>
+              <Button colorScheme="red" variant='ghost' onClick={() => void dispatch(thunkBasDel(tour.tourId))} style={{marginTop: '-10px'}}>
                 Удалить
               </Button>
             </ButtonGroup>
