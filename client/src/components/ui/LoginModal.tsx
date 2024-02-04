@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Input,
   ModalCloseButton,
@@ -22,7 +22,7 @@ export default function RegistrationModal(): React.JSX.Element {
   const { onOpen, onClose } = useDisclosure();
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.authSlice.addLoginModalIsOpen);
-
+  
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
@@ -48,7 +48,7 @@ export default function RegistrationModal(): React.JSX.Element {
 
             <FormControl mt={4}>
               <FormLabel>Пароль</FormLabel>
-              <Input placeholder="Введите пароль" type="text" name="password" />
+              <Input placeholder="Введите пароль" type="password" name="password" />
             </FormControl>
 
             {/* <FormControl mt={4}>

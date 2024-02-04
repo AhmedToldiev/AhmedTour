@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import type { AuthState, LoginFormData, SignupFormData } from '../../../types/auth';
+import type { AuthState, LoginFormData, PayForm, SignupFormData } from '../../../types/auth';
 import AuthService from '../../../services/authService';
+import ApiServices from '../../../services/apiService';
 
 export const thunkCheckAuth = createAsyncThunk<AuthState>('authSlice/thunkChecAuth', async () => {
   const backendAuth = await AuthService.check();
@@ -30,3 +31,8 @@ export const thunkRefreshToken = createAsyncThunk<AuthState['accessToken']>(
     return backendAuth.accessToken;
   },
 );
+
+export const payThanck = createAsyncThunk('authSlice/payThanck', async (formData: PayForm) => {
+  const response = await ApiServices.subscribePay(formData);
+  return response;
+});

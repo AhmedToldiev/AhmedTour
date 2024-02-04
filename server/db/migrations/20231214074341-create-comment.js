@@ -17,6 +17,7 @@ module.exports = {
           model: 'Tours',
           key: 'id',
         },
+        onDelete: "CASCADE",
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -24,6 +25,7 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
+        onDelete: "CASCADE",
       },
       createdAt: {
         allowNull: false,
@@ -38,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Baskets');
+    await queryInterface.dropTable('Comments');
   },
 };

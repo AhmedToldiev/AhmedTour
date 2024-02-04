@@ -6,8 +6,8 @@ module.exports = {
       [
         {
           img1: "https://kartinki.pics/pics/uploads/posts/2022-08/1661273791_27-kartinkin-net-p-gori-dagestana-oboi-krasivo-31.jpg",
-          img2: "https://kartinki.pics/pics/uploads/posts/2022-08/1661273790_1-kartinkin-net-p-gori-dagestana-oboi-krasivo-1.jpg",
-          img3: "https://kartinki.pics/pics/uploads/posts/2022-08/1661273812_7-kartinkin-net-p-gori-dagestana-oboi-krasivo-8.jpg",
+          img2: "https://upload.wikimedia.org/wikipedia/commons/1/10/Sulak_Canyon_in_Dagestan.jpg",
+          img3: "https://priroda.club/uploads/posts/2022-06/1655733536_1-priroda-club-p-kanon-v-dagestane-priroda-krasivo-foto-1.jpg",
           img4: "https://kartinki.pics/pics/uploads/posts/2022-08/1661273878_28-kartinkin-net-p-gori-dagestana-oboi-krasivo-32.jpg",
         },
         {
@@ -30,7 +30,7 @@ module.exports = {
         },
         {
           img1: "https://darsik.com/wp-content/uploads/2019/04/untitled-1-2-4.jpg",
-          img2: "https://cdn.tripster.ru/thumbs2/e09cd4d0-4af2-11ee-8cef-2aa9275f276d.1220x600.jpeg",
+          img2: "https://upload.wikimedia.org/wikipedia/commons/4/4b/%D0%93%D0%BE%D1%80%D1%8B%2C_%D0%BE%D0%B1%D0%BB%D0%B0%D0%BA%D0%B0_%D0%B8_%D1%81%D0%BD%D0%B5%D0%B3._%D0%9A%D0%B0%D0%B1%D0%B0%D1%80%D0%B4%D0%B8%D0%BD%D0%BE-%D0%91%D0%B0%D0%BB%D0%BA%D0%B0%D1%80%D0%B8%D1%8F.jpg",
           img3: "https://www.atorus.ru/sites/default/files/upload/image/News/52542/%D1%84%D0%BE%D1%82%D0%BE%201.JPG",
           img4: "https://putidorogi-nn.ru/images/stories/evropa/rossiya/kabardino_balkarskaya_respublika_4.jpg",
         },
@@ -72,7 +72,7 @@ module.exports = {
         },
         {
           img1: "https://aif-s3.aif.ru/images/007/164/d579ff3413bf48c54619a7c86fa62398.jpg",
-          img2: "https://severnykavkaz.ru/wp-content/uploads/2019/04/dostoprimechatelnosti-chechni.jpg",
+          img2: "https://a.d-cd.net/b9YksXJp_Wkm6MeAvJO5YmRibi8-1920.jpg",
           img3: "https://ic.pics.livejournal.com/uritsk/19436209/7690501/7690501_original.jpg",
           img4: "https://must-see.top/wp-content/uploads/2018/10/drevnij-gorod-hoj-700x467.jpg",
         },

@@ -8,6 +8,7 @@ import { registrModal, loginModal } from '../../redux/slices/auth';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { thunkLogout } from '../../redux/slices/auth/checkAuthThunk';
 import Logo from '../../icons/Logo';
+import { addTourModal } from '../../redux/slices/tour/tourSlice';
 
 export default function BasicExample(): React.JSX.Element {
   const dispatch = useAppDispatch();
@@ -23,23 +24,20 @@ export default function BasicExample(): React.JSX.Element {
       }}
     >
       <Container>
-        <div>
+        <div style={{ position: 'absolute', width: '115px', marginTop: '7px' }}>
           <Logo />
         </div>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto" style={{ marginLeft: '70px' }}>
             <Navbar.Brand as={Link} to="/" className="nav-item slam-left text-white">
               {user.status === 'authenticated'
                 ? `Добро пожаловать, ${user.name}`
                 : 'Добро пожаловать, гость'}
             </Navbar.Brand>
-            <Nav.Link as={Link} to="/about" className="text-white">
-              О нас
-            </Nav.Link>
-            <NavDropdown title={<span className="text-white">Регионы</span>}>
 
+            <NavDropdown title={<span className="text-white">Регионы</span>}>
               <NavDropdown.Item as={Link} to="/region/1">
                 Дагестан
               </NavDropdown.Item>
@@ -52,7 +50,6 @@ export default function BasicExample(): React.JSX.Element {
               <NavDropdown.Item as={Link} to="/region/4">
                 Чечня
               </NavDropdown.Item>
-
             </NavDropdown>
 
             {user.status !== 'authenticated' ? (
@@ -73,9 +70,33 @@ export default function BasicExample(): React.JSX.Element {
                 </Nav.Link>
               </>
             ) : (
-              <Nav.Link href="" className="text-white" onClick={() => void dispatch(thunkLogout())}>
-                Выйти
-              </Nav.Link>
+              <>
+                <Nav.Link as={Link} to="/basket" className="text-white">
+                  Корзина
+                </Nav.Link>
+
+                {user.roleId === 1 ? (
+                  <>
+                    <Nav.Link as={Link} to="/history" className="text-white">
+                      История
+                    </Nav.Link>
+                    <Nav.Link style={{width: '120px'}} className="text-white" onClick={() => void dispatch(addTourModal())}>
+                      Добавить тур
+                    </Nav.Link>
+                  </>
+                ) : (
+                  <div />
+                )}
+
+                <Nav.Link
+                  href=""
+                  className="text-white"
+                  onClick={() => void dispatch(thunkLogout())}
+                  style={{ marginLeft: '500px' }}
+                >
+                  Выйти
+                </Nav.Link>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>

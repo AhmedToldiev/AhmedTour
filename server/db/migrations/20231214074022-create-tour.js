@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       body: {
         type: Sequelize.TEXT,
@@ -19,6 +19,18 @@ module.exports = {
       },
       price: {
         type: Sequelize.INTEGER,
+      },
+      currentPlace: {
+        type: Sequelize.INTEGER,
+      },
+      allPlace: {
+        type: Sequelize.INTEGER,
+      },
+      date: {
+        type: Sequelize.TEXT,
+      },
+      days:{
+        type: Sequelize.TEXT,
       },
       regionId: {
         type: Sequelize.INTEGER,
